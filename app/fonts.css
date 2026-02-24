@@ -1,31 +1,31 @@
 @font-face {
     font-family: 'Pack-Hard';
-    src: url('/fonts/pack-hard.woff2') format('woff2'),
-             url('/fonts/pack-hard.woff') format('woff');
+    src: url('/yes2026-web/fonts/pack-hard.woff2') format('woff2'),
+             url('/yes2026-web/fonts/pack-hard.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Aeonik';
-    src: url('/fonts/aeonik-regular.woff2') format('woff2'),
-             url('/fonts/aeonik-regular.woff') format('woff');
+    src: url('/yes2026-web/fonts/aeonik-regular.woff2') format('woff2'),
+             url('/yes2026-web/fonts/aeonik-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Aeonik';
-    src: url('/fonts/aeonik-bold.woff2') format('woff2'),
-             url('/fonts/aeonik-bold.woff') format('woff');
+    src: url('/yes2026-web/fonts/aeonik-bold.woff2') format('woff2'),
+             url('/yes2026-web/fonts/aeonik-bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Aeonik';
-    src: url('/fonts/aeonik-regularitalic.woff2') format('woff2'),
-             url('/fonts/aeonik-regularitalic.woff') format('woff');
+    src: url('/yes2026-web/fonts/aeonik-regularitalic.woff2') format('woff2'),
+             url('/yes2026-web/fonts/aeonik-regularitalic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
 }
