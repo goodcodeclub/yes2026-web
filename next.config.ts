@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+const isProd = process.env.NODE_ENV === 'production'
 
 const nextConfig: NextConfig = {
   rewrites: async () => [
@@ -11,6 +12,9 @@ const nextConfig: NextConfig = {
       destination: `/source/:page/:page2/index.html`,
     },
   ],
+  output: 'export', // important for GitHub Pages
+  basePath: isProd ? '/yes2026-web' : '',
+  assetPrefix: isProd ? '/yes2026-web/' : '',
 };
 
 export default nextConfig;
