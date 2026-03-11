@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
 
-export function Teaser() {
+export function Teaser({ title, color }: { title: string; color: string }) {
     const items = [
         {
             title: "British Orphan",
@@ -30,19 +30,20 @@ export function Teaser() {
             <div className="mx-auto max-w-[1440px] py-14 lg:py-20">
                 <div className="mb-10 flex items-center justify-between">
                     <div className="flex items-center">
-                        <h2 className="ff-pack-hard text-3xl leading-none text-lime flex items-center">
-                            CHECK IT OUT
+                        <h2 className="ff-pack-hard text-3xl leading-none  flex items-center uppercase" style={{ color: `#${color}` }}>
+                            {title ? title : "Check it out"}
                         </h2>
                         <ArrowDown className="h-8 w-8 text-white ml-1" />
                     </div>
                     <div className="flex items-center">
                         <a
                             href="#"
-                            className="text-sm text-lime underline underline-offset-4 transition-opacity hover:opacity-80 flex align-items-center"
+                            className="text-sm  underline underline-offset-4 transition-opacity hover:opacity-80 flex align-items-center"
+                             style={{ color: `#${color}` }}
                         >
                             View All Work
                         </a>
-                        <ArrowRight className="text-lime h-4 w-4 ml-1" />
+                        <ArrowRight className={`h-4 w-4 ml-1`} style={{ color: `#${color}` }} />
                     </div>
                 </div>
 
@@ -61,7 +62,7 @@ export function Teaser() {
                             </a>
 
                             <p className="text-lg text-white">{item.author}</p>
-                            <p className="text-lg leading-tight text-lime">{item.program}</p>
+                            <p className="text-lg leading-tight" style={{ color: `#${color}` }}>{item.program}</p>
                         </article>
                     ))}
                 </div>

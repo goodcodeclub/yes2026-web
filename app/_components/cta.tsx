@@ -121,7 +121,7 @@ export function CTA() {
                     <div>
                         <a
                             href="#"
-                            className="inline-block border-2 border-[#FF2D6B] text-[#FF2D6B]  uppercase px-6 py-3 text-sm tracking-wide hover:bg-[#FF2D6B] hover:text-black transition-colors"
+                            className="inline-block border-2 border-[#ff4eac] text-lime  uppercase px-6 py-3 text-sm tracking-wide hover:bg-lime hover:text-black transition-colors"
                         >
                             JOIN THE PARTY!
                         </a>

@@ -1,26 +1,32 @@
+"use client";
+
 import { SearchIcon } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export function Nav() {
 
     const menu = [
         // { label: 'Home', href: '/' },
         { label: 'Featured Work', href: '/work' },
-        { label: 'Grads', href: '/graduates' },
-        { label: 'Awards', href: '/graduates' },
-        { label: 'Gallery', href: '/graduates' },
-        { label: 'Committee', href: '/events' },
+        { label: 'Grads', href: '#' },
+        { label: 'Awards', href: '#' },
+        { label: 'Gallery', href: '/gallery' },
+        { label: 'Committee', href: '#' },
         // { label: 'Awards', href: '/awards' },
         // { label: 'Committee', href: '/committee' }
     ]
 
+    const pathname = usePathname();
+
     return (
         <div className="w-full bg-white transition-colors duration-300 sticky z-50 top-0">
             <div className="max-w-[1440px] mx-auto">
-                <div className="py-5 flex items-center justify-between px-6 lg:px-20 transition-colors duration-300">
+                <div className="py-5 flex items-center justify-between transition-colors duration-300">
                     {/* Logo */}
-                    <div className="cursor-pointer ff-pack-hard text-3xl text-lime flex flex-col leading-none">
+                    <Link href="/home" className="cursor-pointer ff-pack-hard text-3xl text-lime flex flex-col leading-none">
                         YES!26
-                    </div>
+                    </Link>
 
                     {/* Mobile Menu */}
                     <div className="grid w-full justify-end gap-4 lg:hidden">
@@ -62,9 +68,9 @@ export function Nav() {
                                 <ul className="flex items-center gap-12 transition-colors duration-300">
                                     {menu.map((item) => (
                                         <li key={item.label}>
-                                            <button className="focus:outline-none">
+                                            <Link className={`focus:outline-none ${item.href == "#" ? "opacity-25" :""} ${pathname.indexOf(item.href) > -1 ? "underline" : ""}`} href={item.href}>
                                                 <span className="h4-dsk transition-colors duration-300 wavy-underline-hover text-black hover:text-lime">{item.label}</span>
-                                            </button>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>

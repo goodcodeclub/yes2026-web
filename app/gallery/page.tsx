@@ -1,8 +1,8 @@
 import { Banner } from "../_components/banner";
 import { Countdown } from "../_components/countdown";
 import { CTA } from "../_components/cta";
-import { Events } from "../_components/events";
 import { Footer } from "../_components/footer";
+import { Gallery } from "../_components/gallery";
 import { Intro } from "../_components/intro";
 import { Join } from "../_components/join";
 import { Nav } from "../_components/nav";
@@ -17,13 +17,8 @@ export default function Page() {
     
         <Countdown />
         <Nav />
-        <Banner />
-        <Intro mode="home" />
-        <Teaser title="Check It Out" color="ff4eac" />
-        <Ticker />
-        <CTA />
-        <Events />
-        <Footer />
+        <Intro mode="gallery" />
+        <Gallery />
 
     
     </>
