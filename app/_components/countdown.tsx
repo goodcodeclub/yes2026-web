@@ -4,7 +4,7 @@ export function Countdown() {
 
         <div className="w-full bg-black transition-colors duration-300">
             <div className="max-w-[1440px] mx-auto">
-                <div className="body-text-sm w-full flex flex-col lg:flex-row justify-around lg:justify-between items-center h-[60px] lg:h-[40px] px-6 lg:px-20">
+                <div className="body-text-sm w-full flex flex-col lg:flex-row justify-around lg:justify-between items-center h-[60px] lg:h-[40px]">
                     <div className="font-normal text-white transition-colors duration-300">
                         April
                         <span className="text-lime transition-colors duration-300"> 29-30 </span>
