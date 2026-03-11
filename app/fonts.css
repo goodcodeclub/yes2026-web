@@ -1,39 +1,7 @@
-@font-face {
-    font-family: 'Pack-Hard';
-    src: url('/yes2026-web/fonts/Pack-Hard.woff2') format('woff2'),
-             url('/yes2026-web/fonts/Pack-Hard.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Aeonik';
-    src: url('/yes2026-web/fonts/aeonik-regular.woff2') format('woff2'),
-             url('/yes2026-web/fonts/aeonik-regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Aeonik';
-    src: url('/yes2026-web/fonts/aeonik-bold.woff2') format('woff2'),
-             url('/yes2026-web/fonts/aeonik-bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Aeonik';
-    src: url('/yes2026-web/fonts/aeonik-regularitalic.woff2') format('woff2'),
-             url('/yes2026-web/fonts/aeonik-regularitalic.woff') format('woff');
-    font-weight: normal;
-    font-style: italic;
-}
-
 .ff-aeonik {
-    font-family: 'Aeonik', sans-serif;
+  font-family: var(--font-aeonik), sans-serif;
 }
 
 .ff-pack-hard {
-    font-family: 'Pack-Hard', sans-serif;
+  font-family: var(--font-packhard), sans-serif;
 }

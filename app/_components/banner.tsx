@@ -1,23 +1,22 @@
 export function Banner() {
     return (
-        <div className="mx-auto max-w-[1440px] px-6 py-32 lg:px-[48px]">
-            <div className="flex flex-col items-center justify-between gap-32 lg:flex-row">
+        <div className="mx-auto max-w-[1440px] ">
+            <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
                 {/* Image/Video Section */}
                 <div className="flex w-full justify-center lg:w-1/2 lg:justify-start">
-                    <div className="relative h-[300px] w-full">
-                        <img
-                            src="https://yes.schoolofdesign.ca/static/svg/2025/yes-25-big.svg"
-                            alt="YES:25"
-                            className="absolute inset-0 h-full w-full scale-[97.8%] object-contain transition-scale duration-1000"
-                        />
+                    <div className="relative aspect-video w-full">
+
                         <video
-                            className="absolute inset-0 h-full w-full object-contain opacity-0 transition-opacity duration-1000 hover:opacity-100"
+                            className="absolute inset-0 h-full w-full object-contain "
                             playsInline
                             preload="auto"
+                            muted
+                            autoPlay
+                            loop
                             disablePictureInPicture
                         >
                             <source
-                                src="https://yes.schoolofdesign.ca/static/2025/vid/yellow_light_v2.mp4"
+                                src="/videos/banner.mp4"
                                 type="video/mp4"
                             />
                         </video>

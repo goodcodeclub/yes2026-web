@@ -6,6 +6,22 @@ import "./fonts.css";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
+import localFont from "next/font/local";
+
+export const aeonik = localFont({
+  src: [
+    { path: "../public/fonts/aeonik-regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/aeonik-bold.woff2", weight: "700", style: "normal" },
+    { path: "../public/fonts/aeonik-regularitalic.woff2", weight: "400", style: "italic" },
+  ],
+  variable: "--font-aeonik"
+});
+
+export const packHard = localFont({
+  src: "../public/fonts/Pack-Hard.woff2",
+  variable: "--font-packhard"
+});
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en"  className={`${aeonik.variable} ${packHard.variable}`}>
       <body
         className={`ff-aeonik antialiased bg-black`}
       >
