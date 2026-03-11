@@ -68,13 +68,13 @@ export function Footer() {
                         <div className="flex gap-4 pr-7 mt-4">
                             <img
                                 loading="lazy"
-                                src="/logos/gbp.png"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logos/gbp.png`}
                                 alt="GBP Logo"
                                 className="shrink-0 max-w-full  w-[116px]"
                             />
                             <img
                                 loading="lazy"
-                                src="/logos/sod.svg"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logos/sod.svg`}
                                 alt="School of Design Logo"
                                 className="shrink-0 my-auto max-w-full w-[200px]"
                             />

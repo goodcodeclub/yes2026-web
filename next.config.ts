@@ -3,6 +3,9 @@ const isProd = process.env.NODE_ENV === "production";
 const repoBasePath = isProd ? "/yes2026-web" : "";
 
 const nextConfig: NextConfig = {
+  env: {
+    NEXT_PUBLIC_BASE_PATH: repoBasePath,
+  },
   rewrites: async () => [
     {
       source: `/source/:page`,

@@ -16,7 +16,7 @@ export function Banner() {
                             disablePictureInPicture
                         >
                             <source
-                                src="/videos/banner.mp4"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/videos/banner.mp4`}
                                 type="video/mp4"
                             />
                         </video>
