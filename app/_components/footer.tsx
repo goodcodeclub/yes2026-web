@@ -1,4 +1,6 @@
 export function Footer() {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (process.env.NODE_ENV === "production" ? "/yes2026-web" : "");
+
     return (
         <div className="relative w-full bg-black flex flex-col items-center justify-center">
             <div className="relative bottom-0 w-full px-[16px] lg:px-[48px] bg-black max-w-[1440px]">
@@ -68,13 +70,13 @@ export function Footer() {
                         <div className="flex gap-4 pr-7 mt-4">
                             <img
                                 loading="lazy"
-                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logos/gbp.png`}
+                                src={`${basePath}/logos/gbp.png`}
                                 alt="GBP Logo"
                                 className="shrink-0 max-w-full  w-[116px]"
                             />
                             <img
                                 loading="lazy"
-                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logos/sod.svg`}
+                                src={`${basePath}/logos/sod.svg`}
                                 alt="School of Design Logo"
                                 className="shrink-0 my-auto max-w-full w-[200px]"
                             />

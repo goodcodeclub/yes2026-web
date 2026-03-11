@@ -1,4 +1,6 @@
 export function Banner() {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (process.env.NODE_ENV === "production" ? "/yes2026-web" : "");
+
     return (
         <div className="mx-auto max-w-[1440px] ">
             <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
@@ -16,7 +18,7 @@ export function Banner() {
                             disablePictureInPicture
                         >
                             <source
-                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/videos/banner.mp4`}
+                                src={`${basePath}/videos/banner.mp4`}
                                 type="video/mp4"
                             />
                         </video>
