@@ -8,7 +8,7 @@ export default function Page() {
 
   useEffect(() => {
     
-    redirect("/home");
+    redirect("/teaser");
     
   }, []);
 
