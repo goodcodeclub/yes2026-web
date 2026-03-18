@@ -31,7 +31,7 @@ export default function Page() {
                     <h3 className="text-xl text-white">Year End Show 2026</h3>
                     <h3 className="text-xl text-white">George Brown Polytechnic</h3>
                     <h3 className="text-xl text-white">School of Design</h3>
-                    <h3 className="text-xl text-white">May 1-2</h3>
+                    <h3 className="text-xl text-white">April 29-30</h3>
                 </div>
             </div>
         </div>
