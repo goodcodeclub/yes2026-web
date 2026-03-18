@@ -9,6 +9,8 @@ import { Teaser } from "../_components/teaser";
 import { Ticker } from "../_components/ticker";
 
 export default function Page() {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (process.env.NODE_ENV === "production" ? "/yes2026-web" : "");
+
 
     return <>
 
@@ -19,7 +21,7 @@ export default function Page() {
             <div className="flex lg:flex-row flex-col lg:gap-16 gap-8 lg:px-0 px-8">
                 {/* Image/Video Section */}
                 <div className="flex justify-center ">
-                    <img src={"/logos/logo.svg"} className="w-[500px]" />
+                    <img src={`${basePath}/logos/logo.svg`} className="w-[500px]" />
                 </div>
 
                 {/* Text Section */}
