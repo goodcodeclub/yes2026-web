@@ -1,12 +1,14 @@
 "use client";
 
-import { SearchIcon } from "lucide-react"
+import { LogOutIcon, SearchIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-export function Nav() {
+export function Nav(props: any) {
 
-    const menu = [
+
+
+    let menu = [
         // { label: 'Home', href: '/' },
         { label: 'Featured Work', href: '/work' },
         { label: 'Grads', href: '#' },
@@ -16,6 +18,13 @@ export function Nav() {
         // { label: 'Awards', href: '/awards' },
         // { label: 'Committee', href: '/committee' }
     ]
+
+    if (props.mode === "dashboard") {
+        menu = [
+            { label: 'Profile', href: '/dashboard/profile' },
+            { label: 'Projects', href: '/dashboard/projects' },
+        ]
+    }
 
     const pathname = usePathname();
 
@@ -68,26 +77,40 @@ export function Nav() {
                                 <ul className="flex items-center gap-12 transition-colors duration-300">
                                     {menu.map((item) => (
                                         <li key={item.label}>
-                                            <Link className={`focus:outline-none ${item.href == "#" ? "opacity-25" :""} ${pathname.indexOf(item.href) > -1 ? "underline" : ""}`} href={item.href}>
+                                            <Link className={`focus:outline-none ${item.href == "#" ? "opacity-25" : ""} ${pathname.indexOf(item.href) > -1 ? "underline" : ""}`} href={item.href}>
                                                 <span className="h4-dsk transition-colors duration-300 wavy-underline-hover text-black hover:text-lime">{item.label}</span>
                                             </Link>
                                         </li>
                                     ))}
                                 </ul>
                             </nav>
-                            <div className=" flex items-center justify-center gap-10">
-                                <button className="flex items-center focus:outline-none">
-                                    <div className="w-[22px] h-[22px] ml-0 text-lime">
-                                        <SearchIcon />
-                                    </div>
-                                </button>
-                                <button className="hidden focus:outline-none" aria-label="Switch to light mode">
-                                    <div className="relative w-[62px] h-[24px] rounded-full bg-lavender overflow-hidden">
-                                        <img className="absolute" src="https://yes.schoolofdesign.ca/static/svg/2025/rays.svg" alt="Rays" />
-                                        <img className="absolute px-[2px] transition-all duration-300 top-[2px] left-[0px] hover:left-[2px]" src="https://yes.schoolofdesign.ca/static/svg/2025/sun.svg" alt="Sun & Moon" />
-                                    </div>
-                                </button>
-                            </div>
+                            {props.mode !== "dashboard" &&
+
+                                <div className=" flex items-center justify-center gap-10">
+                                    <button className="flex items-center focus:outline-none">
+                                        <div className="w-[22px] h-[22px] ml-0 text-lime">
+                                            <SearchIcon />
+                                        </div>
+                                    </button>
+                                </div>
+                            }
+                            {props.mode === "dashboard" &&
+
+                                <div className=" flex items-center justify-center gap-10">
+                                    <button className="flex items-center focus:outline-none">
+                                        <div className="w-[22px] h-[22px] ml-0 text-lime">
+                                            <a href="#">
+
+                                                <LogOutIcon onClick={(e) => {
+                                                    window.localStorage.clear();
+                                                    window.location.href = "/dashboard";
+                                                }} />
+                                            </a>
+
+                                        </div>
+                                    </button>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ CREATE TABLE `users` (
     `fname`          VARCHAR(100)      NOT NULL,
     `mname`          VARCHAR(100)      NULL,
     `lname`          VARCHAR(100)      NOT NULL,
+    `pronoun`        VARCHAR(100)      NOT NULL,
     `bio`            TEXT              NULL,
     `website_url`    VARCHAR(2048)     NULL,
     `instagram_url`  VARCHAR(2048)     NULL,

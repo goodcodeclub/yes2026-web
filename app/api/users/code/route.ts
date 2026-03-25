@@ -16,12 +16,12 @@ async function sendEmail(to: string, password: string): Promise<void> {
     const apiKey = process.env.MAILGUN_KEY ?? "";
 
     const formData = new FormData();
-    formData.append("from", `YES!26 <no-reply@${domain}>`);
+    formData.append("from", `YES!26 via GOODCODECLUB <noreply@${domain}>`);
     formData.append("to", to);
-    formData.append("subject", "Your YES!26 Dashboard Password");
+    formData.append("subject", "Your YES!26 Dashboard Access Code");
     formData.append(
         "text",
-        `Hello,\n\nYour YES!26 dashboard password is:\n\n${password}\n\nPlease use this password along with your Student ID to log in.\n\nYES!26 Team`
+        `Hello,\n\nYour YES!26 dashboard access code is:\n\n${password}\n\nPlease use this code along with your Student ID to log in.\n\nYES!26 Team`
     );
 
     const response = await fetch(`https://api.mailgun.net/v3/${domain}/messages`, {
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
             gbc_id,
         ]);
 
-        const email = `${gbc_id}@georgebrown.ca`;
+        const email = `chris.kim@georgebrown.ca`;
         await sendEmail(email, plainPassword);
 
         return NextResponse.json({
