@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 const isProd = process.env.NODE_ENV === "production";
-const repoBasePath = isProd ? "/yes2026-web" : "";
+const repoBasePath = isProd ? "" : "";
 
 const nextConfig: NextConfig = {
   env: {
@@ -16,7 +16,6 @@ const nextConfig: NextConfig = {
       destination: `/source/:page/:page2/index.html`,
     },
   ],
-  output: "export", // important for GitHub Pages
   basePath: repoBasePath,
   assetPrefix: repoBasePath ? `${repoBasePath}/` : "",
 };
