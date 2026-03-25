@@ -16,9 +16,12 @@ import {
     Plus,
     ChevronUp,
     ChevronDown,
+    ChevronLeft,
+    ChevronRight,
     Eye,
     EyeOff,
-    Trash2
+    Trash2,
+    X
 } from "lucide-react"
 import { cn } from "@/lib/utils";
 
@@ -28,13 +31,47 @@ interface Project {
     category: string
     status: "published" | "private"
     image?: string
+    images?: string[]
 }
 
 export default function Page() {
 
     const [announcement, setAnnouncement] = React.useState("")
     const [activeTab, setActiveTab] = React.useState<"projects" | "profile" | "guide">("projects")
-    const [projects, setProjects] = React.useState<Project[]>([])
+    const [projects, setProjects] = React.useState<Project[]>([
+        {
+            id: "1",
+            title: "Brand Identity System",
+            category: "Graphic Design",
+            status: "published",
+            image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
+            images: [
+                "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=80",
+                "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=80"
+            ],
+            description: "Developed a comprehensive brand identity system for a fictional eco-friendly fashion brand, including logo design, typography, color palette, and application across various touchpoints such as packaging, social media, and website mockups."
+        },
+        {
+            id: "2",
+            title: "Motion & Type Exploration",
+            category: "Motion Design",
+            status: "published",
+            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+            images: [
+                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80",
+            ],
+            description: "Explored the intersection of motion and typography through a series of experimental animations, focusing on the dynamic interplay between text and movement to create visually engaging narratives."
+
+        },
+        {
+            id: "3",
+            title: "Packaging Research",
+            category: "Product Design",
+            status: "private",
+            image: "",
+            description: "Conducted in-depth research on sustainable packaging solutions, analyzing materials, production processes, and end-of-life scenarios to develop innovative concepts for reducing environmental impact in the consumer goods industry."
+        }
+    ])
     const [editingId, setEditingId] = React.useState<string | null>(null)
     const [isLoaded, setIsLoaded] = React.useState(false)
     const [lastSaved, setLastSaved] = React.useState<Date | null>(null)
@@ -51,6 +88,7 @@ export default function Page() {
 
     const [isSaving, setIsSaving] = React.useState(false)
     const [profileSaved, setProfileSaved] = React.useState(false)
+    const [uploadingGalleryId, setUploadingGalleryId] = React.useState<string | null>(null)
 
 
     const moveProject = (index: number, direction: "up" | "down") => {
@@ -88,7 +126,7 @@ export default function Page() {
     }
 
 
-        const stats = {
+    const stats = {
         total: projects.length,
         published: projects.filter(p => p.status === "published").length,
         private: projects.filter(p => p.status === "private").length
@@ -119,6 +157,58 @@ export default function Page() {
         }
     }
 
+    const handleGalleryUpload = async (projectId: string, e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        const formData = new FormData()
+        formData.append('file', file)
+
+        setUploadingGalleryId(projectId)
+        setAnnouncement(`Uploading gallery image...`)
+        try {
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            })
+            if (res.ok) {
+                const data = await res.json()
+                setProjects(prev => prev.map(p =>
+                    p.id === projectId
+                        ? { ...p, images: [...(p.images ?? []), data.url] }
+                        : p
+                ))
+                setAnnouncement(`Gallery image added.`)
+            } else {
+                setAnnouncement(`Gallery upload failed.`)
+            }
+        } catch (error) {
+            setAnnouncement(`Gallery upload failed.`)
+        } finally {
+            setUploadingGalleryId(null)
+            e.target.value = ""
+        }
+    }
+
+    const removeProjectImage = (projectId: string, imgIndex: number) => {
+        setProjects(prev => prev.map(p =>
+            p.id === projectId
+                ? { ...p, images: (p.images ?? []).filter((_, i) => i !== imgIndex) }
+                : p
+        ))
+    }
+
+    const moveProjectImage = (projectId: string, imgIndex: number, direction: "left" | "right") => {
+        setProjects(prev => prev.map(p => {
+            if (p.id !== projectId) return p
+            const imgs = [...(p.images ?? [])]
+            const otherIndex = direction === "left" ? imgIndex - 1 : imgIndex + 1
+            if (otherIndex < 0 || otherIndex >= imgs.length) return p
+                ;[imgs[imgIndex], imgs[otherIndex]] = [imgs[otherIndex], imgs[imgIndex]]
+            return { ...p, images: imgs }
+        }))
+    }
+
 
     return <>
 
@@ -145,8 +235,8 @@ export default function Page() {
                             setEditingId(newId)
                             setAnnouncement("New placeholder project added and ready for editing.")
                         }}
-                        className="bg-pink-500 text-black hover:bg-pink-400 font-bold px-10 h-14 rounded-full transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,0,204,0.3)] text-xs uppercase tracking-[0.2em]"
-                        aria-label="Create a new project"
+                        className="text-black"
+                        size="lg"
                     >
                         <Plus className="h-5 w-5 mr-2 stroke-[3]" aria-hidden="true" />
                         Create Project
@@ -161,7 +251,7 @@ export default function Page() {
                         { label: "PRIVATE", value: stats.private, color: "text-white/40" }
                     ].map((stat, i) => (
                         <div key={i} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 p-6 rounded-2xl flex items-center justify-between group hover:bg-white/[0.05] transition-all hover:border-white/20">
-                            <span className="text-[10px] font-black tracking-[0.3em] text-white/30 uppercase group-hover:text-white/50 transition-colors">{stat.label}</span>
+                            <span className=" font-black tracking-[0.3em] text-white/30 uppercase group-hover:text-white/50 transition-colors">{stat.label}</span>
                             <span className={cn("text-3xl font-black", stat.color)}>{stat.value}</span>
                         </div>
                     ))}
@@ -197,7 +287,7 @@ export default function Page() {
                                     >
                                         <ChevronUp className="h-6 w-6" aria-hidden="true" />
                                     </Button>
-                                    <span className="text-xs font-black text-pink-500/20 select-none md:my-1">{index + 1}</span>
+                                    <span className="text-xs font-black text-pink-500/100 select-none md:my-1">{index + 1}</span>
                                     <Button
                                         variant="ghost"
                                         size="icon"
@@ -219,14 +309,14 @@ export default function Page() {
                                                 <img
                                                     src={project.image}
                                                     alt=""
-                                                    className="h-full w-full object-cover transition-all duration-1000 group-hover/image:scale-110 grayscale group-hover/image:grayscale-0 opacity-40 group-hover/image:opacity-100"
+                                                    className="h-full w-full object-cover transition-all duration-1000 group-hover/image:scale-110 grayscale-0 group-hover/image:grayscale-0 opacity-100 group-hover/image:opacity-100"
                                                 />
-                                                <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-transparent opacity-60 group-hover/image:opacity-20 transition-opacity" />
+                                                <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-transparent opacity-100 group-hover/image:opacity-100 transition-opacity" />
                                             </>
                                         ) : (
                                             <div className="h-full w-full flex flex-col items-center justify-center bg-white/[0.02] border border-dashed border-white/20 group-hover/image:border-pink-500/50 transition-colors">
                                                 <Plus className="h-6 w-6 text-white/20 mb-2 group-hover/image:text-pink-500 transition-colors" />
-                                                <div className="text-[9px] font-black text-white/30 uppercase tracking-widest text-center px-4 group-hover/image:text-white/70">UPLOAD COVER</div>
+                                                <div className=" font-black text-white/30 uppercase tracking-widest text-center px-4 group-hover/image:text-white/70">UPLOAD COVER</div>
                                             </div>
                                         )}
 
@@ -259,11 +349,10 @@ export default function Page() {
                                             />
                                         </div>
                                         <div className="flex items-center gap-3 group/category">
-                                            <span className="text-pink-500/40 text-[9px] font-black uppercase tracking-[0.3em] hidden sm:inline">TAG:</span>
-                                            <label className="sr-only" htmlFor={`category-${project.id}`}>Category</label>
+                                            <span className="text-pink-500/40  font-black uppercase tracking-[0.3em] hidden sm:inline">TAG:</span>
                                             <input
                                                 id={`category-${project.id}`}
-                                                className="bg-transparent border-none text-[12px] md:text-sm text-white/30 uppercase tracking-[0.2em] font-black focus:ring-0 focus:outline-none w-full placeholder:text-white/10 focus:text-pink-500 transition-all"
+                                                className="bg-transparent border-none  md: text-white uppercase tracking-[0.2em] font-black focus:ring-0 focus:outline-none w-full placeholder:text-white/10 focus:text-pink-500 transition-all"
                                                 value={project.category}
                                                 onChange={(e) => updateProject(project.id, { category: e.target.value })}
                                                 onFocus={() => setEditingId(project.id)}
@@ -271,18 +360,23 @@ export default function Page() {
                                                 placeholder="ASSIGN CATEGORY"
                                             />
                                         </div>
+
+                                        <Textarea
+                                            className="text-white"
+                                            value={project.description ?? ""}
+                                        />
                                     </div>
                                 </div>
 
                                 {/* Status & Visibility Actions */}
                                 <div className="flex items-center gap-6 bg-white/[0.02] rounded-3xl p-3 px-6 border border-white/[0.05] shadow-inner">
                                     <div className="flex flex-col items-center gap-1.5 min-w-[100px]">
-                                        <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em] mb-0.5">VISIBILITY</span>
+                                        <span className=" font-black text-white/20 uppercase tracking-[0.2em] mb-0.5">VISIBILITY</span>
                                         <Button
                                             variant="ghost"
                                             size="sm"
                                             className={cn(
-                                                "h-10 px-5 rounded-full border border-white/5 transition-all text-[10px] font-black uppercase tracking-[0.2em]",
+                                                "h-10 px-5 rounded-full border border-white/5 transition-all  font-black uppercase tracking-[0.2em]",
                                                 project.status === "published"
                                                     ? "bg-pink-500 text-black border-pink-500 hover:bg-pink-400"
                                                     : "bg-white/5 text-white/30 hover:bg-white/10"
@@ -314,6 +408,60 @@ export default function Page() {
                                     >
                                         <Trash2 className="h-6 w-6" />
                                     </Button>
+                                </div>
+                            </div>
+
+                            {/* Gallery Images */}
+                            <div className="px-6 pb-6 border-t border-white/5 pt-5">
+                                <span className=" font-black text-white/20 uppercase tracking-[0.3em] block mb-3">Gallery</span>
+                                <div className="flex flex-wrap gap-3 items-center">
+                                    {(project.images ?? []).map((img, imgIndex) => (
+                                        <div key={imgIndex} className="relative group/gallery w-24 h-24 rounded-xl overflow-hidden border border-white/10 flex-shrink-0">
+                                            <img src={img} alt="" className="w-full h-full object-cover" />
+                                            <div className="absolute inset-0 bg-black/70 opacity-0 group-hover/gallery:opacity-100 transition-opacity flex items-center justify-center gap-1">
+                                                <button
+                                                    onClick={() => moveProjectImage(project.id, imgIndex, "left")}
+                                                    disabled={imgIndex === 0}
+                                                    className="h-6 w-6 rounded-full bg-white/20 hover:bg-white/40 disabled:opacity-0 flex items-center justify-center transition-colors"
+                                                    aria-label="Move image left"
+                                                >
+                                                    <ChevronLeft className="h-3 w-3 text-white" />
+                                                </button>
+                                                <button
+                                                    onClick={() => removeProjectImage(project.id, imgIndex)}
+                                                    className="h-6 w-6 rounded-full bg-red-500/70 hover:bg-red-500 flex items-center justify-center transition-colors"
+                                                    aria-label="Remove image"
+                                                >
+                                                    <X className="h-3 w-3 text-white" />
+                                                </button>
+                                                <button
+                                                    onClick={() => moveProjectImage(project.id, imgIndex, "right")}
+                                                    disabled={imgIndex === (project.images?.length ?? 0) - 1}
+                                                    className="h-6 w-6 rounded-full bg-white/20 hover:bg-white/40 disabled:opacity-0 flex items-center justify-center transition-colors"
+                                                    aria-label="Move image right"
+                                                >
+                                                    <ChevronRight className="h-3 w-3 text-white" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+
+                                    {/* Add gallery image */}
+                                    <label className={cn(
+                                        "relative w-24 h-24 rounded-xl border border-dashed border-white/20 hover:border-pink-500/50 bg-white/[0.02] flex flex-col items-center justify-center cursor-pointer transition-colors gap-1 flex-shrink-0",
+                                        uploadingGalleryId === project.id && "opacity-100 pointer-events-none"
+                                    )}>
+                                        <Plus className="h-5 w-5 text-white/20" />
+                                        <span className=" font-black text-white/20 uppercase tracking-widest">
+                                            {uploadingGalleryId === project.id ? "..." : "ADD"}
+                                        </span>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="sr-only"
+                                            onChange={(e) => handleGalleryUpload(project.id, e)}
+                                        />
+                                    </label>
                                 </div>
                             </div>
                         </div>

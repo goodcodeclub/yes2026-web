@@ -23,6 +23,7 @@ export function Nav(props: any) {
         menu = [
             { label: 'Profile', href: '/dashboard/profile' },
             { label: 'Projects', href: '/dashboard/projects' },
+            { label: 'Social', href: '/dashboard/social' },
         ]
     }
 
@@ -34,7 +35,7 @@ export function Nav(props: any) {
                 <div className="py-5 flex items-center justify-between transition-colors duration-300">
                     {/* Logo */}
                     <Link href="/home" className="cursor-pointer ff-pack-hard text-3xl text-lime flex flex-col leading-none">
-                        YES!26
+                        <img src="/logos/logo_invert.svg" className="h-8" />
                     </Link>
 
                     {/* Mobile Menu */}
