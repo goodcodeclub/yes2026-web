@@ -50,7 +50,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: next-build
-        path: ./latitude-my
+        path: ./yes2026-web
     - name: Copy build to server
       uses: appleboy/scp-action@v0.1.1
       with:
@@ -58,7 +58,7 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         password: ${{ secrets.SERVER_PASSWORD }}
         port: ${{ secrets.SERVER_PORT }}
-        source: "./latitude-my/"
+        source: "./yes2026-web/"
         target: "/var/www/"
     - name: Deploy to server via SSH
       uses: appleboy/ssh-action@v0.1.9
@@ -71,6 +71,6 @@ jobs:
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm use node
-          cd /var/www/latitude-my
+          cd /var/www/yes2026-web
           npm ci --omit=dev
-          pm2 restart latitude-my ||  pm2 start "npm run start -- -p 1000" --name "latitude-my"
+          pm2 restart yes2026-web ||  pm2 start "npm run start -- -p 9000" --name "yes2026-web"
