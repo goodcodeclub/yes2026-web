@@ -32,6 +32,7 @@ interface Project {
     status: "published" | "private"
     image?: string
     images?: string[]
+    description?: string
 }
 
 export default function Page() {
