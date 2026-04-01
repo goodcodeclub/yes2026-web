@@ -33,12 +33,22 @@ export default function Page() {
                         <h3 className="text-xl text-white">George Brown Polytechnic</h3>
                         <h3 className="text-xl text-white">School of Design</h3>
                         <h3 className="text-xl text-white">April 29-30</h3>
-{/* 
-                        <Button className="mt-6 text-uppercase bg-black text-white" variant="outline" asChild>
-                            <a href="/dashboard" target="_blank" rel="noopener noreferrer">
-                                Student log in
-                            </a>
-                        </Button> */}
+
+                        <div className="flex gap-2">
+                            
+                            <Button className="mt-6 text-uppercase bg-black text-white" variant="outline" asChild>
+                                <a href="https://www.eventbrite.ca/e/yes-annual-award-show-2026-tickets-1985557836940" target="_blank" rel="noopener noreferrer">
+                                    RSVP
+                                </a>
+                            </Button>
+                            <Button className="mt-6 text-uppercase bg-black text-white" variant="outline" asChild>
+                                <a href="/dashboard" target="_blank" rel="noopener noreferrer">
+                                    Student login
+                                </a>
+                            </Button>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
