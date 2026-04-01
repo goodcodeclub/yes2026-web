@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getPool } from "@/lib/db";
 import bcrypt from "bcryptjs";
+import { getPool } from "@/lib/db";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": process.env.CORS_ORIGIN ?? "*",
@@ -22,37 +22,49 @@ export async function POST(req: NextRequest) {
     try {
         const { gbc_id, password } = await req.json();
 
-        const pool = getPool();
-
-        const [rows] = await pool.execute(
-            "SELECT uuid, gbc_id FROM users WHERE gbc_id = ? AND code = ? LIMIT 1",
-            [gbc_id, password]
-        );
-
-        const users = rows as Array<{
-            uuid: string;
-            gbc_id: string;
-            fname: string;
-            lname: string;
-        }>;
-
-        if (users.length === 0) {
+        if (!gbc_id || !password) {
             return jsonWithCors(
-                { error: "Invalid Student ID or access code." },
-                { status: 401 }
+                { error: "Student ID and access code are required." },
+                { status: 400 }
             );
         }
 
-        const user = users[0];
+        const pool = getPool();
+
+        // Check if gbc_id already exists
+        const [existing] = await pool.execute(
+            "SELECT id FROM users WHERE gbc_id = ? LIMIT 1",
+            [gbc_id]
+        );
+
+        if ((existing as unknown[]).length > 0) {
+            return jsonWithCors(
+                { error: "An account with this Student ID already exists." },
+                { status: 409 }
+            );
+        }
+
+
+        await pool.execute(
+            "INSERT INTO users (uuid, gbc_id, fname, lname, pronoun, code) VALUES (UUID(), ?, '', '', '', ?)",
+            [gbc_id, password]
+        );
+
+        const [rows] = await pool.execute(
+            "SELECT uuid, gbc_id, fname, lname FROM users WHERE gbc_id = ? LIMIT 1",
+            [gbc_id]
+        );
+
+        const user = (rows as Array<{ uuid: string; gbc_id: string; fname: string; lname: string }>)[0];
 
         return jsonWithCors({
             id: user.uuid,
             gbc_id: user.gbc_id,
             fname: user.fname,
             lname: user.lname,
-        });
+        }, { status: 201 });
     } catch (err) {
-        console.error("[login] error:", err);
+        console.error("[register] error:", err);
         return jsonWithCors(
             { error: "An error occurred. Please try again." },
             { status: 500 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOutIcon, SearchIcon } from "lucide-react"
+import { CircleQuestionMarkIcon, LogOutIcon, SearchIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -23,7 +23,7 @@ export function Nav(props: any) {
         menu = [
             { label: 'Profile', href: '/dashboard/profile' },
             { label: 'Projects', href: '/dashboard/projects' },
-            { label: 'Social', href: '/dashboard/social' },
+            // { label: 'Social', href: '/dashboard/social' },
         ]
     }
 
@@ -110,6 +110,15 @@ export function Nav(props: any) {
 
                                         </div>
                                     </button>
+                                    <button className="flex items-center focus:outline-none">
+                                        <div className="w-[22px] h-[22px] ml-0 text-lime">
+                                            <a href="https://teams.cloud.microsoft/l/channel/19%3A3a840f0e378445a9bc10164594efd8db%40thread.tacv2/Website%20Support%20(YES!26)?groupId=f7c0dae2-a46b-44ff-a31d-cba1b25798d5&tenantId=b5dc206c-17fd-4b06-8bc8-24f0bb650229" target="_blank">
+
+                                                <CircleQuestionMarkIcon />
+                                            </a>
+
+                                        </div>
+                                    </button>                                    
                                 </div>
                             }
                         </div>

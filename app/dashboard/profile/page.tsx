@@ -22,6 +22,17 @@ interface Project {
     image?: string
 }
 
+type ProfileForm = {
+    firstName: string
+    middleName: string
+    lastName: string
+    pronoun: string
+    about: string
+    portfolio: string
+    website: string
+    instagram: string
+}
+
 export default function Page() {
 
     const [announcement, setAnnouncement] = React.useState("")
@@ -33,7 +44,7 @@ export default function Page() {
 
 
     // Profile State
-    const [profile, setProfile] = React.useState({
+    const [profile, setProfile] = React.useState<ProfileForm>({
         firstName: "",
         middleName: "",
         lastName: "",
@@ -43,6 +54,7 @@ export default function Page() {
         website: "",
         instagram: "",
     })
+    const [initialProfile, setInitialProfile] = React.useState<ProfileForm | null>(null)
 
     const [isSaving, setIsSaving] = React.useState(false)
     const [profileSaved, setProfileSaved] = React.useState(false)
@@ -78,16 +90,22 @@ export default function Page() {
                 const user = data?.user
 
                 if (user) {
-                    setProfile((prev) => ({
-                        ...prev,
+                    const loadedProfile: ProfileForm = {
                         firstName: user.fname ?? "",
                         middleName: user.mname ?? "",
                         lastName: user.lname ?? "",
                         pronoun: user.pronoun ?? "",
                         about: user.bio ?? "",
+                        portfolio: "",
                         website: user.website_url ?? "",
                         instagram: user.instagram_url ?? "",
+                    }
+
+                    setProfile((prev) => ({
+                        ...prev,
+                        ...loadedProfile,
                     }))
+                    setInitialProfile(loadedProfile)
 
                     setProfileImageUrl(`https://us-east-1.linodeobjects.com/yes-legacy/users/${session.id}/profile.jpg?t=${Date.now()}`)
                 }
@@ -119,6 +137,13 @@ export default function Page() {
         } finally {
             setIsSaving(false)
         }
+    }
+
+    const changedFieldClass = "border-[#FF4EAC] bg-[#FF4EAC]/10 ring-1 ring-[#FF4EAC]/50"
+
+    const isFieldChanged = (key: keyof ProfileForm) => {
+        if (!initialProfile) return false
+        return profile[key] !== initialProfile[key]
     }
 
     const uploadProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -215,7 +240,7 @@ export default function Page() {
                         <div className="space-y-4">
                             <label className="text-pink-500  font-black uppercase ml-1">WEBSITE</label>
                             <Input
-                                className="text-white "
+                                className={`text-white ${isFieldChanged("website") ? changedFieldClass : ""}`}
                                 value={profile.website}
                                 onChange={(e) => setProfile({ ...profile, website: e.target.value })}
                                 placeholder="e.g. https://yourwebsite.com"
@@ -224,7 +249,7 @@ export default function Page() {
                         <div className="space-y-4">
                             <label className="text-pink-500  font-black uppercase ml-1">INSTAGRAM</label>
                             <Input
-                                className="text-white "
+                                className={`text-white ${isFieldChanged("instagram") ? changedFieldClass : ""}`}
                                 value={profile.instagram}
                                 onChange={(e) => setProfile({ ...profile, instagram: e.target.value })}
                                 placeholder="e.g. @yourhandle"
@@ -240,19 +265,19 @@ export default function Page() {
                             <label className="text-pink-500  font-black uppercase ml-1">YOUR NAME</label>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <Input
-                                    className="text-white "
+                                    className={`text-white ${isFieldChanged("firstName") ? changedFieldClass : ""}`}
                                     value={profile.firstName}
                                     onChange={(e) => setProfile({ ...profile, firstName: e.target.value })}
                                     placeholder="First name"
                                 />
                                 <Input
-                                    className="text-white "
+                                    className={`text-white ${isFieldChanged("middleName") ? changedFieldClass : ""}`}
                                     value={profile.middleName}
                                     onChange={(e) => setProfile({ ...profile, middleName: e.target.value })}
                                     placeholder="Middle name"
                                 />
                                 <Input
-                                    className="text-white "
+                                    className={`text-white ${isFieldChanged("lastName") ? changedFieldClass : ""}`}
                                     value={profile.lastName}
                                     onChange={(e) => setProfile({ ...profile, lastName: e.target.value })}
                                     placeholder="Last name"
@@ -263,7 +288,7 @@ export default function Page() {
                         <div className="space-y-4">
                             <label className="text-pink-500  font-black uppercase ml-1">PRONOUN</label>
                             <Input
-                                className="text-white "
+                                className={`text-white ${isFieldChanged("pronoun") ? changedFieldClass : ""}`}
                                 value={profile.pronoun}
                                 onChange={(e) => setProfile({ ...profile, pronoun: e.target.value })}
                                 placeholder="e.g. she/her, he/him, they/them"
@@ -276,7 +301,7 @@ export default function Page() {
                             <label className="text-pink-500  font-black uppercase ml-1">ABOUT YOU</label>
                             <Textarea
                                 rows={5}
-                                className="text-white  min-h-[10em]"
+                                className={`text-white min-h-[10em] ${isFieldChanged("about") ? changedFieldClass : ""}`}
                                 value={profile.about}
                                 onChange={(e) => setProfile({ ...profile, about: e.target.value })}
                                 placeholder="Write your professional bio here..."

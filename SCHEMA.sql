@@ -1,8 +1,28 @@
 -- YES!2026 Database Schema
 -- MySQL
 
+CREATE TABLE `assets` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `project_id` int NOT NULL,
+  `media_type` enum('image','video') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'image',
+  `storage_key` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `public_url` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alt_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `caption` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `display_order` int NOT NULL DEFAULT '0',
+  `is_primary` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `project_media_uuid_unique` (`uuid`),
+  KEY `project_media_project_id_index` (`project_id`),
+  KEY `project_media_project_order_index` (`project_id`,`display_order`),
+  CONSTRAINT `project_media_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE `users` (
-    `id`             INT UNSIGNED      NOT NULL AUTO_INCREMENT,
+    `id`             INT      NOT NULL AUTO_INCREMENT,
     `uuid`           CHAR(36)          NOT NULL,
     `gbc_id`         VARCHAR(50)       NOT NULL,
     `password`       VARCHAR(255)      NOT NULL,
@@ -21,9 +41,9 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `projects` (
-    `id`                INT UNSIGNED      NOT NULL AUTO_INCREMENT,
+    `id`                INT      NOT NULL AUTO_INCREMENT,
     `uuid`              CHAR(36)          NOT NULL,
-    `user_id`           INT UNSIGNED      NOT NULL,
+    `user_id`           INT      NOT NULL,
     `title`             VARCHAR(255)      NOT NULL,
     `slug`              VARCHAR(255)      NOT NULL,
     `short_description` VARCHAR(500)      NULL,
