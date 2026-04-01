@@ -73,4 +73,4 @@ jobs:
           nvm use node
           cd /var/www/yes2026-web
           npm ci --omit=dev
-          pm2 restart yes2026-web ||  pm2 start "npm run start -- -p 9000" --name "yes2026-web"
+          pm2 restart yes2026-web ||  pm2 start "npm run start -- -p 7000" --name "yes2026-web"
