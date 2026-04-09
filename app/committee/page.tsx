@@ -135,7 +135,7 @@ export default function Page() {
 
                                         </a>
 
-                                        <div className="">
+                                        <div className="mt-4">
                                             <h3 className="mb-1 text-2xl  leading-tight text-lime ">
                                                 {item.author}
                                             </h3>
