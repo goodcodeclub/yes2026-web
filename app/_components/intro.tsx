@@ -9,11 +9,11 @@ export function Intro({ mode }: { mode: string }) {
                         <h2 className="text-white text-7xl uppercase ff-pack-hard  heading-2-caps leading-none flex  gap-0">
                             <div className="flex flex-col mx-auto">
                                 <span className="text-lime">YES!</span>
-                                <span className="ml-[1.5em]">WE'RE</span>
 
                                 {mode == "home" &&
 
                                     <>
+                                        <span className="ml-[1.5em]">WE'RE</span>
                                         <span>THE SCHOOL</span>
                                         <span className="ml-[1.5em]">OF DESIGN</span>
                                     </>
@@ -23,19 +23,28 @@ export function Intro({ mode }: { mode: string }) {
                                 {mode == "gallery" &&
 
                                     <>
+                                        <span className="ml-[1.5em]">WE'RE</span>
                                         <span>CREATORS</span>
                                         <span className="ml-[1.5em]">IN ALL</span>
                                         <span>SPACES</span>
                                     </>
 
                                 }
+                                {mode == "committee" &&
 
+                                    <>
+                                        <span className="ml-[1.5em]">WE'RE</span>
+                                        <span>PASSIONATE</span>
+                                    </>
+
+                                }
                                 {mode == "work" &&
 
                                     <>
+                                        <span className="ml-[1.5em]">WE'RE</span>
                                         <span>BRINGING</span>
                                         <span className="ml-[1.5em]">IDEAS</span>
-                                        <span>LIFE</span>
+                                        <span>TO LIFE</span>
                                     </>
 
                                 }
@@ -55,18 +64,26 @@ export function Intro({ mode }: { mode: string }) {
                                 </p>
 
                                 <p className="text-white mb-4 body-text">
-                                    Each has benefited from the wisdom and support
-                                    of faculty, peers, staff, partners, and the broader
-                                    design community. <span className="text-lime">YES!</span> is a testament to their hard
-                                    work and dedication
+                                    <span className="text-lime">YES!</span> is a testament to their hard
+                                    work and dedication.
                                 </p>
 
                                 <p className="text-white mb-4 body-text">
                                     Join us in celebrating the class of 2026!
                                 </p>
 
-                                <a className="text-white link inline-block wavy-text-link theme-transition text-lime underline" href="/about">
-                                    RSVP Now!
+
+                                <p className="text-white mb-4 body-text">
+                                    School of Design<br />
+                                    George Brown Polytechnic<br />
+                                    Year End Show<br />
+                                    May 1-2
+                                </p>
+
+
+
+                                <a className="px-5 py-1 border-1 border-lime text-white link inline-block wavy-text-link theme-transition text-lime" href="https://www.eventbrite.ca/e/yes-annual-award-show-2026-tickets-1985557836940" target="_blank">
+                                    RSVP
                                 </a>
                             </>
 
@@ -89,6 +106,21 @@ export function Intro({ mode }: { mode: string }) {
                                     the culmination of their creative journeys by presenting
                                     groundbreaking, interactive design solutions that have
                                     defined their studies.
+                                </p>
+                            </>
+
+                        }
+
+                        {mode == "committee" &&
+                            <>
+                                <p className="text-white mb-4 body-text">
+                                    A HUGE thank you to the YES!26 committee members.
+                                    We couldn't have done it without you!
+                                </p>
+
+
+                                <p className="text-white mb-4 body-text">
+                                    Lenis reptat. Genihiciati te paruntium aut et eiciam, od minvendaerem ea as voloriam, ad maionseque ipient quam quidi aligene ctorunt adis et ut optat in pro et que pelleni tatur
                                 </p>
                             </>
 

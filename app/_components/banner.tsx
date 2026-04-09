@@ -5,7 +5,7 @@ export function Banner() {
         <div className="mx-auto max-w-[1440px] ">
             <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
                 {/* Image/Video Section */}
-                <div className="flex w-full justify-center lg:w-1/2 lg:justify-start">
+                <div className="flex w-full justify-center lg:w-[50%] mx-auto lg:justify-start">
                     <div className="relative aspect-video w-full">
 
                         <video
@@ -26,7 +26,7 @@ export function Banner() {
                 </div>
 
                 {/* Text Section */}
-                <div className="gap-2 mt-6 flex w-full flex-col items-start lg:mt-0 lg:w-1/2 lg:max-w-[607px]">
+                {/* <div className="gap-2 mt-6 flex w-full flex-col items-start lg:mt-0 lg:w-1/2 lg:max-w-[607px]">
                     <h3 className="text-3xl text-lime">May 1-2</h3>
                     <h3 className="text-3xl text-white">George Brown College</h3>
                     <h3 className="text-3xl text-white">School of Design Year End Show</h3>
@@ -38,7 +38,7 @@ export function Banner() {
                     >
                         @sod_yes
                     </a>
-                </div>
+                </div> */}
             </div>
         </div>
     );

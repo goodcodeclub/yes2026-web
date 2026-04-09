@@ -14,7 +14,9 @@ import {
     EyeOff,
     Trash2,
     X,
-    Globe
+    Globe,
+    ChevronDownCircle,
+    ChevronUpCircle
 } from "lucide-react"
 import { cn } from "@/lib/utils";
 
@@ -48,6 +50,7 @@ export default function Page() {
     const [currentSession, setCurrentSession] = React.useState<Session>(null)
 
     const [uploadingGalleryId, setUploadingGalleryId] = React.useState<string | null>(null)
+    const [collapsedGalleryIds, setCollapsedGalleryIds] = React.useState<Record<string, boolean>>({})
     const [hasUnsavedChanges, setHasUnsavedChanges] = React.useState(false)
     const [pendingSaveCount, setPendingSaveCount] = React.useState(0)
 
@@ -279,7 +282,7 @@ export default function Page() {
                 body: JSON.stringify({
                     ...sessionIdentity,
                     title: "Untitled Project",
-                    category: "Uncategorized",
+                    category: "",
                     long_description: "",
                     status: "private",
                     display_order: 0,
@@ -626,6 +629,13 @@ export default function Page() {
         }
     }
 
+    const toggleGalleryCollapse = (projectId: string) => {
+        setCollapsedGalleryIds((prev) => ({
+            ...prev,
+            [projectId]: !(prev[projectId] ?? true),
+        }))
+    }
+
 
     return <>
 
@@ -683,13 +693,14 @@ export default function Page() {
                 >
                     {projects.map((project, index) => {
                         const galleryAssets = (project.assets ?? []).filter((asset) => !asset.is_primary)
+                        const isGalleryCollapsed = collapsedGalleryIds[project.id] ?? true
 
                         return (
                             <div
                                 key={project.id}
                                 role="listitem"
                                 className={cn(
-                                    "group relative bg-white/[0.02] backdrop-blur-md border-l-4 rounded-r-3xl border border-white/5 transition-all duration-500 hover:bg-white/[0.04] overflow-hidden shadow-2xl hover:border-white/10",
+                                    "group relative bg-white/[0.02] backdrop-blur-md border-l-4 rounded-r-3xl border border-white/100 transition-all duration-500 hover:bg-white/[0.04] overflow-hidden shadow-2xl hover:border-white/10",
                                     project.status === "published" ? "border-l-pink-500" : "border-l-white/10",
                                     editingId === project.id && "bg-white/[0.05] border-white/20"
                                 )}
@@ -700,23 +711,23 @@ export default function Page() {
                                         <Button
                                             variant="ghost"
                                             size="icon"
-                                            className="h-10 w-10 text-white/20 hover:text-pink-500 hover:bg-pink-500/10 rounded-full disabled:opacity-0"
+                                            className="h-10 w-10 text-white/100 hover:text-pink-500 hover:bg-pink-500/10 rounded-full disabled:opacity-0"
                                             onClick={() => moveProject(index, "up")}
                                             disabled={index === 0}
                                             aria-label={`Move ${project.title || "untitled project"} up`}
                                         >
-                                            <ChevronUp className="h-6 w-6" aria-hidden="true" />
+                                            <ChevronUpCircle className="h-40 w-40" aria-hidden="true" />
                                         </Button>
-                                        <span className="text-xs font-black text-pink-500/100 select-none md:my-1">{index + 1}</span>
+                                        <span className="text-base font-black text-pink-500/100 select-none md:my-1">{index + 1}</span>
                                         <Button
                                             variant="ghost"
                                             size="icon"
-                                            className="h-10 w-10 text-white/20 hover:text-pink-500 hover:bg-pink-500/10 rounded-full disabled:opacity-0"
+                                            className="h-10 w-10 text-white/100 hover:text-pink-500 hover:bg-pink-500/10 rounded-full disabled:opacity-0"
                                             onClick={() => moveProject(index, "down")}
                                             disabled={index === projects.length - 1}
                                             aria-label={`Move ${project.title || "untitled project"} down`}
                                         >
-                                            <ChevronDown className="h-6 w-6" aria-hidden="true" />
+                                            <ChevronDownCircle className="h-40 w-40" aria-hidden="true" />
                                         </Button>
                                     </div>
 
@@ -735,8 +746,8 @@ export default function Page() {
                                                 </>
                                             ) : (
                                                 <div className="h-full w-full flex flex-col items-center justify-center bg-white/[0.02] border border-dashed border-white/20 group-hover/image:border-pink-500/50 transition-colors">
-                                                    <Plus className="h-6 w-6 text-white/20 mb-2 group-hover/image:text-pink-500 transition-colors" />
-                                                    <div className=" font-black text-white/30 uppercase tracking-widest text-center px-4 group-hover/image:text-white/70">UPLOAD COVER</div>
+                                                    <Plus className="h-6 w-6 text-white/100 mb-2 group-hover/image:text-pink-500 transition-colors" />
+                                                    <div className=" font-black text-white/100 uppercase tracking-widest text-center px-4 group-hover/image:text-white/70">UPLOAD COVER</div>
                                                 </div>
                                             )}
 
@@ -772,10 +783,10 @@ export default function Page() {
                                                 />
                                             </div>
                                             <div className="flex items-center gap-3 group/category">
-                                                <span className="text-pink-500/40  font-black uppercase tracking-[0.3em] hidden sm:inline">TAG:</span>
+                                                <span className="text-pink-500/100  font-black uppercase tracking-[0.3em] hidden sm:inline">TAG:</span>
                                                 <input
                                                     id={`category-${project.id}`}
-                                                    className="bg-transparent border-none  md: text-white uppercase tracking-[0.2em] font-black focus:ring-0 focus:outline-none w-full placeholder:text-white/10 focus:text-pink-500 transition-all"
+                                                    className="bg-transparent border-none  md: text-white uppercase tracking-[0.2em] font-black focus:ring-0 focus:outline-none w-full placeholder:text-white/50 focus:text-pink-500 transition-all"
                                                     value={project.category}
                                                     onChange={(e) => updateProject(project.id, { category: e.target.value })}
                                                     onFocus={() => setEditingId(project.id)}
@@ -783,11 +794,11 @@ export default function Page() {
                                                         setEditingId(null)
                                                         void persistProjectChanges(project.id)
                                                     }}
-                                                    placeholder="ASSIGN CATEGORY"
+                                                    placeholder="(eg. Game, Animation, Tool, etc.)"
                                                 />
                                             </div>
 
-                                            <span className="text-pink-500/40  font-black uppercase tracking-[0.3em] hidden sm:inline">DESCRIPTION:</span>
+                                            <span className="text-pink-500/100  font-black uppercase tracking-[0.3em] hidden sm:inline">DESCRIPTION:</span>
 
                                             <Textarea
                                                 className="text-white"
@@ -803,7 +814,7 @@ export default function Page() {
                                     {/* Status & Visibility Actions */}
                                     <div className="flex items-center gap-6 bg-white/[0.02] rounded-3xl p-3 px-6 border border-white/[0.05] shadow-inner">
                                         <div className="flex flex-col items-center gap-1.5 min-w-[100px]">
-                                            <span className=" font-black text-white/20 uppercase tracking-[0.2em] mb-0.5">VISIBILITY</span>
+                                            <span className=" font-black text-white/100 uppercase tracking-[0.2em] mb-0.5">VISIBILITY</span>
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
@@ -811,7 +822,7 @@ export default function Page() {
                                                     "h-10 px-5 rounded-full border border-white/5 transition-all  font-black uppercase tracking-[0.2em]",
                                                     project.status === "published"
                                                         ? "bg-pink-500 text-black border-pink-500 hover:bg-pink-400"
-                                                        : "bg-white/5 text-white/30 hover:bg-white/10"
+                                                        : "bg-white/5 text-white/100 hover:bg-white/10"
                                                 )}
                                                 onClick={() => toggleStatus(project.id)}
                                                 aria-label={project.status === "published" ? "Switch to private mode" : "Make publicly visible"}
@@ -829,7 +840,7 @@ export default function Page() {
                                         <Button
                                             variant="ghost"
                                             size="icon"
-                                            className="h-12 w-12 text-white/10 hover:text-red-500 hover:bg-red-500/10 rounded-2xl transition-all"
+                                            className="h-12 w-12 text-white/100 hover:text-red-500 hover:bg-red-500/10 rounded-2xl transition-all"
                                             onClick={() => {
                                                 if (confirm(`Delete "${project.title || "this project"}"?`)) {
                                                     void deleteProject(project.id)
@@ -845,105 +856,132 @@ export default function Page() {
 
                                 {/* Gallery Images */}
                                 <div className="px-6 pb-6 border-t border-white/5 pt-5">
-                                    <span className=" font-black text-white/50 uppercase tracking-[0.3em] block mb-3">Gallery (Image + Video)</span>
-                                    <p className="text-white/50 mb-3">
-                                        Max 8mb per image. Max 50mb per video. Supported formats: JPG, PNG, GIF, MP4, MOV.
-                                    </p>
-                                    <div className="flex flex-wrap gap-3 items-center">
-                                        {galleryAssets.map((asset, imgIndex) => (
-                                            <div key={asset.id} className="w-48 flex-shrink-0">
-                                                <div className="relative group/gallery w-48 h-48 rounded-xl overflow-hidden border border-white/10">
-                                                    {asset.media_type === "video" ? (
-                                                        <video
-                                                            src={asset.url}
-                                                            className="w-full h-full object-cover"
-                                                            muted
-                                                            loop
-                                                            playsInline
-                                                            autoPlay
-                                                            preload="metadata"
-                                                        />
-                                                    ) : (
-                                                        <img src={asset.url} alt="" className="w-full h-full object-cover" />
-                                                    )}
-                                                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover/gallery:opacity-100 transition-opacity flex items-center justify-center gap-1">
-                                                 
-                                                        <button
-                                                            onClick={() => moveProjectImage(project.id, imgIndex, "left")}
-                                                            disabled={imgIndex === 0}
-                                                            className="h-6 w-6 rounded-full bg-white/20 hover:bg-white/40 disabled:opacity-0 flex items-center justify-center transition-colors"
-                                                            aria-label="Move image left"
-                                                        >
-                                                            <ChevronLeft className="h-3 w-3 text-white" />
-                                                        </button>
-                                                       <button
-                                                            onClick={() => {
-                                                                window.open(asset.url, "_blank", "noopener")
-                                                            }}
-                                                            className="h-6 w-6 rounded-full bg-green-500/70 hover:bg-green-500 flex items-center justify-center transition-colors"
-                                                            aria-label="Remove image"
-                                                        >
-                                                            <Globe className="h-3 w-3 text-white" />
-                                                        </button>                                                           
-                                                        <button
-                                                            onClick={() => {
-                                                                const response = confirm("Remove this file from the gallery?")
-                                                                if (response === true) {
-                                                                    removeProjectImage(project.id, imgIndex)
-                                                                }
-                                                            }}
-                                                            className="h-6 w-6 rounded-full bg-red-500/70 hover:bg-red-500 flex items-center justify-center transition-colors"
-                                                            aria-label="Remove image"
-                                                        >
-                                                            <X className="h-3 w-3 text-white" />
-                                                        </button>
-                                                        <button
-                                                            onClick={() => moveProjectImage(project.id, imgIndex, "right")}
-                                                            disabled={imgIndex === galleryAssets.length - 1}
-                                                            className="h-6 w-6 rounded-full bg-white/20 hover:bg-white/40 disabled:opacity-0 flex items-center justify-center transition-colors"
-                                                            aria-label="Move image right"
-                                                        >
-                                                            <ChevronRight className="h-3 w-3 text-white" />
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                                <input
-                                                    className="mt-2 w-full rounded-md border border-white/15 bg-black/30 px-2 py-1 text-xs text-white placeholder:text-white/40"
-                                                    placeholder="Add caption"
-                                                    value={asset.caption ?? ""}
-                                                    onChange={(e) => {
-                                                        const nextCaption = e.target.value
-                                                        const nextAssets = (project.assets ?? []).map((item) =>
-                                                            item.id === asset.id ? { ...item, caption: nextCaption } : item
-                                                        )
-                                                        const updatedProject = mergeAssetsIntoProject(project, nextAssets)
-                                                        setProjects((prev) => prev.map((p) => p.id === project.id ? updatedProject : p))
-                                                    }}
-                                                    onBlur={(e) => {
-                                                        void updateAssetCaption(project.id, asset.id, e.target.value)
-                                                    }}
-                                                />
-                                            </div>
-                                        ))}
-
-                                        {/* Add gallery image */}
-                                        <label className={cn(
-                                            "relative w-48 h-48 rounded-xl border border-dashed border-white/20 hover:border-pink-500/50 bg-white/[0.02] flex flex-col items-center justify-center cursor-pointer transition-colors gap-1 flex-shrink-0",
-                                            uploadingGalleryId === project.id && "opacity-100 pointer-events-none"
-                                        )}>
-                                            <Plus className="h-5 w-5 text-white/20" />
-                                            <span className=" font-black text-white/20 uppercase tracking-widest">
-                                                {uploadingGalleryId === project.id ? "..." : "ADD"}
-                                            </span>
-                                            <input
-                                                type="file"
-                                                accept="image/*,video/*"
-                                                className="sr-only"
-                                                onChange={(e) => handleGalleryUpload(project.id, e)}
-                                            />
-                                        </label>
+                                    <div className="flex items-center justify-between gap-4 mb-3">
+                                        <span className=" font-black text-white/100 uppercase tracking-[0.3em] block">Gallery (Image + Video) ({galleryAssets.length} item{galleryAssets.length !== 1 ? "s" : ""})</span>
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() => toggleGalleryCollapse(project.id)}
+                                            className="h-8 px-3 rounded-full border border-white/100 text-white/100 hover:text-white hover:bg-white/10"
+                                            aria-expanded={!isGalleryCollapsed}
+                                            aria-controls={`gallery-panel-${project.id}`}
+                                        >
+                                            {isGalleryCollapsed ? (
+                                                <>
+                                                    <ChevronDown className="h-4 w-4 mr-1" aria-hidden="true" />
+                                                    Expand
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <ChevronUp className="h-4 w-4 mr-1" aria-hidden="true" />
+                                                    Collapse
+                                                </>
+                                            )}
+                                        </Button>
                                     </div>
+                                    {!isGalleryCollapsed && (
+                                        <div id={`gallery-panel-${project.id}`}>
+                                            <p className="text-white/75 mb-3">
+                                                Max 8mb per image. Max 50mb per video. Supported formats: JPG, PNG, GIF, MP4, MOV. 1920px width recommended for images.
+                                            </p>
+                                            <div className="flex flex-wrap gap-3 items-center">
+                                                {galleryAssets.map((asset, imgIndex) => (
+                                                    <div key={asset.id} className="w-48 flex-shrink-0">
+                                                        <div className="relative group/gallery w-48 h-48 rounded-xl overflow-hidden border border-white/10">
+                                                            {asset.media_type === "video" ? (
+                                                                <video
+                                                                    src={asset.url}
+                                                                    className="w-full h-full object-cover"
+                                                                    muted
+                                                                    loop
+                                                                    playsInline
+                                                                    autoPlay
+                                                                    preload="metadata"
+                                                                />
+                                                            ) : (
+                                                                <img src={asset.url} alt="" className="w-full h-full object-cover" />
+                                                            )}
+                                                            <div className="absolute inset-0 bg-black/70 opacity-0 group-hover/gallery:opacity-100 transition-opacity flex items-center justify-center gap-1">
+
+                                                                <button
+                                                                    onClick={() => moveProjectImage(project.id, imgIndex, "left")}
+                                                                    disabled={imgIndex === 0}
+                                                                    className="h-6 w-6 rounded-full bg-white/20 hover:bg-white/40 disabled:opacity-0 flex items-center justify-center transition-colors"
+                                                                    aria-label="Move image left"
+                                                                >
+                                                                    <ChevronLeft className="h-3 w-3 text-white" />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => {
+                                                                        window.open(asset.url, "_blank", "noopener")
+                                                                    }}
+                                                                    className="h-6 w-6 rounded-full bg-green-500/70 hover:bg-green-500 flex items-center justify-center transition-colors"
+                                                                    aria-label="Remove image"
+                                                                >
+                                                                    <Globe className="h-3 w-3 text-white" />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => {
+                                                                        const response = confirm("Remove this file from the gallery?")
+                                                                        if (response === true) {
+                                                                            removeProjectImage(project.id, imgIndex)
+                                                                        }
+                                                                    }}
+                                                                    className="h-6 w-6 rounded-full bg-red-500/70 hover:bg-red-500 flex items-center justify-center transition-colors"
+                                                                    aria-label="Remove image"
+                                                                >
+                                                                    <X className="h-3 w-3 text-white" />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => moveProjectImage(project.id, imgIndex, "right")}
+                                                                    disabled={imgIndex === galleryAssets.length - 1}
+                                                                    className="h-6 w-6 rounded-full bg-white/20 hover:bg-white/40 disabled:opacity-0 flex items-center justify-center transition-colors"
+                                                                    aria-label="Move image right"
+                                                                >
+                                                                    <ChevronRight className="h-3 w-3 text-white" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <input
+                                                            className="mt-2 w-full rounded-md border border-white/15 bg-black/30 px-2 py-1 text-xs text-white placeholder:text-white/50"
+                                                            placeholder="Add caption"
+                                                            value={asset.caption ?? ""}
+                                                            onChange={(e) => {
+                                                                const nextCaption = e.target.value
+                                                                const nextAssets = (project.assets ?? []).map((item) =>
+                                                                    item.id === asset.id ? { ...item, caption: nextCaption } : item
+                                                                )
+                                                                const updatedProject = mergeAssetsIntoProject(project, nextAssets)
+                                                                setProjects((prev) => prev.map((p) => p.id === project.id ? updatedProject : p))
+                                                            }}
+                                                            onBlur={(e) => {
+                                                                void updateAssetCaption(project.id, asset.id, e.target.value)
+                                                            }}
+                                                        />
+                                                    </div>
+                                                ))}
+
+                                                {/* Add gallery image */}
+                                                <label className={cn(
+                                                    "relative w-48 h-48 rounded-xl border border-dashed border-white/20 hover:border-pink-500/50 bg-white/[0.02] flex flex-col items-center justify-center cursor-pointer transition-colors gap-1 flex-shrink-0",
+                                                    uploadingGalleryId === project.id && "opacity-100 pointer-events-none"
+                                                )}>
+                                                    <Plus className="h-5 w-5 text-white/100" />
+                                                    <span className=" font-black text-white/100 uppercase tracking-widest">
+                                                        {uploadingGalleryId === project.id ? "..." : "ADD"}
+                                                    </span>
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*,video/*"
+                                                        className="sr-only"
+                                                        onChange={(e) => handleGalleryUpload(project.id, e)}
+                                                    />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )

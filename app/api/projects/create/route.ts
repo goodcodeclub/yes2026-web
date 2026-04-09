@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
 		}
 
 		const finalTitle = (title ?? "").trim() || "Untitled Project";
-		const finalCategory = (category ?? "").trim() || "Uncategorized";
+		const finalCategory = (category ?? "").trim() || "";
 		const slug = await getUniqueSlug(slugify(finalTitle));
 		const isPublished = status === "published";
 

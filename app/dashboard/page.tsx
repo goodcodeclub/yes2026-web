@@ -88,7 +88,7 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
             <div className="w-full max-w-sm">
-                <img src={`${basePath}/logos/logo.svg`} className="w-full mb-4" />
+                <img src={`${basePath}/logos/logo2alt.svg`} className="w-full mb-4" />
 
                 <h1 className="text-lg font-bold mb-3 text-center">Log in</h1>
 

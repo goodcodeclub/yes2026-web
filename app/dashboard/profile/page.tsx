@@ -106,7 +106,6 @@ export default function Page() {
                         ...loadedProfile,
                     }))
                     setInitialProfile(loadedProfile)
-
                     setProfileImageUrl(`https://us-east-1.linodeobjects.com/yes-legacy/users/${session.id}/profile.jpg?t=${Date.now()}`)
                 }
             } catch (error) {
@@ -132,6 +131,7 @@ export default function Page() {
             setProfileSaved(true)
             setAnnouncement("Profile information saved successfully.")
             setTimeout(() => setProfileSaved(false), 3000)
+            window.location.reload();
         } catch (error) {
             console.error("Failed to save profile", error)
         } finally {
@@ -222,6 +222,14 @@ export default function Page() {
                                 />
                             }
 
+                            {profileImageUrl === "" &&
+                                <div className="w-full max-w-[320px] aspect-square rounded-lg border border-white/20 bg-white/10 flex items-center justify-center text-white/50">
+                                    <img src="/logos/logo.svg" className="opacity-25 m-0 w-[75%]" style={{
+                                        filter:"grayscale(100%) brightness(10000%)"
+                                    }} />
+                                </div>
+                            }
+
                             <Input
                                 type="file"
                                 accept="image/*"
@@ -263,24 +271,26 @@ export default function Page() {
 
                         <div className="space-y-4">
                             <label className="text-pink-500  font-black uppercase ml-1">YOUR NAME</label>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <Input
                                     className={`text-white ${isFieldChanged("firstName") ? changedFieldClass : ""}`}
                                     value={profile.firstName}
                                     onChange={(e) => setProfile({ ...profile, firstName: e.target.value })}
                                     placeholder="First name"
+                                    maxLength={20}
                                 />
-                                <Input
+                                {/* <Input
                                     className={`text-white ${isFieldChanged("middleName") ? changedFieldClass : ""}`}
                                     value={profile.middleName}
                                     onChange={(e) => setProfile({ ...profile, middleName: e.target.value })}
                                     placeholder="Middle name"
-                                />
+                                /> */}
                                 <Input
                                     className={`text-white ${isFieldChanged("lastName") ? changedFieldClass : ""}`}
                                     value={profile.lastName}
                                     onChange={(e) => setProfile({ ...profile, lastName: e.target.value })}
                                     placeholder="Last name"
+                                    maxLength={20}
                                 />
                             </div>
                         </div>

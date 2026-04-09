@@ -92,7 +92,7 @@ export async function PUT(req: NextRequest) {
 		}
 
 		const finalTitle = (title ?? "").trim() || "Untitled Project";
-		const finalCategory = (category ?? "").trim() || "Uncategorized";
+		const finalCategory = (category ?? "").trim() || "";
 		const finalStatus = status === "published" ? "published" : "private";
 		const slug = await getUniqueSlug(slugify(finalTitle), project.uuid);
 

@@ -1,8 +1,9 @@
 "use client";
 
-import { CircleQuestionMarkIcon, LogOutIcon, SearchIcon } from "lucide-react"
+import { CircleQuestionMarkIcon, EyeIcon, LogOutIcon, SearchIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react";
 
 export function Nav(props: any) {
 
@@ -11,10 +12,10 @@ export function Nav(props: any) {
     let menu = [
         // { label: 'Home', href: '/' },
         { label: 'Featured Work', href: '/work' },
-        { label: 'Grads', href: '#' },
-        { label: 'Awards', href: '#' },
+        { label: 'Grads', href: '/grads' },
+        // { label: 'Awards', href: '/awards' },
         { label: 'Gallery', href: '/gallery' },
-        { label: 'Committee', href: '#' },
+        { label: 'Committee', href: '/committee' },
         // { label: 'Awards', href: '/awards' },
         // { label: 'Committee', href: '/committee' }
     ]
@@ -29,13 +30,61 @@ export function Nav(props: any) {
 
     const pathname = usePathname();
 
+    let [currentSession, setCurrentSession] = useState<{ id?: string; gbc_id?: string } | null>(null);
+    let [profile, setProfile] = useState<any>({});
+    const [isLoaded, setIsLoaded] = useState(false)
+
+
+    const loadProfile = async () => {
+        try {
+            const session = JSON.parse(window.localStorage.getItem("session") || "{}");
+            setCurrentSession(session);
+
+            const query = session.id
+                ? `uuid=${encodeURIComponent(session.id)}`
+                : session.gbc_id
+                    ? `gbc_id=${encodeURIComponent(session.gbc_id)}`
+                    : "";
+
+            if (!query) {
+                setIsLoaded(true)
+                return
+            }
+
+            const response = await fetch(`/api/users/get?${query}`)
+
+            if (!response.ok) {
+                throw new Error(`Profile fetch failed with status ${response.status}`)
+            }
+
+            const data = await response.json()
+            const user = data?.user
+
+            if (user) {
+                setProfile(user);
+            }
+        } catch (error) {
+            console.error("Failed to load profile", error)
+        } finally {
+            setIsLoaded(true)
+        }
+    }
+
+
+
+    useEffect(() => {
+
+        loadProfile()
+
+    }, [])
+
     return (
         <div className="w-full bg-white transition-colors duration-300 sticky z-50 top-0">
             <div className="max-w-[1440px] mx-auto">
                 <div className="py-5 flex items-center justify-between transition-colors duration-300">
                     {/* Logo */}
                     <Link href="/home" className="cursor-pointer ff-pack-hard text-3xl text-lime flex flex-col leading-none">
-                        <img src="/logos/logo_invert.svg" className="h-8" />
+                        <img src="/logos/logo2.svg" className="h-8" />
                     </Link>
 
                     {/* Mobile Menu */}
@@ -83,6 +132,7 @@ export function Nav(props: any) {
                                             </Link>
                                         </li>
                                     ))}
+
                                 </ul>
                             </nav>
                             {props.mode !== "dashboard" &&
@@ -98,27 +148,66 @@ export function Nav(props: any) {
                             {props.mode === "dashboard" &&
 
                                 <div className=" flex items-center justify-center gap-10">
-                                    <button className="flex items-center focus:outline-none">
-                                        <div className="w-[22px] h-[22px] ml-0 text-lime">
-                                            <a href="#">
 
-                                                <LogOutIcon onClick={(e) => {
-                                                    window.localStorage.clear();
-                                                    window.location.href = "/dashboard";
-                                                }} />
+
+                                    <button className="flex items-center focus:outline-none">
+                                        <div className=" ml-0 text-lime">
+
+                                            {profile?.fname && profile?.lname ? (
+
+                                                <a href={`/profile/${profile?.fname?.toLowerCase() + (profile?.fname && profile?.mname ? "-" + profile?.mname?.toLowerCase() : "") + (profile?.fname && profile?.lname ? "-" + profile?.lname?.toLowerCase() : "")}`} target="_blank" className="flex items-center gap-1">
+
+                                                    <EyeIcon />
+                                                    <div className="flex flex-col items-center justify-center text-nowrap">
+                                                        PREVIEW
+                                                    </div>
+                                                </a>
+
+                                            ) : (
+
+                                                <div className="flex items-center gap-1">
+
+                                                    <EyeIcon />
+                                                    <div className="flex flex-col items-center justify-center text-nowrap">
+                                                        PROFILE INCOMPLETE
+                                                    </div>
+
+                                                </div>
+
+                                            )}
+
+
+
+                                        </div>
+                                    </button>
+                                    <button className="flex items-center focus:outline-none">
+                                        <div className=" ml-0 text-lime">
+                                            <a href="#" className="flex items-center gap-1" onClick={(e) => {
+                                                window.localStorage.clear();
+                                                window.location.href = "/dashboard";
+                                            }}>
+
+                                                <LogOutIcon />
+                                                <div className="flex flex-col items-center justify-center text-nowrap">
+                                                    EXIT
+                                                </div>
                                             </a>
 
                                         </div>
                                     </button>
                                     <button className="flex items-center focus:outline-none">
-                                        <div className="w-[22px] h-[22px] ml-0 text-lime">
-                                            <a href="https://teams.cloud.microsoft/l/channel/19%3A3a840f0e378445a9bc10164594efd8db%40thread.tacv2/Website%20Support%20(YES!26)?groupId=f7c0dae2-a46b-44ff-a31d-cba1b25798d5&tenantId=b5dc206c-17fd-4b06-8bc8-24f0bb650229" target="_blank">
+                                        <div className="ml-0 text-lime ">
+                                            <a href="https://teams.cloud.microsoft/l/channel/19%3A3a840f0e378445a9bc10164594efd8db%40thread.tacv2/Website%20Support%20(YES!26)?groupId=f7c0dae2-a46b-44ff-a31d-cba1b25798d5&tenantId=b5dc206c-17fd-4b06-8bc8-24f0bb650229" target="_blank" className="flex items-center justify-center gap-1">
 
-                                                <CircleQuestionMarkIcon />
+                                                <CircleQuestionMarkIcon className="" />
+                                                <div className="flex flex-col items-center justify-center">
+                                                    HELP
+                                                </div>
+
                                             </a>
 
                                         </div>
-                                    </button>                                    
+                                    </button>
                                 </div>
                             }
                         </div>

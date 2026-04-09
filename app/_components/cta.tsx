@@ -42,7 +42,7 @@ export function CTA() {
 
     return (
         <div className="bg-[#1c1c1c] relative ">
-            <div className="relative w-full h-[600px] overflow-hidden">
+            <div className="relative w-full h-[400px] overflow-hidden">
                 {ready && (
                     <Particles
                         id="cta-particles"
@@ -105,16 +105,16 @@ export function CTA() {
                 <div className="max-w-[1440px] mx-auto flex-col w-full gap-6  py-16 z-20">
                     <h2 className="ff-pack-hard text-6xl md:text-7xl uppercase leading-none flex flex-col">
                         <div>
-                            THE</div>
-                        <div>PARTY&apos;s</div>
+                            YES! THE</div>
+                        <div className="ml-[1.5em]">PARTY&apos;s</div>
                         <div className="flex items-center">
 
                             <div>
                                 THIS WAY</div>
-                            <ArrowDown className="h-20 w-20 text-lime" />
+                            <ArrowDown className="h-20 w-20 text-white" />
                         </div>
                     </h2>
-                    <p className="text-gray-300 text-xl text-base max-w-sm leading-relaxed mb-5">
+                    {/* <p className="text-gray-300 text-xl text-base max-w-sm leading-relaxed mb-5">
                         Join us for an interactive showcase of creativity and talent
                         nurtured across our campus.
                     </p>
@@ -125,7 +125,7 @@ export function CTA() {
                         >
                             JOIN THE PARTY!
                         </a>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Right – tsparticles */}

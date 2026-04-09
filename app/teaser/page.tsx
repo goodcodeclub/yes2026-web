@@ -22,7 +22,7 @@ export default function Page() {
                 <div className="flex lg:flex-row flex-col lg:gap-16 gap-8 lg:px-0 px-8">
                     {/* Image/Video Section */}
                     <div className="flex justify-center ">
-                        <img src={`${basePath}/logos/logo.svg`} className="w-[500px]" />
+                        <img src={`${basePath}/logos/logo2alt.svg`} className="w-[500px]" />
                     </div>
 
                     {/* Text Section */}

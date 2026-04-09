@@ -36,6 +36,7 @@ export async function GET(req: NextRequest) {
 		const url = new URL(req.url);
 		const uuid = url.searchParams.get("uuid");
 		const gbcId = url.searchParams.get("gbc_id");
+		const slug = url.searchParams.get("slug");
 
 		const pool = getPool();
 
@@ -46,6 +47,23 @@ export async function GET(req: NextRequest) {
 				 WHERE uuid = ? OR gbc_id = ?
 				 LIMIT 1`,
 				[uuid ?? "", gbcId ?? ""]
+			);
+
+			const users = rows as UserRow[];
+			const user = users[0];
+
+			if (!user) {
+				return jsonWithCors({ error: "User not found." }, { status: 404 });
+			}
+
+			return jsonWithCors({ user });
+		} else if (slug) {
+			const [rows] = await pool.execute(
+				`SELECT uuid, gbc_id, fname, mname, lname, pronoun, bio, website_url, instagram_url, created_at, updated_at
+				 FROM users
+				 WHERE CONCAT(fname, '-', IFNULL(mname || '-', ''), lname) = ?
+				 LIMIT 1`,
+				[slug ?? ""]
 			);
 
 			const users = rows as UserRow[];
