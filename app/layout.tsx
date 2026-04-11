@@ -44,6 +44,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en"  className={`${aeonik.variable} ${packHard.variable}`}>
+      <head>
+        <title>YES!26</title>
+      </head>
       <body
         className={`ff-aeonik antialiased bg-black`}
       >

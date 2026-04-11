@@ -190,7 +190,7 @@ export default function Page() {
             "members": [
                 {
                     "name": "Chris Kim, PhD",
-                    "image": "",
+                    "image": "1609529701024.jpeg",
                     "roles": ["Faculty Lead"],
                     "program": "Professor / Coordinator",
                     "year": "",
