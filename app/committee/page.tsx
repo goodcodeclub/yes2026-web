@@ -549,7 +549,7 @@ export default function Page() {
                     "portfolio": "https://victoriamirdesign.framer.website/"
                 },
                 {
-                    "name": "Jack Siletto",
+                    "name": "Jack Sellitto",
                     "image": "Jack-Sellitto.jpg",
                     "roles": ["Designer"],
                     "program": "Graphic Design",
