@@ -24,23 +24,26 @@ CREATE TABLE `assets` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `users` (
-    `id`             INT      NOT NULL AUTO_INCREMENT,
-    `uuid`           CHAR(36)          NOT NULL,
-    `gbc_id`         VARCHAR(50)       NOT NULL,
-    `password`       VARCHAR(255)      NOT NULL,
-    `fname`          VARCHAR(100)      NOT NULL,
-    `mname`          VARCHAR(100)      NULL,
-    `lname`          VARCHAR(100)      NOT NULL,
-    `pronoun`        VARCHAR(100)      NOT NULL,
-    `bio`            TEXT              NULL,
-    `website_url`    VARCHAR(2048)     NULL,
-    `instagram_url`  VARCHAR(2048)     NULL,
-    `created_at`     DATETIME          NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`     DATETIME          NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `users_uuid_unique`   (`uuid`),
-    UNIQUE KEY `users_gbc_id_unique` (`gbc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gbc_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mname` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pronoun` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bio` text COLLATE utf8mb4_unicode_ci,
+  `website_url` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram_url` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `program` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_uuid_unique` (`uuid`),
+  UNIQUE KEY `users_gbc_id_unique` (`gbc_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `projects` (
     `id`                INT      NOT NULL AUTO_INCREMENT,
