@@ -1,4 +1,25 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const TARGET = new Date("2026-04-29T23:00:00Z"); // April 29, 6PM EST (UTC-5)
+
+function getTimeLeft() {
+    const diff = Math.max(0, TARGET.getTime() - Date.now());
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    return { days, hours, minutes, seconds };
+}
+
 export function Countdown() {
+    const [time, setTime] = useState(getTimeLeft);
+
+    useEffect(() => {
+        const id = setInterval(() => setTime(getTimeLeft()), 1000);
+        return () => clearInterval(id);
+    }, []);
 
     return <>
 
@@ -11,13 +32,13 @@ export function Countdown() {
                         YES! Public Exhibition
                     </div>
                     <div className="font-normal flex text-white transition-colors duration-300">
-                        <span className="text-lime transition-colors duration-300">##</span>
+                        <span className="text-lime transition-colors duration-300">{time.days}</span>
                         <span className="mx-1 text-white transition-colors duration-300">days</span>
-                        <span className="text-lime transition-colors duration-300">##</span>
+                        <span className="text-lime transition-colors duration-300">{time.hours}</span>
                         <span className="mx-1 text-white transition-colors duration-300">hours</span>
-                        <span className="text-lime transition-colors duration-300">##</span>
+                        <span className="text-lime transition-colors duration-300">{time.minutes}</span>
                         <span className="mx-1 text-white transition-colors duration-300">minutes</span>
-                        <span className="text-lime transition-colors duration-300">##</span>
+                        <span className="text-lime transition-colors duration-300">{time.seconds}</span>
                         <span className="mx-1 text-white transition-colors duration-300">seconds</span>
                         <span>until the show</span>
                     </div>
