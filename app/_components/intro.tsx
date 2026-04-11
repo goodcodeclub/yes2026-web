@@ -78,7 +78,7 @@ export function Intro({ mode }: { mode: string }) {
 
 
 
-                                <a className="px-5 py-1 border-1 border-lime text-white link inline-block wavy-text-link theme-transition text-lime" href="https://www.eventbrite.ca/e/yes-annual-award-show-2026-tickets-1985557836940" target="_blank">
+                                <a className="px-5 py-1 border-1 border-lime text-white link inline-block wavy-text-link theme-transition text-lime" href="https://www.eventbrite.ca/e/yes-public-exhibit-tickets-1984078716852" target="_blank">
                                     RSVP
                                 </a>
                             </>

@@ -37,7 +37,7 @@ export default function Page() {
                         <div className="flex gap-2">
                             
                             <Button className="mt-6 text-uppercase bg-black text-white" variant="outline" asChild>
-                                <a href="https://www.eventbrite.ca/e/yes-annual-award-show-2026-tickets-1985557836940" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.eventbrite.ca/e/yes-public-exhibit-tickets-1984078716852" target="_blank" rel="noopener noreferrer">
                                     RSVP
                                 </a>
                             </Button>
