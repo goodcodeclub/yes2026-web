@@ -674,7 +674,7 @@ export default function Page() {
         <Intro mode="committee" />
 
         <div id="category-nav-placeholder"></div>
-        <div className="flex max-w-[1440px] bg-black mx-auto py-0 text-center sticky top-0 z-10" style={{
+        <div className="flex max-w-[1440px] px-4 bg-black mx-auto py-0 text-center sticky top-0 z-10" style={{
             top: "4.5rem"
         }} id="category-nav">
 
@@ -716,7 +716,7 @@ export default function Page() {
                 }} id={`category_${word}`}>
 
 
-                    <div className="flex max-w-[1440px] mx-auto py-0 text-center">
+                    <div className="flex max-w-[1440px] px-4 mx-auto py-0 text-center">
 
                         <h1 key={index} className=" ff-pack-hard leading-none uppercase text-lime py-4 border-white text-4xl flex" style={{
                         }}>
@@ -733,7 +733,7 @@ export default function Page() {
 
                     <div className=" py-8">
 
-                        <div className="max-w-[1440px] mx-auto py-0 text-start">
+                        <div className="max-w-[1440px] px-4 mx-auto py-0 text-start">
 
 
                             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-6 w-full">

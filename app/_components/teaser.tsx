@@ -95,7 +95,7 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
 
     return (
         <section className="w-full">
-            <div className="mx-auto max-w-[1440px] py-14 lg:py-20">
+            <div className="mx-auto max-w-[1440px] px-4 py-14 lg:py-20">
                 <div className="mb-10 flex items-center justify-between">
                     <div className="flex items-center">
                         <h2 className="ff-pack-hard1 text-3xl leading-none  flex items-center 1uppercase" style={{ color: `#${titleColor ?? textColor}` }}>

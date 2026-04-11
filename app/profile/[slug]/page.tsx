@@ -95,7 +95,7 @@ export default function Page() {
         <Nav />
 
         <main className="min-h-[70vh] bg-black text-white">
-            <section className="max-w-[1440px] mx-auto  py-12 md:py-20 border-white/15">
+            <section className="max-w-[1440px] px-4 mx-auto  py-12 md:py-20 border-white/15">
                 {!isLoaded && (
                     <div className="h-[50vh] flex items-center justify-center text-white/50 uppercase tracking-[0.2em] text-sm">
                         Loading profile...
@@ -179,7 +179,7 @@ export default function Page() {
 
             <div className="w-full transition-colors duration-300 bg-[#1c1c1c] ">
 
-                <section className="max-w-[1440px] mx-auto py-12 border-white/15">
+                <section className="max-w-[1440px] px-4 mx-auto py-12 border-white/15">
 
                     {projects.length > 0 && (
                         <div>

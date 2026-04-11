@@ -103,7 +103,7 @@ export default function Page() {
                 }}>
 
 
-                    <div className="flex max-w-[1440px] mx-auto py-0 text-center">
+                    <div className="flex max-w-[1440px] px-4 mx-auto py-0 text-center">
 
                         <h1 key={index} className=" ff-pack-hard leading-none uppercase text-white py-4 border-white text-8xl" style={{
                             backgroundColor: `#${color}`,
@@ -121,7 +121,7 @@ export default function Page() {
 
                     <div className="bg-[#1c1c1c] py-8 pb-24">
 
-                        <div className="max-w-[1440px] mx-auto py-0 text-start">
+                        <div className="max-w-[1440px] px-4 mx-auto py-0 text-start">
 
                             <ul className="text-lg mb-6" style={{
                                 color: `#${color === "000" ? "fff" : color}`,

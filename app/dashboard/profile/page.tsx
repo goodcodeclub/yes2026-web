@@ -200,7 +200,7 @@ export default function Page() {
 
 
 
-        <div className="max-w-[1440px] mx-auto py-12">
+        <div className="max-w-[1440px] px-4 mx-auto py-12">
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-12">
                 <div className="border-b border-white/5 pb-10">
                     <h1 className="ff-pack-hard text-6xl text-pink-500 mb-2 tracking-[-0.02em] uppercase">PROFILE</h1>

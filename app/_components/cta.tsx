@@ -102,7 +102,7 @@ export function CTA() {
             </div>            
             <section className="text-white absolute z-10 top-0 w-full h-full mx-auto flex items-center py-0 gap-8 overflow-hidden">
                 {/* Left */}
-                <div className="max-w-[1440px] mx-auto flex-col w-full gap-6  py-16 z-20">
+                <div className="max-w-[1440px] px-4 mx-auto flex-col w-full gap-6  py-16 z-20">
                     <h2 className="ff-pack-hard text-6xl md:text-7xl uppercase leading-none flex flex-col">
                         <div>
                             YES! THE</div>

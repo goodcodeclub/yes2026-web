@@ -2,7 +2,7 @@ export function Banner() {
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (process.env.NODE_ENV === "production" ? "/yes2026-web" : "");
 
     return (
-        <div className="mx-auto max-w-[1440px] ">
+        <div className="mx-auto max-w-[1440px] px-4 ">
             <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
                 {/* Image/Video Section */}
                 <div className="flex w-full justify-center lg:w-[75%] mx-auto lg:justify-start">

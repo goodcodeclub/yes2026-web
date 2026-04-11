@@ -215,7 +215,7 @@ export default function Page() {
 
         <Nav mode="dashboard" />
 
-        <div className="max-w-[1440px] mx-auto py-12">
+        <div className="max-w-[1440px] px-4 mx-auto py-12">
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 border-b border-white/5 pb-10">

@@ -3,16 +3,13 @@ export function Footer() {
 
     return (
         <div className="relative w-full bg-black flex flex-col items-center justify-center">
-            <div className="relative bottom-0 w-full bg-black max-w-[1440px]">
-                <div className="flex flex-col1 justify-center self-stretch py-10 mb-10 bg-black lg:max-w-[1440px] flex gap-24 lg:gap-0 lg:mx-auto lg:py-20 lg:mb-20">
+            <div className="relative bottom-0 w-full bg-black max-w-[1440px] px-4">
+                <div className="flex flex-col1 justify-center self-stretch py-10 mb-10 bg-black flex gap-24 lg:gap-0 lg:mx-auto py-20 mb-20">
 
                     <div className="w-full">
 
-                        <div className="cursor-pointer ff-pack-hard text-3xl text-white flex flex-col leading-none">
-                            <img src="/logos/logo2alt.svg" alt="YES Logo" className="h-8 me-auto" />
-                        </div>
 
-                        <p className="self-start body-text text-white lg:my-8">
+                        <p className="self-start body-text text-white">
                             George Brown Polytechnic
                             <br />
                             School of Design
@@ -32,7 +29,7 @@ export function Footer() {
                                 alt="School of Design Logo"
                                 className="shrink-0 my-auto max-w-full w-[200px]"
                             />
-
+{/* 
                             <a href="https://www.instagram.com/sod_yes/" rel="noreferrer">
                                 <svg
                                     width="56"
@@ -48,19 +45,24 @@ export function Footer() {
                                         fill="#000000"
                                     />
                                 </svg>
-                            </a>
+                            </a> */}
 
                         </div>
                     </div>
                     <div className="text-white">
     
+
+                        <div className="cursor-pointer ff-pack-hard text-3xl text-white flex flex-col leading-none mb-5">
+                            <img src="/logos/logo2alt.svg" alt="YES Logo" className="h-8 me-auto" />
+                        </div>
+
                         <p className="text-white mb-4 body-text text-nowrap">
                             Join us in celebrating the class of 2026!
                         </p>
 
                         <p className="text-white mb-4 body-text text-nowrap">
                             School of Design<br />
-                            George Brown Polytechnic<br />
+                            {/* George Brown Polytechnic<br /> */}
                             Year End Show<br/>
                             April 29-30, 6-9PM<br/>
                         </p>
