@@ -3,7 +3,7 @@ export function Showreel(){
     return <>
 
     <section className="w-full bg-black transition-colors duration-300 py-32">
-        <div className="max-w-[1440px] px-4 mx-auto px-6 lg:px-[48px] py-16">
+        <div className="max-w-[1440px] px-5 mx-auto px-6 lg:px-[48px] py-16">
             <h2 className="text-lime text-4xl font-bold uppercase mb-8">
                 SHOWREEL
             </h2>

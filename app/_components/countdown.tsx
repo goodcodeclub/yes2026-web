@@ -24,7 +24,7 @@ export function Countdown() {
     return <>
 
         <div className="w-full bg-black transition-colors duration-300">
-            <div className="max-w-[1440px] px-4  mx-auto">
+            <div className="max-w-[1440px] px-5  mx-auto">
                 <div className="body-text-sm w-full flex flex-col lg:flex-row justify-around lg:justify-between items-center py-2">
                     <div className="font-normal text-white transition-colors duration-300">
                         April

@@ -3,20 +3,20 @@ export function Footer() {
 
     return (
         <div className="relative w-full bg-black flex flex-col items-center justify-center">
-            <div className="relative bottom-0 w-full bg-black max-w-[1440px] px-4">
-                <div className="flex flex-col1 justify-center self-stretch py-10 mb-10 bg-black flex gap-24 lg:gap-0 lg:mx-auto py-20 mb-20">
+            <div className="relative bottom-0 w-full bg-black max-w-[1440px] px-5">
+                <div className="flex md:flex-row flex-col items-center justify-center self-stretch py-10 mb-10 bg-black flex gap-24 md:gap-0 md:mx-auto py-20 mb-20">
 
-                    <div className="w-full">
+                    <div className="w-full md:text-start text-center">
 
 
-                        <p className="self-start body-text text-white">
+                        <p className="body-text text-white">
                             George Brown Polytechnic
                             <br />
                             School of Design
                             <br />
                             3 Lower Jarvis St, Toronto
                         </p>
-                        <div className="flex gap-6 pr-7 mt-4">
+                        <div className="flex gap-6 mt-4 justify-center md:justify-start">
                             <img
                                 loading="lazy"
                                 src={`${basePath}/logos/gbp.png`}
@@ -49,11 +49,11 @@ export function Footer() {
 
                         </div>
                     </div>
-                    <div className="text-white">
+                    <div className="text-white md:text-start text-center">
     
 
                         <div className="cursor-pointer ff-pack-hard text-3xl text-white flex flex-col leading-none mb-5">
-                            <img src="/logos/logo2alt.svg" alt="YES Logo" className="h-8 me-auto" />
+                            <img src="/logos/logo2alt.svg" alt="YES Logo" className="h-8 md:me-auto" />
                         </div>
 
                         <p className="text-white mb-4 body-text text-nowrap">

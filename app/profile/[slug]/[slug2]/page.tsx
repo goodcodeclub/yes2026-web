@@ -128,7 +128,7 @@ export default function Page() {
             {isLoaded && project && (
                 <div className="bg-zinc-900/90 ">
 
-                    <section className="max-w-[1440px] px-4 mx-auto py-8 md:py-10 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 px-5 md:px-8 py-6 md:py-7">
+                    <section className="max-w-[1440px] px-5 mx-auto py-8 md:py-10 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 px-5 md:px-8 py-6 md:py-7">
 
                         <div>
                             <h1 className="text-xl md:text-2xl font-semibold leading-tight mb-4">{project.title}</h1>
@@ -165,7 +165,7 @@ export default function Page() {
             )}
 
 
-            <section className="max-w-[1440px] px-4 mx-auto py-8 md:py-10">
+            <section className="max-w-[1440px] px-5 mx-auto py-8 md:py-10">
 
 
 

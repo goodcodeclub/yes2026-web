@@ -21,7 +21,7 @@ export default function Page() {
         <CTA />
         <Events />
         <div className="w-full transition-colors duration-300 bg-[#1c1c1c] py-24 ">
-            <div className="max-w-[1440px] px-4 mx-auto  text-white">
+            <div className="max-w-[1440px] px-5 mx-auto  text-white">
                 <p className="text-2xl mb-8">
                     Follow us for updates on all things YES!
                 </p>
@@ -32,7 +32,7 @@ export default function Page() {
                 </p>
             </div>
 
-            <div className="grid grid-cols-4 gap-2 max-w-[1440px] px-4 mx-auto">
+            <div className="grid grid-cols-4 gap-2 max-w-[1440px] px-5 mx-auto">
                 {[
                     "/instagram/01-YES-Were-Back2026-Instagram.png",
                     "/instagram/02-YES-Student-Spotlight-Instagram.png",

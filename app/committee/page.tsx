@@ -674,11 +674,11 @@ export default function Page() {
         <Intro mode="committee" />
 
         <div id="category-nav-placeholder"></div>
-        <div className="flex max-w-[1440px] px-4 bg-black mx-auto py-0 text-center sticky top-0 z-10" style={{
+        <div className="flex max-w-[1440px] px-5 bg-black mx-auto py-0 text-center sticky top-0 z-10" style={{
             top: "4.5rem"
         }} id="category-nav">
 
-            <div className="text-lime uppercase text-nowrap flex items-center gap-2 text-lg me-4">
+            <div className="text-lime uppercase text-nowrap lg:flex hidden items-center gap-2 text-lg me-4">
                 Yes!26 Team <ArrowRight />
             </div>
 
@@ -696,8 +696,8 @@ export default function Page() {
                                 // setActiveCategory(word);
                             }
                         }}
-                        key={index} className={`w-full text-base py-3 flex flex-col items-center align-items-center leading-none hover:bg-lime hover:text-white border-[1px] border-lime `}>
-                        <span className="block m-auto">
+                        key={index} className={`w-full text-base py-3 px-2 w-full flex flex-col items-center align-items-center leading-none hover:bg-lime hover:text-white border-[1px] border-lime`}>
+                        <span className="block m-auto truncate overflow-hidden w-full">
                             {word}
                         </span>
                     </a>
@@ -716,7 +716,7 @@ export default function Page() {
                 }} id={`category_${word}`}>
 
 
-                    <div className="flex max-w-[1440px] px-4 mx-auto py-0 text-center">
+                    <div className="flex max-w-[1440px] px-5 mx-auto py-0 text-center">
 
                         <h1 key={index} className=" ff-pack-hard leading-none uppercase text-lime py-4 border-white text-4xl flex" style={{
                         }}>
@@ -733,7 +733,7 @@ export default function Page() {
 
                     <div className=" py-8">
 
-                        <div className="max-w-[1440px] px-4 mx-auto py-0 text-start">
+                        <div className="max-w-[1440px] px-5 mx-auto py-0 text-start">
 
 
                             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-6 w-full">

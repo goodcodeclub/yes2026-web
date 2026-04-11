@@ -82,7 +82,7 @@ export function Nav(props: any) {
         <>
             <ArrowUp className="fixed bottom-4 right-4 w-10 h-10  rounded-full bg-lime text-black p-2 opacity-75 hover:opacity-100 transition-opacity duration-300 cursor-pointer z-50" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
             <div className="w-full bg-white transition-colors duration-300 sticky z-50 top-0" id="mainheader">
-                <div className="max-w-[1440px] px-4 mx-auto">
+                <div className="max-w-[1440px] px-5 mx-auto">
                     <div className="py-5 flex items-center justify-between transition-colors duration-300">
                         {/* Logo */}
                         <Link href="/home" className="cursor-pointer ff-pack-hard text-3xl text-lime flex flex-col leading-none">
@@ -93,7 +93,7 @@ export function Nav(props: any) {
                         <div className="w-full justify-end gap-4 flex">
                             <div className="relative flex items-center justify-end lg:gap-12 gap-6 transition-colors duration-300 w-full">
                                 <nav className="flex items-center gap-10 w-full justify-end transition-colors duration-300">
-                                    <ul className="flex items-center lg:gap-12 gap-6 transition-colors duration-300">
+                                    <ul className="flex items-center xl:gap-12 gap-6 transition-colors duration-300">
                                         {menu.map((item) => (
                                             <li key={item.label}>
                                                 <Link className={`focus:outline-none ${item.href == "#" ? "opacity-25" : ""} ${pathname.indexOf(item.href) > -1 ? "underline" : ""}`} href={item.href}>
@@ -104,7 +104,7 @@ export function Nav(props: any) {
 
                                     </ul>
                                 </nav>
-                                {props.mode !== "dashboard" &&
+                                {/* {props.mode !== "dashboard" &&
 
                                     <div className=" flex items-center justify-center gap-10">
                                         <button className="flex items-center focus:outline-none">
@@ -113,7 +113,7 @@ export function Nav(props: any) {
                                             </div>
                                         </button>
                                     </div>
-                                }
+                                } */}
                                 {props.mode === "dashboard" &&
 
                                     <div className=" flex items-center justify-center gap-10">

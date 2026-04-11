@@ -1,7 +1,7 @@
 export function Programs() {
     return (
         <section className="w-full bg-[#222222] transition-colors duration-300 py-32">
-            <div className="max-w-[1440px] px-4 mx-auto px-6 lg:px-[48px]">
+            <div className="max-w-[1440px] px-5 mx-auto px-6 lg:px-[48px]">
                 <div className="flex flex-row items-center justify-between flex-wrap mb-12">
                     <h2 className="text-lime text-4xl font-bold uppercase heading-2-caps">
                         PROGRAMS

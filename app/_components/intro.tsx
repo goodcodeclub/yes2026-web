@@ -3,7 +3,7 @@ export function Intro({ mode }: { mode: string }) {
 
     return (
         <section className={`w-full transition-colors duration-300 ${mode != "home" ? "bg-black" : "bg-[#1c1c1c] "}`}>
-            <div className="max-w-[1440px] px-4 mx-auto px-6 py-24">
+            <div className="max-w-[1440px] px-5 mx-auto px-6 py-24">
                 <div className="flex flex-col lg:flex-row gap-8 items-center">
                     <div className="w-full lg:w-1/2 order-2 lg:order-1">
                         <h2 className="text-white lg:text-7xl text-3xl uppercase ff-pack-hard  heading-2-caps leading-none flex  gap-0">

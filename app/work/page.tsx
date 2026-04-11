@@ -50,7 +50,7 @@ export default function Page() {
         <Nav />
         <Intro mode="work" />
         <div id="category-nav-placeholder"></div>
-        <div className="flex max-w-[1440px] px-4 mx-auto py-0 text-center sticky top-0 z-10" id="category-nav" style={{
+        <div className="flex max-w-[1440px] px-5 mx-auto py-0 text-center sticky top-0 z-10" id="category-nav" style={{
             top: "4.5rem"
         }}>
             {categories.map((category, index) => (
