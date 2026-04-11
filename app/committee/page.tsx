@@ -189,6 +189,30 @@ export default function Page() {
             "name": "Website",
             "members": [
                 {
+                    "name": "Chris Kim, PhD",
+                    "image": "",
+                    "roles": ["Faculty Lead"],
+                    "program": "Professor / Coordinator",
+                    "year": "",
+                    "portfolio": "https://design.dogacimen.com/"
+                },
+               {
+                    "name": "Cinthia Nery Martins",
+                    "image": "",
+                    "roles": [" Co-Lead"],
+                    "program": "Interaction Design",
+                    "year": "3rd Year",
+                    "portfolio": "https://www.tamlynlouhing.xyz/"
+                },                
+               {
+                    "name": "Tamlyn LouHing",
+                    "image": "webteam-photo-tlh.jpeg",
+                    "roles": [" Co-Lead"],
+                    "program": "Interaction Design",
+                    "year": "3rd Year",
+                    "portfolio": "https://www.tamlynlouhing.xyz/"
+                },                
+                {
                     "name": "Doga Çimen",
                     "image": "doga-portrait.jpeg",
                     "roles": ["Product Designer"],
@@ -249,14 +273,7 @@ export default function Page() {
                     "year": "1st Year",
                     "portfolio": "https://www.behance.net/juliana-richter"
                 },
-                {
-                    "name": "Tamlyn LouHing",
-                    "image": "webteam-photo-tlh.jpeg",
-                    "roles": ["Web Team Co-Lead"],
-                    "program": "Interaction Design & Development",
-                    "year": "3rd Year",
-                    "portfolio": "https://www.tamlynlouhing.xyz/"
-                },
+ 
                 {
                     "name": "Haiming Wang",
                     "image": "HaimingWang_coloured.jpeg",
@@ -303,7 +320,14 @@ export default function Page() {
                     "roles": ["Web Design Team member"],
                     "program": "Interaction Design & Development",
                     "year": "2nd Year"
-                }
+                },
+                {
+                    "name": "Ana Kajfes",
+                    "image": "",
+                    // "roles": ["Web Design Team member"],
+                    // "program": "Interaction Design & Development",
+                    // "year": "2nd Year"
+                }                
             ]
         },
         {
@@ -312,6 +336,7 @@ export default function Page() {
                 {
                     "name": "Sara Vargas Nessi",
                     "image": "Sara_Vargas_Nessi.jpg",
+                    "roles": ["Team Lead"],
                     "program": "Brand Design",
                     "year": "4th Year",
                     "portfolio": "https://www.saravargasnessi.com/"
@@ -319,7 +344,7 @@ export default function Page() {
                 {
                     "name": "Quinn Miriguay",
                     "image": "Quinn_Miriguay.jpg",
-                    "roles": ["Co-lead"],
+                    "roles": ["Team Lead"],
                     "program": "Graphic Design",
                     "year": "3rd Year",
                     "portfolio": "https://quinnmiriguaydesigns.framer.website/"
@@ -443,15 +468,15 @@ export default function Page() {
             "name": "Service Design",
             "members": [
                 {
-                    "name": "Niyousha Kerr",
-                    "image": "",
-                    "roles": ["Student Services Coordinator"]
-                },
-                {
                     "name": "Theresa Kienitz",
                     "image": "",
-                    "roles": ["Assistant to the Associate Dean"]
+                    "roles": ["Team Lead", "Assistant to the Associate Dean"]
                 },
+                {
+                    "name": "Niyousha Kerr",
+                    "image": "",
+                    "roles": ["Team Member", "Student Services Coordinator"]
+                },                
 
             ]
         },
@@ -600,7 +625,26 @@ export default function Page() {
                     "program": "School of Design"
                 }
             ]
-        }
+        },
+       {
+            "name": "Photography",
+            "members": [
+                {
+                    "name": "Denni Russel",
+                    "image": "",
+                    "roles": ["Faculty Lead"],
+                    "program": "Grad Headshot Photographer"
+                },
+                {
+                    "name": "Ingrid Nazarri",
+                    "image": "",
+                    "roles": ["Assistant Photographer"],
+                    "program": "Graphic Design G102",
+                    "year": "3rd Year"
+                },                
+  
+            ]
+        }        
 
     ]
 
