@@ -26,7 +26,9 @@ export default function Page() {
                     Follow us for updates on all things YES!
                 </p>
                 <p className="text-xl mb-8 text-lime">
-                    @sod_design
+                    <a href="https://www.instagram.com/sod_yes/" target="_blank">
+                        @sod_yes
+                    </a>
                 </p>
             </div>
 
