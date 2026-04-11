@@ -636,21 +636,21 @@ export default function Page() {
                 Yes!26 Team <ArrowRight />
             </div>
 
-            <div className="grid grid-cols-5  w-full border-t-[1px] border-b-[1px] border-lime">
+            <div className="grid grid-cols-5  w-full border-t-[1px] border-b-[1px] border-lime text-lime ">
                 {categories.map((word, index) => (
                     <a href="#"
                         onClick={(e) => {
                             e.preventDefault();
 
-                            window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+                            window.scrollTo({ top: (document.getElementById(`category_${word}`)?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0) - (document.getElementById(`category-nav`)?.offsetHeight ?? 0), behavior: "smooth" });
 
                             if (activeCategory == word) {
-                                setActiveCategory(null);
+                                // setActiveCategory(null);
                             } else {
-                                setActiveCategory(word);
+                                // setActiveCategory(word);
                             }
                         }}
-                        key={index} className={`w-full text-base py-3 flex flex-col items-center align-items-center leading-none   border-[1px] border-lime ${activeCategory === word ? 'text-black bg-lime' : 'text-lime'}`}>
+                        key={index} className={`w-full text-base py-3 flex flex-col items-center align-items-center leading-none hover:bg-lime hover:text-white border-[1px] border-lime `}>
                         <span className="block m-auto">
                             {word}
                         </span>
@@ -667,7 +667,7 @@ export default function Page() {
             <>
 
                 <div style={{
-                }}>
+                }} id={`category_${word}`}>
 
 
                     <div className="flex max-w-[1440px] mx-auto py-0 text-center">

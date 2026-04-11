@@ -4,7 +4,7 @@
     color: #FF4EAC;
 }
 
-.bg-lime {
+.bg-lime, .hover\:bg-lime:hover {
     background-color: #FF4EAC;
 }
 
