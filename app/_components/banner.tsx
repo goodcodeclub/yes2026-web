@@ -27,7 +27,7 @@ export function Banner() {
 
                 {/* Text Section */}
                 {/* <div className="gap-2 mt-6 flex w-full flex-col items-start lg:mt-0 lg:w-1/2 lg:max-w-[607px]">
-                    <h3 className="text-3xl text-lime">May 1-2</h3>
+                    <h3 className="text-3xl text-lime"></h3>
                     <h3 className="text-3xl text-white">George Brown College</h3>
                     <h3 className="text-3xl text-white">School of Design Year End Show</h3>
                     <a

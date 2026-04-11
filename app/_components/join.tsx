@@ -11,7 +11,7 @@ export function Join(){
                             Experience the pinnacle of design innovation at YES!—George Brown College's premier annual graduate showcase for the School of Design. This spring, over 400 talented students will unveil the culmination of their creative journeys by presenting groundbreaking, interactive design solutions that have defined their studies.
                         </p>
                         <p className="text-white mb-6">
-                            Join us May 1-2 as we transform our campus into a dynamic exhibition space spanning three floors. Celebrate the ingenuity and passion of our students and faculty across twelve diverse programs, and witness firsthand the future of design in action.
+                            Join us April 29-30 as we transform our campus into a dynamic exhibition space spanning three floors. Celebrate the ingenuity and passion of our students and faculty across twelve diverse programs, and witness firsthand the future of design in action.
                         </p>
                         <a className="text-white link inline-block wavy-text-link theme-transition" href="/events">
                             Learn more about our event <span className="body-text-bold">→</span>
