@@ -79,7 +79,7 @@ export function Nav(props: any) {
     }, [])
 
     return (
-        <div className="w-full bg-white transition-colors duration-300 sticky z-50 top-0">
+        <div className="w-full bg-white transition-colors duration-300 sticky z-50 top-0" id="mainheader">
             <div className="max-w-[1440px] mx-auto">
                 <div className="py-5 flex items-center justify-between transition-colors duration-300">
                     {/* Logo */}

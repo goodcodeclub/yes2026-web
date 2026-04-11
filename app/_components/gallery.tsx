@@ -121,7 +121,7 @@ export function Gallery() {
                                 aria-label={`Open gallery image ${index + 1}`}
                             >
                                 <img
-                                    src={galleryBaseUrl + item}
+                                    src={`/api/assets/thumbnail?url=${encodeURIComponent(galleryBaseUrl + item)}&width=900`}
                                     alt={`Gallery image ${index + 1}`}
                                     loading="lazy"
                                     className="h-full w-full object-cover grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"
@@ -163,7 +163,7 @@ export function Gallery() {
                             </button>
 
                             <img
-                                src={galleryBaseUrl + galleryItems[activeIndex]}
+                                src={`/api/assets/thumbnail?url=${encodeURIComponent(galleryBaseUrl + galleryItems[activeIndex])}&width=900`}
                                 alt={`Gallery image ${activeIndex + 1}`}
                                 className="max-h-[90vh] w-auto max-w-full object-contain"
                             />

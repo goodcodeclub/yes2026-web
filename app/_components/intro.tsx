@@ -89,7 +89,7 @@ export function Intro({ mode }: { mode: string }) {
 
                             <>
                                 <p className="text-white mb-0 body-text">
-                                    The YES!25 design graduate exhibition, capturing the ideas, craft, and experimentation behind each project. A curated selection of moments, showcasing process, presentation, and possibility.
+                                    Last year’s YES!25 design graduate exhibition, capturing the ideas, craft, and experimentation behind each project. A curated selection of moments showcasing process, presentation, and possibility.
                                 </p>
                             </>
 

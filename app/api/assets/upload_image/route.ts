@@ -142,7 +142,7 @@ export async function POST(req: NextRequest) {
         const payloadBuffer = isImage
             ? await sharp(sourceBuffer)
                 .rotate()
-                .jpeg({ quality: 90, mozjpeg: true })
+                .jpeg({ quality: 100, mozjpeg: true })
                 .toBuffer()
             : sourceBuffer;
 

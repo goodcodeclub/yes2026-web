@@ -88,7 +88,7 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
             program: "Graphic Design",
             href: "#",
             variant: "mirrored",
-        },        
+        },
     ] as const;
 
     const [activeProgram, setActiveProgram] = useState<string>("");
@@ -110,7 +110,9 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                                 className="text-base  underline underline-offset-4 transition-opacity hover:opacity-80 flex align-items-center text-white"
                                 onClick={(e) => {
                                     e.preventDefault();
-                        window.scrollTo({ top: 0, behavior: "smooth" });
+
+                                    window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+
 
                                     setActiveCategory && setActiveCategory(title);
                                 }}
@@ -123,29 +125,29 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
 
                 </div>
 
-                            <ul className="text-lg mb-6" style={{
-                                color: `#${color === "000" ? "fff" : color}`,
-                            }}>
+                <ul className="text-lg mb-6" style={{
+                    color: `#${color === "000" ? "fff" : color}`,
+                }}>
 
-                                {categories?.map((category, categoryIndex) => (
-                                    <li key={categoryIndex} className={`${activeProgram === category ? "underline" : ""} cursor-pointer text-white`} onClick={(e) => {
+                    {categories?.map((category, categoryIndex) => (
+                        <li key={categoryIndex} className={`${activeProgram === category ? "underline" : ""} cursor-pointer text-white`} onClick={(e) => {
 
-                                        if (category == activeProgram) {
-                                            setActiveProgram("");
-                                            return;
-                                        } else {
-                                            setActiveProgram(category);
-                                            setActiveCategory && setActiveCategory(title);
-                                        }
-                                    }}>
-                                        {category}
-                                    </li>
-                                ))}
+                            if (category == activeProgram) {
+                                setActiveProgram("");
+                                return;
+                            } else {
+                                setActiveProgram(category);
+                                setActiveCategory && setActiveCategory(title);
+                            }
+                        }}>
+                            {category}
+                        </li>
+                    ))}
 
-                            </ul>
+                </ul>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-6">
-                    {(activeCategory == "" ? items.slice(0,6) : items).map((item, index) => (
+                    {(activeCategory == "" ? items.slice(0, 6) : items).map((item, index) => (
                         <article key={index} className="text-white">
                             <a href={item.href} className="group block">
                                 <div className="relative mb-3 aspect-[4/2.8] overflow-hidden">

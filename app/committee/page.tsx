@@ -627,9 +627,10 @@ export default function Page() {
         <Nav />
         <Intro mode="committee" />
 
+        <div id="category-nav-placeholder"></div>
         <div className="flex max-w-[1440px] bg-black mx-auto py-0 text-center sticky top-0 z-10" style={{
             top: "4.5rem"
-        }}>
+        }} id="category-nav">
 
             <div className="text-lime uppercase text-nowrap flex items-center gap-2 text-lg me-4">
                 Yes!26 Team <ArrowRight />
@@ -640,7 +641,9 @@ export default function Page() {
                     <a href="#"
                         onClick={(e) => {
                             e.preventDefault();
-                                window.scrollTo({ top: 0, behavior: "smooth" });
+
+                            window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+
                             if (activeCategory == word) {
                                 setActiveCategory(null);
                             } else {
@@ -658,7 +661,7 @@ export default function Page() {
 
         </div>
 
-                <div className="pt-24"></div>
+        <div className="pt-24"></div>
 
         {categories.filter((word) => activeCategory === null || activeCategory === word).map((word, index) => (
             <>

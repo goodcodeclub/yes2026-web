@@ -31,7 +31,7 @@ export default function Page() {
             ]
         },
         {
-            word: "GAME", title: "Game", color: "1c1c1c", textColor: "ffffff", categories: [
+            word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", categories: [
                 "Game-Art",
             ]
         },
@@ -49,16 +49,17 @@ export default function Page() {
         <Countdown />
         <Nav />
         <Intro mode="work" />
-        <div className="flex max-w-[1440px] mx-auto py-0 text-center sticky top-0 z-10" style={{
+        <div id="category-nav-placeholder"></div>
+        <div className="flex max-w-[1440px] mx-auto py-0 text-center sticky top-0 z-10" id="category-nav" style={{
             top: "4.5rem"
         }}>
             {categories.map((category, index) => (
 
                 <a href="#" key={index}
-                    className={`w-full text-2xl py-3 ff-pack-hard leading-none uppercase border border-1  border-t-2 border-b-2 text-white ${activeCategory === category.title ? "active" : "bg-black"}`} onClick={(e) => {
+                    className={`w-full text-2xl py-3 ff-pack-hard leading-none uppercase border border-1  border-t-2 border-b-2 text-white hover:bg-[#${category.color}] ${activeCategory === category.title ? "active" : "bg-black"}`} onClick={(e) => {
 
                         e.preventDefault();
-                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
                         if (activeCategory == category.title) {
                             setActiveCategory("");
                         } else {
