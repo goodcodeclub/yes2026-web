@@ -29,6 +29,7 @@ export async function PUT(req: NextRequest) {
             about,
             website,
             instagram,
+            program,
         } = await req.json();
 
         if (!user_uuid && !user_gbcid) {
@@ -48,7 +49,8 @@ export async function PUT(req: NextRequest) {
                  pronoun = ?,
                  bio = ?,
                  website_url = ?,
-                 instagram_url = ?
+                 instagram_url = ?,
+                 program = ?
              WHERE uuid = ? OR gbc_id = ?`,
             [
                 firstName ?? "",
@@ -58,6 +60,7 @@ export async function PUT(req: NextRequest) {
                 about || null,
                 website || null,
                 instagram || null,
+                program || null,
                 user_uuid ?? "",
                 user_gbcid ?? "",
             ]
@@ -82,6 +85,7 @@ export async function PUT(req: NextRequest) {
                 about: about ?? "",
                 website: website ?? "",
                 instagram: instagram ?? "",
+                program: program ?? "",
             },
         });
     } catch (err) {

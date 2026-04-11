@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
 
 		if (uuid || gbcId) {
 			const [rows] = await pool.execute(
-				`SELECT uuid, gbc_id, fname, mname, lname, pronoun, bio, website_url, instagram_url, created_at, updated_at
+				`SELECT uuid, gbc_id, fname, mname, lname, pronoun, bio, website_url, instagram_url, program, created_at, updated_at
 				 FROM users
 				 WHERE uuid = ? OR gbc_id = ?
 				 LIMIT 1`,
@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
 			return jsonWithCors({ user });
 		} else if (slug) {
 			const [rows] = await pool.execute(
-				`SELECT uuid, gbc_id, fname, mname, lname, pronoun, bio, website_url, instagram_url, created_at, updated_at
+				`SELECT uuid, gbc_id, fname, mname, lname, pronoun, bio, website_url, instagram_url, program, created_at, updated_at
 				 FROM users
 				 WHERE CONCAT(fname, '-', IFNULL(mname || '-', ''), lname) = ?
 				 LIMIT 1`,
@@ -77,7 +77,7 @@ export async function GET(req: NextRequest) {
 		}
 
 		const [rows] = await pool.execute(
-			`SELECT uuid, gbc_id, fname, mname, lname, pronoun, bio, website_url, instagram_url, created_at, updated_at
+			`SELECT uuid, gbc_id, fname, mname, lname, pronoun, bio, website_url, instagram_url, program, created_at, updated_at
 			 FROM users
 			 ORDER BY created_at DESC`
 		);

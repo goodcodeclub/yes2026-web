@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Banner } from "../_components/banner";
 import { Countdown } from "../_components/countdown";
 import { CTA } from "../_components/cta";
@@ -58,16 +61,41 @@ export default function Page() {
         },
     ] as const;
 
+    const [activeProgram, setActiveProgram] = useState<string>("");
+
     return <>
 
         <Countdown />
         <Nav />
 
         {[
-            { word: "DESIGN", color: "ff4eac" },
-            { word: "INTERACTION", color: "004BFF" },
-            { word: "GAME", color: "000" },
-        ].map(({ word, color }, index) => (
+            {
+                word: "DESIGN", color: "ff4eac", categories: [
+                    "Art & Design Foundation",
+                    "Graphic Design",
+                    "Brand Design",
+
+
+                ]
+            },
+            {
+                word: "INTERACTION", color: "004BFF", categories: [
+                    "Interaction Design",
+                    "Digital Experience Design",
+                    "Web Front-End",
+                ]
+            },
+            {
+                word: "GAME", color: "000", categories: [
+                    "Game-Art",
+                ]
+            },
+          {
+                word: "All Grads", color: "000", categories: [
+
+                ]
+            },            
+        ].map(({ word, color, categories }, index) => (
             <>
 
                 <div style={{
@@ -81,8 +109,8 @@ export default function Page() {
                             backgroundColor: `#${color}`,
                         }}>
                             {word.split(" ").map((part, partIndex) => (
-                                <span key={partIndex} className="block">
-                                    {part}
+                                <span key={partIndex} className="">
+                                    {part}&nbsp;
                                 </span>
                             ))}
                         </h1>
@@ -91,7 +119,7 @@ export default function Page() {
 
                     </div>
 
-                    <div className="bg-white py-8">
+                    <div className="bg-[#1c1c1c] py-8 pb-24">
 
                         <div className="max-w-[1440px] mx-auto py-0 text-start">
 
@@ -99,18 +127,29 @@ export default function Page() {
                                 color: `#${color === "000" ? "fff" : color}`,
                             }}>
 
-                                <li>Category 1</li>
-                                <li className="underline">Category 2</li>
-                                <li>Category 3</li>
+                                {categories.map((category, categoryIndex) => (
+                                    <li key={categoryIndex} className={`${activeProgram === category ? "underline" : ""} cursor-pointer`} onClick={(e) => {
+
+                                        if (category == activeProgram) {
+                                            setActiveProgram("");
+                                            return;
+                                        } else {
+                                            setActiveProgram(category);
+                                        }
+                                    }}>
+                                        {category}
+                                    </li>
+                                ))}
+
                             </ul>
 
                             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-6 w-full">
                                 {items.map((item) => (
                                     <article key={item.title} className="text-white bg-black text-start">
                                         <a href={item.href} className="group block">
-                                            <div className="relative aspect-[4/2.8] overflow-hidden">
+                                            <div className="relative  overflow-hidden">
                                                 <div className="grid h-full w-full place-items-center bg-gray-900">
-
+                                                    <img src={`/committee/placeholder.svg`} className="aspect-[4/3] object-cover object-center grayscale hover:grayscale-0 transition-all duration-300" />
                                                 </div>
                                             </div>
 
@@ -120,7 +159,7 @@ export default function Page() {
                                             <h3 className="mb-1 text-2xl font-semibold leading-tight underline underline-offset-2">
                                                 {item.author}
                                             </h3>
-                                            <p className="text-lg leading-tight" style={{color: `#${color === "000" ? "fff" : color}`}}>{item.program}</p>
+                                            <p className="text-lg leading-tight" style={{ color: `#${color === "000" ? "fff" : color}` }}>{item.program}</p>
                                         </div>
 
                                     </article>

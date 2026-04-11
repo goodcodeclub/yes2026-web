@@ -59,11 +59,7 @@ export function Intro({ mode }: { mode: string }) {
 
                             <>
                                 <p className="text-white mb-4 body-text">
-                                    This spring, nearly 300 students will graduate from
-                                    the School of Design at George Brown Polytechnic.
-                                </p>
-
-                                <p className="text-white mb-4 body-text">
+                                    This spring, nearly 300 students will graduate from the School of Design at George Brown Polytechnic.&nbsp;                           
                                     <span className="text-lime">YES!</span> is a testament to their hard
                                     work and dedication.
                                 </p>
@@ -77,7 +73,7 @@ export function Intro({ mode }: { mode: string }) {
                                     School of Design<br />
                                     George Brown Polytechnic<br />
                                     Year End Show<br />
-                                    May 1-2
+                                    April 29-30, 6-9PM
                                 </p>
 
 
@@ -92,8 +88,8 @@ export function Intro({ mode }: { mode: string }) {
                         {mode == "gallery" &&
 
                             <>
-                                <p className="text-white mb-4 body-text">
-                                    Gallery YES!26
+                                <p className="text-white mb-0 body-text">
+                                    The YES!25 design graduate exhibition, capturing the ideas, craft, and experimentation behind each project. A curated selection of moments, showcasing process, presentation, and possibility.
                                 </p>
                             </>
 
@@ -101,7 +97,7 @@ export function Intro({ mode }: { mode: string }) {
 
                         {mode == "work" &&
                             <>
-                                <p className="text-white mb-4 body-text">
+                                <p className="text-white mb-0 body-text">
                                     This spring, nearly 300 talented students will unveil
                                     the culmination of their creative journeys by presenting
                                     groundbreaking, interactive design solutions that have
@@ -113,14 +109,8 @@ export function Intro({ mode }: { mode: string }) {
 
                         {mode == "committee" &&
                             <>
-                                <p className="text-white mb-4 body-text">
-                                    A HUGE thank you to the YES!26 committee members.
-                                    We couldn't have done it without you!
-                                </p>
-
-
-                                <p className="text-white mb-4 body-text">
-                                    Lenis reptat. Genihiciati te paruntium aut et eiciam, od minvendaerem ea as voloriam, ad maionseque ipient quam quidi aligene ctorunt adis et ut optat in pro et que pelleni tatur
+                                <p className="text-white mb-0 body-text">
+                                    Huge thanks to our incredible volunteers—your energy, generosity, and behind-the-scenes magic made this graduate show truly unforgettable.
                                 </p>
                             </>
 

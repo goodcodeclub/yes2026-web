@@ -13,6 +13,7 @@ import {
     Mail,
     CheckCircle2
 } from "lucide-react"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Project {
     id: string
@@ -31,6 +32,7 @@ type ProfileForm = {
     portfolio: string
     website: string
     instagram: string
+    program: string | null
 }
 
 export default function Page() {
@@ -53,6 +55,7 @@ export default function Page() {
         portfolio: "",
         website: "",
         instagram: "",
+        program: "",
     })
     const [initialProfile, setInitialProfile] = React.useState<ProfileForm | null>(null)
 
@@ -99,6 +102,7 @@ export default function Page() {
                         portfolio: "",
                         website: user.website_url ?? "",
                         instagram: user.instagram_url ?? "",
+                        program: user.program ?? "",
                     }
 
                     setProfile((prev) => ({
@@ -210,7 +214,7 @@ export default function Page() {
                         <div className="space-y-4">
                             <label className="text-pink-500  font-black uppercase ml-1 block">PHOTO</label>
 
-                            
+
                             {profileImageUrl &&
                                 <img
                                     src={profileImageUrl}
@@ -225,7 +229,7 @@ export default function Page() {
                             {profileImageUrl === "" &&
                                 <div className="w-full max-w-[320px] aspect-square rounded-lg border border-white/20 bg-white/10 flex items-center justify-center text-white/50">
                                     <img src="/logos/logo.svg" className="opacity-25 m-0 w-[75%]" style={{
-                                        filter:"grayscale(100%) brightness(10000%)"
+                                        filter: "grayscale(100%) brightness(10000%)"
                                     }} />
                                 </div>
                             }
@@ -264,13 +268,14 @@ export default function Page() {
                             />
                         </div>
 
-                        
+
                     </div>
 
                     <div className="lg:col-span-2 space-y-10">
 
+
                         <div className="space-y-4">
-                            <label className="text-pink-500  font-black uppercase ml-1">YOUR NAME</label>
+                            <label className="text-pink-500  font-black uppercase ml-1">YOUR NAME <small>(Required)</small></label>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <Input
                                     className={`text-white ${isFieldChanged("firstName") ? changedFieldClass : ""}`}
@@ -294,6 +299,37 @@ export default function Page() {
                                 />
                             </div>
                         </div>
+
+                        <div className="space-y-4">
+                            <label className="text-pink-500  font-black uppercase ml-1">PROGRAM <small>(Required)</small></label>
+                            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                                <Select
+                                    value={profile.program || "null"}
+                                    onValueChange={(value) => setProfile({ ...profile, program: value == "null" ? null : value })}
+                                >
+                                    <SelectTrigger className={`text-white ${isFieldChanged("program") ? changedFieldClass : ""} w-full`}>
+                                        <SelectValue placeholder="Select Your Program" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            {[
+                                                null,
+                                                "Art & Design Foundation",
+                                                "Graphic Design",
+                                                "Brand Design",
+                                                "Interaction Design",
+                                                "Digital Experience Design",
+                                                "Web Front-End",
+                                                "Game-Art",
+                                            ].map((program) => (
+                                                <SelectItem key={String(program)} value={String(program)}>{program == null ? "(Select Your Program)" : program}</SelectItem>
+                                            ))}
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+
 
                         <div className="space-y-4">
                             <label className="text-pink-500  font-black uppercase ml-1">PRONOUN</label>

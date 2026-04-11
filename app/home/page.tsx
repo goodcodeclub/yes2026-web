@@ -16,7 +16,7 @@ export default function Page() {
         <Nav />
         <Banner />
         <Intro mode="home" />
-        <Teaser title="Check It Out" color="fff" color2="FF4EAC" />
+        <Teaser title="Check It Out" color="ff3" textColor="ff4eac" titleColor="fff" activeCategory="" />
         <Ticker />
         <CTA />
         <Events />
@@ -25,13 +25,22 @@ export default function Page() {
                 <p className="text-2xl mb-8">
                     Follow us for updates on all things YES!
                 </p>
+                <p className="text-xl mb-8 text-lime">
+                    @sod_design
+                </p>
             </div>
 
-            <div className="grid grid-cols-4 gap-6 max-w-[1440px] mx-auto">
-                <div className="bg-gray-500 rounded-lg h-100"></div>
-                <div className="bg-gray-500 rounded-lg h-100"></div>
-                <div className="bg-gray-500 rounded-lg h-100"></div>
-                <div className="bg-gray-500 rounded-lg h-100"></div>
+            <div className="grid grid-cols-4 gap-2 max-w-[1440px] mx-auto">
+                {[
+                    "/instagram/01-YES-Were-Back2026-Instagram.png",
+                    "/instagram/02-YES-Student-Spotlight-Instagram.png",
+                    "/instagram/03-YES-Exclamation-Marks-Instagram.png",
+                    "/instagram/04-YES-Youre-Invited-Instagram.png",
+                ].map((src, index) => (
+                    <div key={index} className=" bg-neutral-900">
+                        <img src={src} alt={`Instagram ${index + 1}`} className="w-full aspect-[0.79/1] object-cover " />
+                    </div>
+                ))}
             </div>
 
         </div>

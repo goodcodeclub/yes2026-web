@@ -200,8 +200,8 @@ export default function Page() {
                                                     <div className="w-full h-full bg-neutral-800" />
                                                 )}
                                             </div>
-                                            <div className="p-3 md:p-4 min-h-[88px] flex items-start">
-                                                <a href={`/profile/${params.slug}/${project.slug}`} className="text-white font-semibold text-3xl leading-tight underline underline-offset-2">
+                                            <div className="p-3 md:p-4 min-h-[9rem] flex items-start">
+                                                <a href={`/profile/${params.slug}/${project.slug}`} className="text-white font-semibold text-2xl leading-tight underline underline-offset-2">
                                                     {project.title}
                                                 </a>
                                             </div>

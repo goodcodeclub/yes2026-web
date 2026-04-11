@@ -11,11 +11,11 @@ export function Events() {
                 <div className="flex flex-col lg:flex-row gap-12">
                     {/* Left – schedule */}
 
-                    <div className="">
+                    <div className="w-[50%]">
 
                         <p className="text-2xl mb-7">
-                            Join us for an interactive showcase
-                            of creativity and talent nurtured across
+                            Join us for an interactive showcase<br/>
+                            of creativity and talent nurtured across<br/>
                             our campus.
                         </p>
 
@@ -41,7 +41,7 @@ export function Events() {
                                 </h3>
                                 <div>
                                     <p className="text-white">YES! Annual Award Show</p>
-                                    <p className="text-white">4-5:30PM</p>
+                                    <p className="text-white">3:30-5PM</p>
                                 </div>
                                 <div>
                                     <p className="text-white">Public Exhibit</p>

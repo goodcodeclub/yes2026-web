@@ -62,7 +62,7 @@ export function Footer() {
                             School of Design<br />
                             George Brown Polytechnic<br />
                             Year End Show<br/>
-                            May 1-2
+                            April 29-30, 6-9PM<br/>
                         </p>
 
 

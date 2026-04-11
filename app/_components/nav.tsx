@@ -153,7 +153,7 @@ export function Nav(props: any) {
                                     <button className="flex items-center focus:outline-none">
                                         <div className=" ml-0 text-lime">
 
-                                            {profile?.fname && profile?.lname ? (
+                                            {profile?.fname && profile?.lname && profile?.program ? (
 
                                                 <a href={`/profile/${profile?.fname?.toLowerCase() + (profile?.fname && profile?.mname ? "-" + profile?.mname?.toLowerCase() : "") + (profile?.fname && profile?.lname ? "-" + profile?.lname?.toLowerCase() : "")}`} target="_blank" className="flex items-center gap-1">
 
@@ -165,10 +165,10 @@ export function Nav(props: any) {
 
                                             ) : (
 
-                                                <div className="flex items-center gap-1">
+                                                <div className="flex items-center gap-1 text-red-400 font-bold">
 
                                                     <EyeIcon />
-                                                    <div className="flex flex-col items-center justify-center text-nowrap">
+                                                    <div className="flex flex-col items-center justify-center text-nowrap ">
                                                         PROFILE INCOMPLETE
                                                     </div>
 
