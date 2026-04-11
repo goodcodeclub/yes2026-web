@@ -51,7 +51,7 @@ export function Events() {
                         </div>
 
 
-                        <a className="mt-7 px-5 py-1 border-1 border-white text-white link inline-block wavy-text-link theme-transition text-white" href="https://www.eventbrite.ca/e/yes-annual-award-show-2026-tickets-1985557836940" target="_blank">
+                        <a className="mt-7 px-5 py-1 border-1 border-white text-white link inline-block wavy-text-link theme-transition text-white" href="https://www.eventbrite.ca/e/yes-public-exhibit-tickets-1984078716852" target="_blank">
                             JOIN THE PARTY!
                         </a>
 
