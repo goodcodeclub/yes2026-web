@@ -17,26 +17,26 @@ import { Ticker } from "../_components/ticker";
 export default function Page() {
     const categories = [
         {
-            word: "DESIGN", title: "Design", color: "ff4eac", textColor: "ff4eac", categories: [
+            word: "DESIGN", title: "Design", color: "ff4eac", textColor: "ff4eac", activeTextColor:"ffffff", categories: [
                 "Art & Design Foundation",
                 "Graphic Design",
                 "Brand Design",
             ]
         },
         {
-            word: "INTERACTION", title: "Interaction", color: "004bff", textColor: "004bff", categories: [
+            word: "INTERACTION", title: "Interaction", color: "004bff", textColor: "004bff", activeTextColor:"ffffff", categories: [
                 "Interaction Design",
                 "Digital Experience Design",
                 "Web Front-End",
             ]
         },
         {
-            word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", categories: [
+            word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", activeTextColor:"ffffff", categories: [
                 "Game-Art",
             ]
         },
         {
-            word: "ALL", title: "All", color: "000000", textColor: "ffffff", categories: [
+            word: "ALL", title: "All", color: "000000", textColor: "ffffff", activeBgColor:"ffffff", activeTextColor:"000000", categories: [
 
             ]
         }
@@ -67,7 +67,8 @@ export default function Page() {
                         }
 
                     }} style={{
-                        backgroundColor: `${activeCategory === category.title ? "#" + category.color : ""}`,
+                        backgroundColor: `${activeCategory === category.title ? "#" + (category.activeBgColor ?? category.color) : ""}`,
+                        color: `${activeCategory === category.title ? "#" + (category.activeTextColor ?? category.textColor) : ""}`,
                     }}>
                     {category.word.split(" ").map((part, partIndex) => (
                         <span key={partIndex} className="block">
