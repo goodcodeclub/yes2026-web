@@ -470,12 +470,14 @@ export default function Page() {
                 {
                     "name": "Theresa Kienitz",
                     "image": "",
-                    "roles": ["Team Lead", "Assistant to the Associate Dean"]
+                    "roles": ["Team Lead"],
+                    "title": ["Assistant to the Associate Dean"]
                 },
                 {
                     "name": "Niyousha Kerr",
                     "image": "",
-                    "roles": ["Team Member", "Student Services Coordinator"]
+                    "roles": ["Team Member"],
+                    "title": ["Student Services Coordinator"]
                 },                
 
             ]
