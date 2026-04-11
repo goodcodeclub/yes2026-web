@@ -3,7 +3,7 @@ export function Footer() {
 
     return (
         <div className="relative w-full bg-black flex flex-col items-center justify-center">
-            <div className="relative bottom-0 w-full px-[16px] lg:px-[48px] bg-black max-w-[1440px]">
+            <div className="relative bottom-0 w-full bg-black max-w-[1440px]">
                 <div className="flex flex-col1 justify-center self-stretch py-10 mb-10 bg-black lg:max-w-[1440px] flex gap-24 lg:gap-0 lg:mx-auto lg:py-20 lg:mb-20">
 
                     <div className="w-full">
