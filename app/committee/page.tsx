@@ -194,24 +194,24 @@ export default function Page() {
                     "roles": ["Faculty Lead"],
                     "program": "Professor / Coordinator",
                     "year": "",
-                    "portfolio": "https://design.dogacimen.com/"
+                    "portfolio": ""
                 },
-               {
+                {
                     "name": "Cinthia Nery Martins",
                     "image": "",
                     "roles": [" Co-Lead"],
                     "program": "Interaction Design",
                     "year": "3rd Year",
-                    "portfolio": "https://www.tamlynlouhing.xyz/"
-                },                
-               {
+                    "portfolio": ""
+                },
+                {
                     "name": "Tamlyn LouHing",
                     "image": "webteam-photo-tlh.jpeg",
                     "roles": [" Co-Lead"],
                     "program": "Interaction Design",
                     "year": "3rd Year",
                     "portfolio": "https://www.tamlynlouhing.xyz/"
-                },                
+                },
                 {
                     "name": "Doga Çimen",
                     "image": "doga-portrait.jpeg",
@@ -273,7 +273,7 @@ export default function Page() {
                     "year": "1st Year",
                     "portfolio": "https://www.behance.net/juliana-richter"
                 },
- 
+
                 {
                     "name": "Haiming Wang",
                     "image": "HaimingWang_coloured.jpeg",
@@ -327,7 +327,7 @@ export default function Page() {
                     // "roles": ["Web Design Team member"],
                     // "program": "Interaction Design & Development",
                     // "year": "2nd Year"
-                }                
+                }
             ]
         },
         {
@@ -436,7 +436,7 @@ export default function Page() {
                     "roles": ["Print and Installation Assistant"],
                     "program": "Graphic Design",
                     "year": "1st Year",
-                    "portfolio": "N/A"
+                    "portfolio": ""
                 },
                 {
                     "name": "Devika Warrier",
@@ -452,7 +452,7 @@ export default function Page() {
                     "roles": ["Graphic Designer"],
                     "program": "Graphic Design / Communication",
                     "year": "2nd Year",
-                    "portfolio": "N/A"
+                    "portfolio": ""
                 },
                 {
                     "name": "Howard Mendoza",
@@ -460,7 +460,7 @@ export default function Page() {
                     "roles": ["Print and Installation Assistant", "Designer"],
                     "program": "Graphic Design / Communication",
                     "year": "2nd Year",
-                    "portfolio": "N/A"
+                    "portfolio": ""
                 }
             ]
         },
@@ -478,7 +478,7 @@ export default function Page() {
                     "image": "",
                     "roles": ["Team Member"],
                     "title": ["Student Services Coordinator"]
-                },                
+                },
 
             ]
         },
@@ -628,7 +628,7 @@ export default function Page() {
                 }
             ]
         },
-       {
+        {
             "name": "Photography",
             "members": [
                 {
@@ -643,10 +643,10 @@ export default function Page() {
                     "roles": ["Assistant Photographer"],
                     "program": "Graphic Design G102",
                     "year": "3rd Year"
-                },                
-  
+                },
+
             ]
-        }        
+        }
 
     ]
 
@@ -750,7 +750,15 @@ export default function Page() {
 
                                         <div className="mt-4">
                                             <h3 className="mb-1 text-2xl  leading-tight text-lime ">
-                                                {item.name}
+                                                {item?.portfolio &&
+                                                    <a href={item?.portfolio ?? "#"} target="_blank" rel="noopener noreferrer" className={item?.portfolio ? "underline" : ""}>
+                                                        {item.name}
+                                                    </a>
+                                                }
+                                                {!item?.portfolio &&
+                                                    <span>{item.name}</span>
+
+                                                }
                                             </h3>
                                             <p className="text-lg leading-tight">{item?.roles?.join(", ")}</p>
                                             <p className="text-lg leading-tight">{item?.title}</p>
