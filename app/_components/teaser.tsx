@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 
 export function Teaser({ title, color, color2, textColor, titleColor, categories, activeCategory, setActiveCategory }: { title: string; color: string, color2?: string, textColor?: string, titleColor?: string, categories?: string[], activeCategory?: string, setActiveCategory?: (category: string) => void }) {
@@ -111,15 +111,23 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                                 onClick={(e) => {
                                     e.preventDefault();
 
-                                    window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+                                    if (title == "Check It Out") {
 
+                                        window.location.href = "/work";
 
-                                    setActiveCategory && setActiveCategory(title);
+                                    } else {
+
+                                        window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+
+                                        setActiveCategory && setActiveCategory(title);
+                                    }
+
                                 }}
                             >
                                 View All {title == "All" || title == "Check It Out" ? "Work" : title + " Work"}
                             </a>
-                            <ArrowDown className={`h-4 w-4 ml-1 text-white`} />
+                            {title == "Check It Out" && <ArrowUpRight className={`h-4 w-4 ml-1 text-white`} />}
+                            {title != "Check It Out" && <ArrowDown className={`h-4 w-4 ml-1 text-white`} />}
                         </div>
                     }
 

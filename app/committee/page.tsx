@@ -242,7 +242,7 @@ export default function Page() {
                     "roles": ["On-site sub-team"],
                     "program": "Graphic Design",
                     "year": "3rd Year",
-                    "portfolio": "Gabby-ed-portfolio"
+                    "portfolio": "https://www.gabbyed.com/"
                 },
                 {
                     "name": "Soleil Alexis",

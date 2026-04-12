@@ -49,6 +49,16 @@ export function Intro({ mode }: { mode: string }) {
 
                                 }
 
+                                {mode == "grads" &&
+
+                                    <>
+                                        <span className="ml-[0.75em]">WE'RE</span>
+                                        <span className="ml-[1.5em]">FUTURE</span>
+                                        <span className="ml-[0em]">READY</span>
+                                    </>
+
+                                }
+
                             </div>
 
                         </h2>
@@ -116,6 +126,16 @@ export function Intro({ mode }: { mode: string }) {
 
 
                         }
+                        {mode == "grads" &&
+                            <>
+                                <p className="text-white mb-0 body-text">
+                                    Meet the graduating designers shaping what's next—bold ideas, thoughtful craft, and a readiness to lead the future of design.
+                                </p>
+                            </>
+
+
+                        }
+
                     </div>
 
                 </div>
