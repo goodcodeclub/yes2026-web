@@ -11,3 +11,8 @@
 .border-lime {
     border-color: #FF4EAC;
 }
+
+.committee_item:hover{
+    opacity:1;
+    color: white !important
+}
