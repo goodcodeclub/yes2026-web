@@ -105,7 +105,7 @@ export function Gallery() {
     };
 
     return (
-        <section className="w-full bg-black py-6 lg:py-12">
+        <section className="w-full bg-black pb-6 pt-5 lg:py-12">
             <div className="mx-auto max-w-[1440px] px-5 px-0">
                 <div className="columns-2 gap-1 sm:columns-3 lg:columns-4">
                     {galleryItems.map((item, index) => (

@@ -698,8 +698,7 @@ export default function Page() {
         <Nav />
         <Intro mode="committee" />
 
-        <div id="category-nav-placeholder"></div>
-        <div className="flex max-w-[1440px] px-5 bg-black mx-auto py-0 text-center sticky top-0 z-10" style={{
+        <div className="flex max-w-[1440px] lg:px-5 bg-black mx-auto py-0 text-center sticky top-0 z-10" style={{
             top: "4.5rem"
         }} id="category-nav">
 
@@ -707,32 +706,34 @@ export default function Page() {
                 Yes!26 Team <ArrowRight />
             </div>
 
-            <div className="grid grid-cols-5  w-full border-t-[1px] border-b-[1px] border-lime text-lime ">
-                {categories.map((word, index) => (
-                    <a href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
+            <div className="w-full overflow-x-auto lg:overflow-x-visible">
+                <div className="lg:grid lg:grid-cols-5 grid-col-1 lg:block flex overflow-x-auto w-full border-t-[1px] border-b-[1px] border-lime text-lime min-w-min">
+                    {categories.map((word, index) => (
+                        <a href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
 
-                            window.scrollTo({ top: (document.getElementById(`category_${word}`)?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0) - (document.getElementById(`category-nav`)?.offsetHeight ?? 0), behavior: "smooth" });
+                                window.scrollTo({ top: (document.getElementById(`category_${word}`)?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0) - (document.getElementById(`category-nav`)?.offsetHeight ?? 0), behavior: "smooth" });
 
-                            if (activeCategory == word) {
-                                // setActiveCategory(null);
-                            } else {
-                                // setActiveCategory(word);
-                            }
-                        }}
-                        key={index} className={`w-full text-base py-3 px-2 w-full flex flex-col items-center align-items-center leading-none hover:bg-lime hover:text-white border-[1px] border-lime`}>
-                        <span className="block m-auto truncate overflow-visible w-full">
-                            {word}
-                        </span>
-                    </a>
-                ))}
+                                if (activeCategory == word) {
+                                    // setActiveCategory(null);
+                                } else {
+                                    // setActiveCategory(word);
+                                }
+                            }}
+                            key={index} className={`flex-shrink-0 lg:w-full text-base py-3 px-2 flex flex-col items-center align-items-center leading-none hover:bg-lime hover:text-white active:text-white focus:text-white border-[1px] border-lime whitespace-nowrap `}>
+                            <span className="block m-auto w-full">
+                                {word}
+                            </span>
+                        </a>
+                    ))}
 
+                </div>
             </div>
 
         </div>
 
-        <div className="pt-24"></div>
+        <div className="lg:pt-24 pt-12"></div>
 
         {categories.filter((word) => activeCategory === null || activeCategory === word).map((word, index) => (
             <>
@@ -743,7 +744,7 @@ export default function Page() {
 
                     <div className="flex max-w-[1440px] px-5 mx-auto py-0 text-center">
 
-                        <h1 key={index} className=" ff-pack-hard leading-none uppercase text-lime py-4 border-white text-4xl flex" style={{
+                        <h1 key={index} className=" ff-pack-hard leading-none uppercase text-lime py-4 border-white text-4xl flex text-start" style={{
                         }}>
                             <span className="block leading-none">
                                 {word}
