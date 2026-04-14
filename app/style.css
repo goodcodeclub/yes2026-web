@@ -4,7 +4,7 @@
     color: #FF4EAC;
 }
 
-.bg-lime, .hover\:bg-lime:hover {
+.bg-lime, .hover\:bg-lime:hover, .active\:bg-lime:active {
     background-color: #FF4EAC;
 }
 
@@ -12,7 +12,7 @@
     border-color: #FF4EAC;
 }
 
-.committee_item:hover{
+.committee_item:hover, .committee_item:active{
     opacity:1;
     color: white !important
 }

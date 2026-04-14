@@ -721,7 +721,7 @@ export default function Page() {
                                     // setActiveCategory(word);
                                 }
                             }}
-                            key={index} className={`flex-shrink-0 lg:w-full text-base py-3 px-2 flex flex-col items-center align-items-center leading-none hover:bg-lime hover:text-white active:text-white focus:text-white border-[1px] border-lime whitespace-nowrap text-lime hover:text-white committee_item`}>
+                            key={index} className={`flex-shrink-0 lg:w-full text-base py-3 px-2 flex flex-col items-center align-items-center leading-none hover:bg-lime active:bg-lime hover:text-white active:text-white focus:text-white border-[1px] border-lime whitespace-nowrap text-lime hover:text-white committee_item`}>
                             <span className="block m-auto w-full  ">
                                 {word}
                             </span>
