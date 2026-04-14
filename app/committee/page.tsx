@@ -479,6 +479,30 @@ export default function Page() {
                     "roles": ["Team Member"],
                     "title": ["Student Services Coordinator"]
                 },
+                {
+                    "name": "Jui Ping Kang (Ariel)",
+                    "image": "JuiPingKang_Coloured.JPG",
+                    "roles": ["Designer"],
+                    "program": "Graphic Design G102",
+                    "year": "2nd Year",
+                    "portfolio": "https://ariii1017.github.io/"
+                },
+                {
+                    "name": "Jaspreet Kaur",
+                    "image": "JaspreetKaur_Coloured.jpg",
+                    "roles": ["Designer"],
+                    "program": "Graphic Design G102",
+                    "year": "3rd Year",
+                    "portfolio": "https://jascreates.com/"
+                },
+                {
+                    "name": "Ingrid Nazarri",
+                    "image": "Ingrid_Coloured.jpeg",
+                    "roles": ["Designer"],
+                    "program": "Graphic Design G102",
+                    "year": "3rd Year",
+                    "portfolio": "https://ingridnazzari.myportfolio.com/"
+                },
 
             ]
         },
@@ -639,10 +663,11 @@ export default function Page() {
                 },
                 {
                     "name": "Ingrid Nazarri",
-                    "image": "",
-                    "roles": ["Assistant Photographer"],
+                    "image": "Ingrid_Coloured.jpeg",
+                    "roles": ["Student Event Photographer"],
                     "program": "Graphic Design G102",
-                    "year": "3rd Year"
+                    "year": "3rd Year",
+                    "portfolio": "https://ingridnazzari.myportfolio.com/"
                 },
 
             ]
@@ -697,7 +722,7 @@ export default function Page() {
                             }
                         }}
                         key={index} className={`w-full text-base py-3 px-2 w-full flex flex-col items-center align-items-center leading-none hover:bg-lime hover:text-white border-[1px] border-lime`}>
-                        <span className="block m-auto truncate overflow-hidden w-full">
+                        <span className="block m-auto truncate overflow-visible w-full">
                             {word}
                         </span>
                     </a>

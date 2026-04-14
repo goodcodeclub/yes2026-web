@@ -42,7 +42,7 @@ export function CTA() {
 
     return (
         <div className="bg-[#1c1c1c] relative ">
-            <div className="relative w-full h-[400px] overflow-hidden">
+            <div className="relative w-full xl:h-[400px] lg:h-[350px] h-[300px] overflow-hidden">
                 {ready && (
                     <Particles
                         id="cta-particles"
@@ -102,8 +102,8 @@ export function CTA() {
             </div>            
             <section className="text-white absolute z-10 top-0 w-full h-full mx-auto flex items-center py-0 gap-8 overflow-hidden">
                 {/* Left */}
-                <div className="max-w-[1440px] px-5 mx-auto flex-col w-full gap-6  py-16 z-20">
-                    <h2 className="ff-pack-hard text-6xl md:text-7xl uppercase leading-none flex flex-col">
+                <div className="max-w-[1440px] px-5 mx-auto flex-col w-full gap-6  py-16 z-20 flex flex-col justify-center items-start">
+                    <h2 className="ff-pack-hard lg:text-7xl sm:text-5xl text-4xl uppercase leading-none flex flex-col xl:me-auto xl:ms-0 mx-auto">
                         <div>
                             YES! THE</div>
                         <div className="ml-[1.5em]">PARTY&apos;s</div>
@@ -111,7 +111,7 @@ export function CTA() {
 
                             <div>
                                 THIS WAY</div>
-                            <ArrowDown className="h-20 w-20 text-white" />
+                            <ArrowDown className="h-20 w-20 text-white lg:block hidden" />
                         </div>
                     </h2>
                     {/* <p className="text-gray-300 text-xl text-base max-w-sm leading-relaxed mb-5">

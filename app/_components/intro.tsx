@@ -3,10 +3,10 @@ export function Intro({ mode }: { mode: string }) {
 
     return (
         <section className={`w-full transition-colors duration-300 ${mode != "home" ? "bg-black" : "bg-[#1c1c1c] "}`}>
-            <div className="max-w-[1440px] px-5 mx-auto px-6 py-24">
+            <div className="max-w-[1440px] px-5 mx-auto px-6 lg:py-24 py-12">
                 <div className="flex flex-col lg:flex-row gap-8 items-center">
-                    <div className="w-full lg:w-1/2 order-2 lg:order-1">
-                        <h2 className="text-white lg:text-7xl text-3xl uppercase ff-pack-hard  heading-2-caps leading-none flex  gap-0">
+                    <div className="w-full lg:w-1/2 ">
+                        <h2 className="text-white xl:text-7xl lg:text-6xl md:text-6xl sm:text-5xl text-4xl uppercase ff-pack-hard  heading-2-caps leading-none flex  gap-0">
                             <div className="flex flex-col mx-auto">
                                 <span className="text-lime">YES!</span>
 
@@ -63,7 +63,7 @@ export function Intro({ mode }: { mode: string }) {
 
                         </h2>
                     </div>
-                    <div className="w-full lg:w-1/2 order-1 lg:order-2 text-xl">
+                    <div className="w-full lg:w-1/2 text-xl">
 
                         {mode == "home" &&
 

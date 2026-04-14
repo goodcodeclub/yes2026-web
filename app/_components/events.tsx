@@ -8,25 +8,25 @@ export function Events() {
 
 
 
-                <div className="flex flex-col lg:flex-row gap-12">
+                <div className="flex flex-col lg:flex-row gap-12 lg:text-start text-center">
                     {/* Left – schedule */}
 
-                    <div className="w-[50%]">
+                    <div className="lg:w-[50%]">
 
                         <p className="text-2xl mb-7">
-                            Join us for an interactive showcase<br/>
-                            of creativity and talent nurtured across<br/>
+                            Join us for an interactive showcase&nbsp;<br className="lg:block hidden"/> 
+                            of creativity and talent nurtured across&nbsp;<br className="lg:block hidden"/>
                             our campus.
                         </p>
 
-                        <div className="flex gap-16 flex-1 text-lg">
+                        <div className="flex gap-16 flex-1 text-lg justify-center lg:justify-start">
 
 
 
                             {/* April 29 */}
                             <div className="flex flex-col gap-4">
-                                <h3 className="text-lime flex items-center text-xl">
-                                    Wed April 29 <ArrowDown className="w-4 h-4" />
+                                <h3 className="text-lime flex items-center text-xl lg:mx-0 mx-auto">
+                                    Wed April 29 <ArrowDown className="w-5 h-5" />
                                 </h3>
                                 <div>
                                     <p className="text-white">Public Exhibit</p>
@@ -36,8 +36,8 @@ export function Events() {
 
                             {/* April 30 */}
                             <div className="flex flex-col gap-4">
-                                <h3 className="text-lime flex items-center text-xl">
-                                    Thurs April 30 <ArrowDown className="w-4 h-4" />
+                                <h3 className="text-lime flex items-center text-xl lg:mx-0 mx-auto">
+                                    Thurs April 30 <ArrowDown className="w-5 h-5" />
                                 </h3>
                                 <div>
                                     <p className="text-white">YES! Annual Award Show</p>

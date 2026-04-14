@@ -4,7 +4,7 @@ export function Footer() {
     return (
         <div className="relative w-full bg-black flex flex-col items-center justify-center">
             <div className="relative bottom-0 w-full bg-black max-w-[1440px] px-5">
-                <div className="flex md:flex-row flex-col items-center justify-center self-stretch py-10 mb-10 bg-black flex gap-24 md:gap-0 md:mx-auto py-20 mb-20">
+                <div className="flex md:flex-row flex-col items-center justify-center self-stretch py-10 mb-10 bg-black flex gap-24 md:gap-0 md:mx-auto lg:py-20 py-10 mb-20">
 
                     <div className="w-full md:text-start text-center">
 

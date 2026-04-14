@@ -20,7 +20,7 @@ export default function Page() {
         <Ticker />
         <CTA />
         <Events />
-        <div className="w-full transition-colors duration-300 bg-[#1c1c1c] py-24 ">
+        <div className="w-full transition-colors duration-300 bg-[#1c1c1c] lg:py-24 py-12">
             <div className="max-w-[1440px] px-5 mx-auto  text-white">
                 <p className="text-2xl mb-8">
                     Follow us for updates on all things YES!

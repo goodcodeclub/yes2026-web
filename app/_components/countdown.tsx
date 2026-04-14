@@ -31,15 +31,15 @@ export function Countdown() {
                         <span className="text-lime transition-colors duration-300"> 29-30 </span>
                         YES! Public Exhibition
                     </div>
-                    <div className="font-normal flex text-white transition-colors duration-300">
+                    <div className="font-normal lg:text-base text-sm flex text-white truncate transition-colors duration-300">
                         <span className="text-lime transition-colors duration-300">{time.days}</span>
                         <span className="mx-1 text-white transition-colors duration-300">days</span>
                         <span className="text-lime transition-colors duration-300">{time.hours}</span>
                         <span className="mx-1 text-white transition-colors duration-300">hours</span>
                         <span className="text-lime transition-colors duration-300">{time.minutes}</span>
                         <span className="mx-1 text-white transition-colors duration-300">minutes</span>
-                        <span className="text-lime transition-colors duration-300">{time.seconds}</span>
-                        <span className="mx-1 text-white transition-colors duration-300">seconds</span>
+                        <span className="text-lime transition-colors duration-300 md:inline-block hidden">{time.seconds}</span>
+                        <span className="mx-1 text-white transition-colors duration-300 md:inline-block hidden">seconds</span>
                         <span>until the show</span>
                     </div>
                 </div>
