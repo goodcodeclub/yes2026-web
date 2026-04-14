@@ -187,7 +187,7 @@ export default function Page() {
             ]
         },
         {
-            word: "View All Grads", color: "fff", categories: [
+            word: "All Grads", color: "fff", categories: [
 
             ]
         },
@@ -235,14 +235,14 @@ export default function Page() {
                                 <div className="me-8" style={{
                                 }}>
 
-                                    <h6 className={`capitalize text-lg mb-3 font-bold cursor-pointer ${((activeCategory === word && activeProgram === "") || (activeCategory == "" && word == "View All Grads")) ? "underline" : ""}`} style={{
+                                    <h6 className={`capitalize text-lg mb-3 font-bold cursor-pointer ${((activeCategory === word && activeProgram === "") || (activeCategory == "" && word == "All Grads")) ? "underline" : ""}`} style={{
                                         color: `#${color === "000" ? "fff" : color}`,
                                     }}
 
                                         onClick={(e) => {
 
                                             window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
-                                            if (word == "View All Grads") {
+                                            if (word == "All Grads") {
                                                 setActiveProgram("");
                                                 setActiveCategory("");
                                             } else if (word == activeCategory) {
@@ -261,7 +261,7 @@ export default function Page() {
                                                 setActiveCategory(word);
                                             }
                                         }}
-                                    >{word.toLocaleLowerCase()} {word == "View All Grads" ? "" : "Programs"}</h6>
+                                    >{word.toLocaleLowerCase()} {word == "All Grads" ? "" : "Programs"}</h6>
 
                                     <ul className="text-lg" style={{
                                         color: `#${color === "000" ? "fff" : color}`,
@@ -302,20 +302,20 @@ export default function Page() {
                         <div className="flex text-nowrap overflow-auto">
 
 
-                            {categories.map(({ word, color, categories }, index) => (
+                            {categories.sort((a, b) => a.word === "All Grads" ? -1 : b.word === "All Grads" ? 1 : 0).map(({ word, color, categories }, index) => (
                                 <>
 
                                     <div className="me-8" style={{
                                     }}>
 
-                                        <h6 className={`capitalize text-lg mb- font-bold cursor-pointer ${((activeCategory === word && activeProgram === "") || (activeCategory == "" && word == "View All Grads")) ? "underline" : ""}`} style={{
+                                        <h6 className={`capitalize text-lg mb- font-bold cursor-pointer ${((activeCategory === word && activeProgram === "") || (activeCategory == "" && word == "All Grads")) ? "underline" : ""}`} style={{
                                             color: `#${color === "000" ? "fff" : color}`,
                                         }}
 
                                             onClick={(e) => {
 
                                                 window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
-                                                if (word == "View All Grads") {
+                                                if (word == "All Grads") {
                                                     setActiveProgram("");
                                                     setActiveCategory("");
                                                 } else if (word == activeCategory) {
@@ -334,7 +334,7 @@ export default function Page() {
                                                 }
 
                                             }}
-                                        >{word.toLocaleLowerCase()} {word == "View All Grads" ? "" : "Programs"}</h6>
+                                        >{word.toLocaleLowerCase()} {word == "All Grads" ? "" : "Programs"}</h6>
 
 
 
