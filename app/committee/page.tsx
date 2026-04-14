@@ -199,7 +199,7 @@ export default function Page() {
                 {
                     "name": "Cinthia Nery Martins",
                     "image": "",
-                    "roles": [" Co-Lead"],
+                    "roles": [" Lead"],
                     "program": "Interaction Design",
                     "year": "3rd Year",
                     "portfolio": ""
