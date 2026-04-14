@@ -217,7 +217,7 @@ export default function Page() {
 
             <div className="max-w-[1440px] px-5 mx-auto py-0 text-start">
 
-                <div className="text-white fixed bottom-0 end-0 z-100">{activeCategory}-{activeProgram}</div>
+                {/* <div className="text-white fixed bottom-0 end-0 z-100">{activeCategory}-{activeProgram}</div> */}
 
                 <div id="category-nav-placeholder"></div>
 
