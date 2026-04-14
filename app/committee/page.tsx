@@ -707,7 +707,7 @@ export default function Page() {
             </div>
 
             <div className="w-full overflow-x-auto lg:overflow-x-visible">
-                <div className="lg:grid lg:grid-cols-5 grid-col-1 lg:block flex overflow-x-auto w-full border-t-[1px] border-b-[1px] border-lime text-lime min-w-min">
+                <div className="lg:grid lg:grid-cols-5 grid-col-1 lg:block flex overflow-x-auto w-full border-t-[1px] border-b-[1px] border-lime min-w-min text-lime">
                     {categories.map((word, index) => (
                         <a href="#"
                             onClick={(e) => {
@@ -721,7 +721,7 @@ export default function Page() {
                                     // setActiveCategory(word);
                                 }
                             }}
-                            key={index} className={`flex-shrink-0 lg:w-full text-base py-3 px-2 flex flex-col items-center align-items-center leading-none hover:bg-lime hover:text-white active:text-white focus:text-white border-[1px] border-lime whitespace-nowrap `}>
+                            key={index} className={`flex-shrink-0 lg:w-full text-base py-3 px-2 flex flex-col items-center align-items-center leading-none  hover:bg-lime hover:text-white active:text-white focus:text-white border-[1px] border-lime whitespace-nowrap `}>
                             <span className="block m-auto w-full">
                                 {word}
                             </span>
