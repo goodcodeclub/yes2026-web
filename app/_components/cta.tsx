@@ -46,7 +46,7 @@ export function CTA() {
                 {ready && (
                     <Particles
                         id="cta-particles"
-                        className=""
+                        className="h-full"
                         options={{
                             fullScreen: { enable: false },
                             background: { color: { value: "transparent" } },
