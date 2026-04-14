@@ -22,8 +22,8 @@ export function CTA() {
                 const colors = ["#FF2D6B", "#3B5BFF", "#AAAAAA"];
                 return {
                     position: {
-                        x: 45 + Math.random() * 35,
-                        y: 55 + Math.random() * 30,
+                        x: 45 + Math.random() * 350,
+                        y: 55 + Math.random() * 300,
                     },
                     options: {
                         color: { value: colors[i % colors.length] },
@@ -89,12 +89,11 @@ export function CTA() {
                                 wobble: { enable: true, distance: 6, speed: { angle: 1.5, move: 1 } },
                             },
                             manualParticles,
-
                             emitters: {
                                 direction: "top",
-                                position: { x: 50, y: 112 },
+                                position: { x: "50%", y: 500 },
                                 rate: { quantity: 1, delay: 0.8 },
-                                size: { width: 110, height: 0 },
+                                size: { width: 200, height: 0 },
                             },
                         }}
                     />
@@ -103,7 +102,7 @@ export function CTA() {
             <section className="text-white absolute z-10 top-0 w-full h-full mx-auto flex items-center py-0 gap-8 overflow-hidden">
                 {/* Left */}
                 <div className="max-w-[1440px] px-5 mx-auto flex-col w-full gap-6  py-16 z-20 flex flex-col justify-center items-start">
-                    <h2 className="ff-pack-hard lg:text-7xl sm:text-5xl text-4xl uppercase leading-none flex flex-col xl:me-auto xl:ms-0 mx-auto">
+                    <h2 className="ff-pack-hard lg:text-7xl sm:text-5xl text-5xl uppercase leading-none flex flex-col xl:me-auto xl:ms-0 mx-auto">
                         <div>
                             YES! THE</div>
                         <div className="ml-[1.5em]">PARTY&apos;s</div>

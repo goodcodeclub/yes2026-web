@@ -8,7 +8,7 @@ export function Events() {
 
 
 
-                <div className="flex flex-col lg:flex-row gap-12 lg:text-start text-center">
+                <div className="flex flex-col lg:flex-row gap-12 ">
                     {/* Left – schedule */}
 
                     <div className="lg:w-[50%]">
@@ -19,13 +19,13 @@ export function Events() {
                             our campus.
                         </p>
 
-                        <div className="flex lg:gap-16 gap-4 flex-1 text-lg justify-center lg:justify-start">
+                        <div className="flex lg:gap-16 gap-4 flex-1 text-lg lg:justify-start">
 
 
 
                             {/* April 29 */}
                             <div className="flex flex-col gap-4 w-100">
-                                <h3 className="text-lime flex items-center text-xl lg:mx-0 mx-auto text-nowrap">
+                                <h3 className="text-lime flex items-center text-xl lg:mx-0  text-nowrap">
                                     Wed April 29 <ArrowDown className="w-5 h-5" />
                                 </h3>
                                 <div>
@@ -36,7 +36,7 @@ export function Events() {
 
                             {/* April 30 */}
                             <div className="flex flex-col gap-4 w-100">
-                                <h3 className="text-lime flex items-center text-xl lg:mx-0 mx-auto text-nowrap">
+                                <h3 className="text-lime flex items-center text-xl lg:mx-0 text-nowrap">
                                     Thurs April 30 <ArrowDown className="w-5 h-5" />
                                 </h3>
                                 <div>

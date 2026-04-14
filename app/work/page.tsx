@@ -50,9 +50,10 @@ export default function Page() {
         <Nav />
         <Intro mode="work" />
         <div id="category-nav-placeholder"></div>
-        <div className="flex max-w-[1440px] px-5 mx-auto py-0 text-center sticky top-0 z-10" id="category-nav" style={{
+        <div className="flex max-w-[1440px] lg:px-5 mx-auto py-0 text-center sticky top-0 z-10" id="category-nav" style={{
             top: "4.5rem"
         }}>
+            <div className="grid lg:grid-cols-4 grid-cols-2 gap-0 w-full">
             {categories.map((category, index) => (
 
                 <a href="#" key={index}
@@ -77,6 +78,7 @@ export default function Page() {
                     ))}
                 </a>
             ))}
+            </div>
 
         </div>
 

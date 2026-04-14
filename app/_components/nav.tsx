@@ -234,7 +234,7 @@ export function Nav(props: any) {
                     role="dialog"
                     aria-modal="true"
                 >
-                    {/* <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center justify-between mb-8">
                         <button
                             className="text-black"
                             onClick={() => setIsMobileMenuOpen(false)}
@@ -242,7 +242,7 @@ export function Nav(props: any) {
                         >
                             <X className="w-6 h-6" />
                         </button>
-                    </div> */}
+                    </div>
 
                     <nav>
                         <ul className="flex flex-col gap-5">
