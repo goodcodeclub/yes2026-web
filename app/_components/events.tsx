@@ -2,7 +2,7 @@ import { ArrowDown } from "lucide-react";
 
 export function Events() {
     return (
-        <section className="bg-black text-white py-14 lg:py-20 border-b border-white ">
+        <section className="bg-black text-white py-14 lg:py-20 border-b1 border-white ">
             <div className="mx-auto max-w-[1440px] px-5">
                 {/* <h2 className="ff-pack-hard text-5xl text-lime uppercase mb-10">Events</h2> */}
 
