@@ -6,7 +6,7 @@ export function Intro({ mode }: { mode: string }) {
             <div className="max-w-[1440px] px-5 mx-auto px-6 lg:py-24 py-12">
                 <div className="flex flex-col lg:flex-row gap-8 items-center">
                     <div className="w-full lg:w-1/2 ">
-                        <h2 className="text-white xl:text-7xl lg:text-6xl md:text-6xl sm:text-5xl text-[2.5rem] uppercase ff-pack-hard  heading-2-caps leading-none flex  gap-0">
+                        <h2 className="text-white xl:text-7xl lg:text-6xl md:text-6xl sm:text-6xl xs:text-5xl text-[2.5rem] uppercase ff-pack-hard  heading-2-caps leading-none flex  gap-0">
                             <div className="flex flex-col mx-auto">
                                 <span className="text-lime">YES!</span>
 

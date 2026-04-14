@@ -196,12 +196,13 @@ export default function Page() {
     let [items, setItems] = useState<any>([]);
 
     useEffect(() => {
-        
+
         setItems(presetItems.sort(() => Math.random() - 0.5));
 
     }, []);
 
     const [activeProgram, setActiveProgram] = useState<string>("");
+    const [activeCategory, setActiveCategory] = useState<string>("");
 
     return <>
 
@@ -216,76 +217,204 @@ export default function Page() {
 
             <div className="max-w-[1440px] px-5 mx-auto py-0 text-start">
 
+                <div className="text-white fixed bottom-0 end-0 z-100">{activeCategory}-{activeProgram}</div>
+
                 <div id="category-nav-placeholder"></div>
 
 
-                <div className="flex sticky top-0 z-10 pt-8 pb-8 bg-[#1c1c1c] " id="category-nav" style={{
+
+                <div className="flex sticky top-0 z-10 lg:py-8 py-4 bg-[#1c1c1c] text-white " id="category-nav" style={{
                     top: "4.5rem"
                 }}>
 
+                    <div className="lg:flex hidden">
 
+                        {categories.map(({ word, color, categories }, index) => (
+                            <>
 
-                    {categories.map(({ word, color, categories }, index) => (
-                        <>
-
-                            <div className="me-8" style={{
-                            }}>
-
-                                <h6 className={`capitalize text-lg mb-3 font-bold cursor-pointer ${activeProgram === word || (word === "View All Grads" && activeProgram === "") ? "underline" : ""}`} style={{
-                                    color: `#${color === "000" ? "fff" : color}`,
-                                }}
-
-                                    onClick={(e) => {
-
-                                        window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
-                                        if (word == activeProgram) {
-                                            setActiveProgram("");
-                                            return;
-                                        } else {
-                                            setActiveProgram(word == "View All Grads" ? "" : word);
-                                        }
-                                    }}
-                                >{word.toLocaleLowerCase()} {word == "View All Grads" ? "" : "Programs"}</h6>
-
-                                <ul className="text-lg" style={{
-                                    color: `#${color === "000" ? "fff" : color}`,
+                                <div className="me-8" style={{
                                 }}>
 
-                                    {categories.map((category, categoryIndex) => (
-                                        <li key={categoryIndex} className={`${activeProgram === category ? "underline" : ""} cursor-pointer`} onClick={(e) => {
+                                    <h6 className={`capitalize text-lg mb-3 font-bold cursor-pointer ${((activeCategory === word && activeProgram === "") || (activeCategory == "" && word == "View All Grads")) ? "underline" : ""}`} style={{
+                                        color: `#${color === "000" ? "fff" : color}`,
+                                    }}
 
+                                        onClick={(e) => {
 
                                             window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
-
-                                            if (category == activeProgram) {
+                                            if (word == "View All Grads") {
                                                 setActiveProgram("");
+                                                setActiveCategory("");
+                                            } else if (word == activeCategory) {
+
+                                                if (activeProgram == "") {
+                                                    setActiveProgram("");
+                                                    setActiveCategory("");
+                                                } else {
+                                                    setActiveProgram("");
+                                                    setActiveCategory(word);
+                                                }
+
                                                 return;
                                             } else {
-                                                setActiveProgram(category);
+                                                setActiveProgram("");
+                                                setActiveCategory(word);
                                             }
+                                        }}
+                                    >{word.toLocaleLowerCase()} {word == "View All Grads" ? "" : "Programs"}</h6>
+
+                                    <ul className="text-lg" style={{
+                                        color: `#${color === "000" ? "fff" : color}`,
+                                    }}>
+
+                                        {categories.map((category, categoryIndex) => (
+                                            <li key={categoryIndex} className={`${activeProgram === category ? "underline" : ""} cursor-pointer`} onClick={(e) => {
+
+
+                                                window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+
+                                                if (category == activeProgram) {
+                                                    setActiveProgram("");
+                                                    setActiveCategory(word);
+                                                    return;
+                                                } else {
+                                                    setActiveProgram(category);
+                                                    setActiveCategory(word);
+                                                }
+                                            }}>
+                                                {category}
+                                            </li>
+                                        ))}
+
+                                    </ul>
+
+
+
+
+                                </div>
+                            </>
+
+                        ))}
+
+                    </div>
+
+                    <div className="lg:hidden flex flex-col overflow-auto gap-0">
+                        <div className="flex text-nowrap overflow-auto">
+
+
+                            {categories.map(({ word, color, categories }, index) => (
+                                <>
+
+                                    <div className="me-8" style={{
+                                    }}>
+
+                                        <h6 className={`capitalize text-lg mb- font-bold cursor-pointer ${((activeCategory === word && activeProgram === "") || (activeCategory == "" && word == "View All Grads")) ? "underline" : ""}`} style={{
+                                            color: `#${color === "000" ? "fff" : color}`,
+                                        }}
+
+                                            onClick={(e) => {
+
+                                                window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+                                                if (word == "View All Grads") {
+                                                    setActiveProgram("");
+                                                    setActiveCategory("");
+                                                } else if (word == activeCategory) {
+
+                                                    if (activeProgram == "") {
+                                                        setActiveProgram("");
+                                                        setActiveCategory("");
+                                                    } else {
+                                                        setActiveProgram("");
+                                                        setActiveCategory(word);
+                                                    }
+
+                                                } else {
+                                                    setActiveProgram("");
+                                                    setActiveCategory(word);
+                                                }
+
+                                            }}
+                                        >{word.toLocaleLowerCase()} {word == "View All Grads" ? "" : "Programs"}</h6>
+
+
+
+
+                                    </div>
+                                </>
+
+                            ))}
+
+
+                        </div>
+
+                        <div className="flex text-nowrap overflow-auto">
+
+
+
+                            {categories.map(({ word, color, categories }, index) => {
+
+                                if (activeCategory == "" || activeCategory != word) {
+                                    return null;
+                                }
+
+
+                                return <>
+
+
+                                    <div className="me-8 " style={{
+                                    }}>
+
+
+                                        <ul className="flex gap-4" style={{
+                                            color: `#${color === "000" ? "fff" : color}`,
                                         }}>
-                                            {category}
-                                        </li>
-                                    ))}
 
-                                </ul>
+                                            {categories.map((category, categoryIndex) => {
+                                                return <li key={categoryIndex} className={`${(activeCategory === word && activeProgram === category) ? "underline" : ""} cursor-pointer`} onClick={(e) => {
+
+                                                    window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+
+                                                    if (category == activeProgram) {
+                                                        setActiveProgram("");
+                                                        setActiveCategory(word);
+                                                        return;
+                                                    } else {
+                                                        setActiveProgram(category);
+                                                        setActiveCategory(word);
+                                                    }
+                                                }}>
+                                                    {category}
+                                                </li>
+                                            })}
+
+                                        </ul>
 
 
 
 
-                            </div>
-                        </>
+                                    </div>
+                                </>
 
-                    ))}
 
+                            }
+                            )}
+
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-6 w-full">
-                    {items.map((item:any) => {
+                    {items.map((item: any) => {
 
-                        if (activeProgram && item.program != activeProgram && categories.find(category => category.categories.indexOf(item.program) !== -1)?.word != activeProgram) {
+                        if (activeProgram !== "" && item.program !== activeProgram) {
+                            return null;
+                        }
+
+                        if (activeCategory !== "" && !categories.find(category => category.word === activeCategory)?.categories.includes(item.program)) {
                             return null;
                         }
 
