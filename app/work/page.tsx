@@ -57,7 +57,7 @@ export default function Page() {
             {categories.map((category, index) => (
 
                 <a href="#" key={index}
-                    className={`w-full text-2xl py-3 ff-pack-hard leading-none uppercase border border-1  border-t-2 border-b-2 text-white hover:bg-[#${category.color}] ${activeCategory === category.title ? "active" : "bg-black"}`} onClick={(e) => {
+                    className={`w-full lg:text-2xl text-xl py-3 ff-pack-hard leading-none uppercase border border-1  border-t-2 border-b-2 text-white hover:bg-[#${category.color}] ${activeCategory === category.title ? "active" : "bg-black"}`} onClick={(e) => {
 
                         e.preventDefault();
                         window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });

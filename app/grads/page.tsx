@@ -298,7 +298,7 @@ export default function Page() {
 
                     </div>
 
-                    <div className="lg:hidden flex flex-col overflow-auto gap-0">
+                    <div className="lg:hidden flex flex-col overflow-auto gap-1">
                         <div className="flex text-nowrap overflow-auto">
 
 
