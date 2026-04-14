@@ -227,7 +227,7 @@ export default function Page() {
                     top: "4.5rem"
                 }}>
 
-                    <div className="lg:flex hidden">
+                    <div className="hidden">
 
                         {categories.map(({ word, color, categories }, index) => (
                             <>
@@ -298,7 +298,7 @@ export default function Page() {
 
                     </div>
 
-                    <div className="lg:hidden flex flex-col overflow-auto gap-1">
+                    <div className="flex flex-col overflow-auto gap-1">
                         <div className="flex text-nowrap overflow-auto">
 
 

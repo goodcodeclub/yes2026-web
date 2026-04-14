@@ -21,6 +21,7 @@ export default function Page() {
                 "Art & Design Foundation",
                 "Graphic Design",
                 "Brand Design",
+                "View All Design Projects"
             ]
         },
         {
@@ -28,11 +29,13 @@ export default function Page() {
                 "Interaction Design",
                 "Digital Experience Design",
                 "Web Front-End",
+                "View All Interaction Projects"
             ]
         },
         {
             word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", activeTextColor:"ffffff", categories: [
                 "Game-Art",
+                "View All Game Projects"
             ]
         },
         {
@@ -85,7 +88,7 @@ export default function Page() {
         {categories.filter(category => activeCategory === "" || activeCategory === category.title).map((category, index) => (
             <>
 
-                <Teaser title={category.title} color={category.color} textColor={category.textColor} categories={category.categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+                <Teaser key={activeCategory} title={category.title} color={category.color} textColor={category.textColor} categories={category.categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
 
 
             </>

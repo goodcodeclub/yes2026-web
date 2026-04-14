@@ -91,7 +91,7 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
         },
     ] as const;
 
-    const [activeProgram, setActiveProgram] = useState<string>("");
+    const [activeProgram, setActiveProgram] = useState<string>(categories && categories.length > 0 ? categories[categories.length-1] : "");
 
     return (
         <section className="w-full">
@@ -103,7 +103,7 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                         </h2>
                         <ArrowDown className="h-8 w-8 text-white ml-1" style={{ color: `#${titleColor ?? textColor}` }} />
                     </div>
-                    {activeCategory == "" &&
+                    {title == "Check It Out" &&
                         <div className="flex items-center text-lime">
                             <a
                                 href="#"
@@ -118,13 +118,12 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                                     } else {
 
                                         window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
-
                                         setActiveCategory && setActiveCategory(title);
                                     }
 
                                 }}
                             >
-                                View All {title == "All" || title == "Check It Out" ? "Work" : title + " Work"}
+                                View All {title == "Check It Out" ? "Projects" : title + " Work"}
                             </a>
                             {title == "Check It Out" && <ArrowUpRight className={`h-4 w-4 ml-1 text-white`} />}
                             {title != "Check It Out" && <ArrowDown className={`h-4 w-4 ml-1 text-white`} />}
@@ -141,7 +140,7 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                         <li key={categoryIndex} className={`${activeProgram === category ? "underline" : ""} cursor-pointer text-white`} onClick={(e) => {
 
                             if (category == activeProgram) {
-                                setActiveProgram("");
+                                setActiveProgram(categories && categories.length > 0 ? categories[categories.length-1] : "");
                                 return;
                             } else {
                                 setActiveProgram(category);
@@ -151,6 +150,8 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                             {category}
                         </li>
                     ))}
+
+
 
                 </ul>
 
