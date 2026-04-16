@@ -67,11 +67,19 @@ export function Footer() {
                             April 29-30, 6-9PM<br/>
                         </p>
 
+                        <div className="flex gap-2 justify-center md:justify-start">
 
 
-                        <a className="px-5 py-1 border-1 border-lime text-white link inline-block wavy-text-link theme-transition text-lime" href="https://www.eventbrite.ca/e/yes-public-exhibit-tickets-1984078716852" target="_blank">
-                            RSVP
-                        </a>
+                            <a className="px-5 py-1 border-1 border-lime text-white link inline-block wavy-text-link theme-transition text-lime" href="https://www.eventbrite.ca/e/yes-public-exhibit-tickets-1984078716852" target="_blank">
+                                RSVP
+                            </a>
+
+                            <a className="px-5 py-1 border-1 border-lime text-white link inline-block wavy-text-link theme-transition text-lime" href="/dashboard" target="_blank">
+                                Student Login
+                            </a>
+
+                        </div>
+
 
                     </div>
                 </div>
