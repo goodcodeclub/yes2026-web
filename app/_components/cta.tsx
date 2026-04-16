@@ -22,8 +22,8 @@ export function CTA() {
                 const colors = ["#FF2D6B", "#3B5BFF", "#AAAAAA"];
                 return {
                     position: {
-                        x: 45 + Math.random() * 350,
-                        y: 55 + Math.random() * 300,
+                        x: 400 + Math.random() * 400,
+                        y: 400 + Math.random() * 400,
                     },
                     options: {
                         color: { value: colors[i % colors.length] },
@@ -66,7 +66,16 @@ export function CTA() {
                                         },
                                     },
                                 },
-                                opacity: { value: { min: 0.75, max: 0.95 } },
+                                opacity: {
+                                    value: { min: 0, max: 0.95 },
+                                    animation: {
+                                        enable: true,
+                                        speed: 0.15,
+                                        sync: false,
+                                        destroy: "min",
+                                        startValue: "max",
+                                    },
+                                },
                                 size: { value: { min: 72, max: 110 } },
                                 rotate: {
                                     value: { min: 0, max: 360 },
@@ -91,7 +100,7 @@ export function CTA() {
                             manualParticles,
                             emitters: {
                                 direction: "top",
-                                position: { x: "50%", y: 500 },
+                                position: { x: "50%", y: 400 },
                                 rate: { quantity: 1, delay: 0.8 },
                                 size: { width: 200, height: 0 },
                             },
