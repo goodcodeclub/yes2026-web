@@ -161,7 +161,7 @@ export default function LoginPage() {
 
                         <p className="text-white/70 text-sm text-center">
                            Need help? Contact us via MS Teams {" "}
-                            <a href={"https://teams.cloud.microsoft/l/channel/19%3A3a840f0e378445a9bc10164594efd8db%40thread.tacv2/Website%20Support%20(YES!26)?groupId=f7c0dae2-a46b-44ff-a31d-cba1b25798d5&tenantId=b5dc206c-17fd-4b06-8bc8-24f0bb650229"} className="text-[#FF4EAC] hover:text-[#ff6dbc] transition-colors underline" target="_blank">
+                            <a href={"https://teams.cloud.microsoft/l/channel/19%3AuZAnNbM3vxr5nKa58JCgX94hTpkyQAcNNyJ9YqzludA1%40thread.tacv2/General?groupId=88828dc5-7d5f-4d79-b91e-09bb8e5df3a5&tenantId=b5dc206c-17fd-4b06-8bc8-24f0bb650229"} className="text-[#FF4EAC] hover:text-[#ff6dbc] transition-colors underline" target="_blank">
                                 here
                             </a>
                         </p>                            
