@@ -321,13 +321,13 @@ export default function Page() {
                     "program": "Interaction Design & Development",
                     "year": "2nd Year"
                 },
-                {
-                    "name": "Ana Kajfes",
-                    "image": "",
-                    // "roles": ["Web Design Team member"],
-                    // "program": "Interaction Design & Development",
-                    // "year": "2nd Year"
-                }
+                // {
+                //     "name": "Ana Kajfes",
+                //     "image": "",
+                //     // "roles": ["Web Design Team member"],
+                //     // "program": "Interaction Design & Development",
+                //     // "year": "2nd Year"
+                // }
             ]
         },
         {
