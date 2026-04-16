@@ -198,7 +198,7 @@ export default function Page() {
                 },
                 {
                     "name": "Cinthia Nery Martins",
-                    "image": "",
+                    "image": "Oliveira, Cinthia.jpg",
                     "roles": [" Lead"],
                     "program": "Interaction Design",
                     "year": "3rd Year",
@@ -206,7 +206,7 @@ export default function Page() {
                 },
                 {
                     "name": "Tamlyn LouHing",
-                    "image": "webteam-photo-tlh.jpeg",
+                    "image": "LouHing, Tamlyn.jpg",
                     "roles": [" Co-Lead"],
                     "program": "Interaction Design",
                     "year": "3rd Year",
@@ -222,7 +222,7 @@ export default function Page() {
                 },
                 {
                     "name": "Olivia (Liv) Young",
-                    "image": "",
+                    "image": "OYoungHeadphot_2.png",
                     "roles": ["Website Visual Designer"],
                     "program": "Honours Bachelor of Brand Design",
                     "year": "4th Year",
@@ -238,7 +238,7 @@ export default function Page() {
                 },
                 {
                     "name": "Gabrielle Edward",
-                    "image": "",
+                    "image": "Edward, Gabrielle.jpg",
                     "roles": ["On-site sub-team"],
                     "program": "Graphic Design",
                     "year": "3rd Year",
@@ -469,15 +469,14 @@ export default function Page() {
             "members": [
                 {
                     "name": "Theresa Kienitz",
-                    "image": "",
+                    "image": "YES26-Theres-Kienitz.jpg",
                     "roles": ["Team Lead"],
                     "title": ["Assistant to the Associate Dean"]
                 },
                 {
-                    "name": "Niyousha Kerr",
-                    "image": "",
-                    "roles": ["Team Member"],
-                    "title": ["Student Services Coordinator"]
+                    "name": "Joseph Zettler",
+                    "image": "Zettler, Joseph.jpg",
+                    "roles": ["Fabricator"]
                 },
                 {
                     "name": "Jui Ping Kang (Ariel)",
@@ -609,7 +608,7 @@ export default function Page() {
             "members": [
                 {
                     "name": "Joseph Zettler",
-                    "image": "",
+                    "image": "Zettler, Joseph.jpg",
                     "roles": ["Design Lab & Studio Technologist"]
                 },
                 {
@@ -767,8 +766,8 @@ export default function Page() {
                                     <article key={index} className="text-white bg-black text-start">
                                         <a className="group block">
                                             <div className="relative overflow-hidden">
-                                                <div className="grid  place-items-center bg-gray-900 grayscale hover:grayscale-0 transition-all duration-300">
-                                                    <img src={`${item.image === "" ? "/committee/placeholder.svg" : `https://us-east-1.linodeobjects.com/yes-legacy/committee/${item.image}`}`} className="aspect-[1/1] object-cover object-center" />
+                                                <div className="grid  place-items-center bg-gray-900 grayscale 1hover:grayscale-0 transition-all duration-300">
+                                                    <img loading="lazy" src={`${item.image === "" ? "/committee/placeholder.svg" : `/api/assets/thumbnail?url=${encodeURIComponent("https://us-east-1.linodeobjects.com/yes-legacy/committee/" + item.image)}&width=400`}`} className="aspect-[1/1] object-cover object-center" />
                                                 </div>
                                             </div>
 
