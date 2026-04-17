@@ -201,7 +201,7 @@ export default function Page() {
                                             />
                                         ) : (
                                             <img
-                                                src={item.url}
+                                                src={`/api/assets/thumbnail?url=${item.url}&width=1920`}
                                                 alt={`${project.title} image ${index + 2}`}
                                                 className="w-full max-h-[560px] object-cover"
                                             />

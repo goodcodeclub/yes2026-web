@@ -900,7 +900,7 @@ export default function Page() {
                                                                     preload="metadata"
                                                                 />
                                                             ) : (
-                                                                <img src={asset.url} alt="" className="w-full h-full object-cover" />
+                                                                <img src={`/api/assets/thumbnail?url=${asset.url}&width=300`} alt="" className="w-full h-full object-cover" />
                                                             )}
                                                             <div className="absolute inset-0 bg-black/70 opacity-0 group-hover/gallery:opacity-100 transition-opacity flex items-center justify-center gap-1">
 
