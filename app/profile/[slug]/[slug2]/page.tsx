@@ -207,7 +207,7 @@ export default function Page() {
                                             />
                                         )}
                                         <figcaption className="text-base text-white/100">
-                                            {item.caption || "Optional caption here."}
+                                            {item.caption || ""}
                                         </figcaption>
                                     </figure>
                                 ))}
