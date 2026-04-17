@@ -222,7 +222,7 @@ export default function Page() {
                 },
                 {
                     "name": "Olivia (Liv) Young",
-                    "image": "OYoungHeadphot_2.png",
+                    "image": "Young_Olivia_ copy.jpg",
                     "roles": ["Website Visual Designer"],
                     "program": "Honours Bachelor of Brand Design",
                     "year": "4th Year",
@@ -495,7 +495,7 @@ export default function Page() {
                     "portfolio": "https://jascreates.com/"
                 },
                 {
-                    "name": "Ingrid Nazarri",
+                    "name": "Ingrid Nazzari",
                     "image": "Ingrid_Coloured.jpeg",
                     "roles": ["Designer"],
                     "program": "Graphic Design G102",
@@ -661,7 +661,7 @@ export default function Page() {
                     "program": "Grad Headshot Photographer"
                 },
                 {
-                    "name": "Ingrid Nazarri",
+                    "name": "Ingrid Nazzari",
                     "image": "Ingrid_Coloured.jpeg",
                     "roles": ["Student Event Photographer"],
                     "program": "Graphic Design G102",
@@ -766,7 +766,7 @@ export default function Page() {
                                     <article key={index} className="text-white bg-black text-start">
                                         <a className="group block">
                                             <div className="relative overflow-hidden">
-                                                <div className="grid  place-items-center bg-gray-900 grayscale 1hover:grayscale-0 transition-all duration-300">
+                                                <div className="grid  place-items-center bg-gray-900 grayscale 1hover:grayscale-0 transition-all duration-300 aspect-[1/1]">
                                                     <img loading="lazy" src={`${item.image === "" ? "/committee/placeholder.svg" : `/api/assets/thumbnail?url=${encodeURIComponent("https://us-east-1.linodeobjects.com/yes-legacy/committee/" + item.image)}&width=400`}`} className="aspect-[1/1] object-cover object-center" />
                                                 </div>
                                             </div>
