@@ -17,6 +17,15 @@ type Project = {
     captions?: string[]
 }
 
+type Asset = {
+    id: string
+    url: string
+    display_order: number
+    is_primary: boolean
+    media_type?: "image" | "video"
+    caption?: string
+}
+
 export default function Page() {
     const [profile, setProfile] = useState<any>({});
     const [project, setProject] = useState<Project | null>(null)
@@ -51,7 +60,36 @@ export default function Page() {
                     const projectsData = await projectsResponse.json()
                     const nextProjects = Array.isArray(projectsData?.projects) ? projectsData.projects : []
                     const foundProject = nextProjects.find((item: Project) => item.slug === projectSlug) ?? null
-                    setProject(foundProject)
+
+                    if (foundProject) {
+                        try {
+                            const assetsResponse = await fetch(
+                                `/api/assets/list?project_id=${encodeURIComponent(foundProject.id)}&user_uuid=${encodeURIComponent(user.uuid ?? "")}&user_gbcid=${encodeURIComponent(user.gbc_id ?? "")}`
+                            )
+
+                            if (assetsResponse.ok) {
+                                const assetsData = await assetsResponse.json()
+                                const assets: Asset[] = Array.isArray(assetsData?.assets) ? assetsData.assets : []
+                                const sortedAssets = [...assets].sort((a, b) => a.display_order - b.display_order)
+                                const primaryAsset = sortedAssets.find((asset) => asset.is_primary)
+                                const mergedProject: Project = {
+                                    ...foundProject,
+                                    image: primaryAsset?.url ?? sortedAssets[0]?.url ?? "",
+                                    images: sortedAssets.map((asset) => asset.url),
+                                    media_types: sortedAssets.map((asset) => asset.media_type === "video" ? "video" : "image"),
+                                    captions: sortedAssets.map((asset) => asset.caption ?? ""),
+                                }
+
+                                setProject(mergedProject)
+                            } else {
+                                setProject(foundProject)
+                            }
+                        } catch {
+                            setProject(foundProject)
+                        }
+                    } else {
+                        setProject(null)
+                    }
                 }
             }
         } catch (error) {
