@@ -636,6 +636,11 @@ export default function Page() {
         }))
     }
 
+    if (currentSession?.id === undefined && currentSession?.gbc_id === undefined) {
+        return <div className="min-h-screen flex items-center justify-center">
+            <p className="text-white text-lg">...</p>
+        </div>
+    }
 
     return <>
 
