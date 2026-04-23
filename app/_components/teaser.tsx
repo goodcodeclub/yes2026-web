@@ -158,7 +158,6 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                                 return;
                             } else {
                                 setActiveCategory && setActiveCategory(title);
-                                alert(title + "-" + category);
                                 setActiveProgram && setActiveProgram(category);
                             }
                         }}>
@@ -188,9 +187,9 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                             <p className="text-lg leading-tight" style={{ color: `#${getProgramColor(item.program)}` }}>{item.program}</p>
                         </article>
                     ))}
-                    {items.length === 0 && (
+                    {/* {items.length === 0 && (
                         <p className="text-white col-span-full text-center">No projects found.</p>
-                    )}
+                    )} */}
                 </div>
             </div>
         </section>
