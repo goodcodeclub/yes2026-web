@@ -80,7 +80,7 @@ export default function Page() {
     }, [params.slug])
 
     const profileImageUrl = profile?.uuid
-        ? `https://us-east-1.linodeobjects.com/yes-legacy/users/${profile.uuid}/profile.jpg`
+        ? `/api/assets/thumbnail?url=https://us-east-1.linodeobjects.com/yes-legacy/users/${profile.uuid}/profile.jpg&width=600`
         : ""
 
     const displayName = [profile?.fname, profile?.mname, profile?.lname].filter(Boolean).join(" ")

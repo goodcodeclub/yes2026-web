@@ -15,154 +15,12 @@ import { Teaser } from "../_components/teaser";
 import { Ticker } from "../_components/ticker";
 
 export default function Page() {
-
-    const presetItems = [
-        {
-            author: "Shweta Singh",
-            program: "Graphic Design",
-            href: "#",
-        },
-        {
-            author: "Daniel Olea Pinto",
-            program: "Graphic Design",
-            href: "#",
-        },
-        {
-            author: "Yalda Mo",
-            program: "Graphic Design",
-            href: "#",
-        },
-        {
-            author: "Alex Chen",
-            program: "Brand Design",
-            href: "#",
-        },
-        {
-            author: "Jordan Martinez",
-            program: "Interaction Design",
-            href: "#",
-        },
-        {
-            author: "Sam Richardson",
-            program: "Web Front-End",
-            href: "#",
-        },
-        {
-            author: "Taylor Johnson",
-            program: "Art & Design Foundation",
-            href: "#",
-        },
-        {
-            author: "Morgan Lee",
-            program: "Digital Experience Design",
-            href: "#",
-        },
-        {
-            author: "Casey Williams",
-            program: "Game-Art",
-            href: "#",
-        },
-        {
-            author: "Alex Rivera",
-            program: "Graphic Design",
-            href: "#",
-        },
-        {
-            author: "Jamie Park",
-            program: "Brand Design",
-            href: "#",
-        },
-        {
-            author: "Cameron Blake",
-            program: "Interaction Design",
-            href: "#",
-        },
-        {
-            author: "Riley Cohen",
-            program: "Web Front-End",
-            href: "#",
-        },
-        {
-            author: "Dakota Smith",
-            program: "Digital Experience Design",
-            href: "#",
-        },
-        {
-            author: "Phoenix White",
-            program: "Game-Art",
-            href: "#",
-        },
-        {
-            author: "Quinn Brown",
-            program: "Art & Design Foundation",
-            href: "#",
-        },
-        {
-            author: "Skylar Garcia",
-            program: "Graphic Design",
-            href: "#",
-        },
-        {
-            author: "Jordan Taylor",
-            program: "Brand Design",
-            href: "#",
-        },
-        {
-            author: "Casey Anderson",
-            program: "Interaction Design",
-            href: "#",
-        },
-        {
-            author: "Morgan Davis",
-            program: "Web Front-End",
-            href: "#",
-        },
-        {
-            author: "Reese Miller",
-            program: "Digital Experience Design",
-            href: "#",
-        },
-        {
-            author: "Avery Thompson",
-            program: "Game-Art",
-            href: "#",
-        },
-        {
-            author: "Blake Nelson",
-            program: "Art & Design Foundation",
-            href: "#",
-        },
-        {
-            author: "Drew Carter",
-            program: "Graphic Design",
-            href: "#",
-        },
-        {
-            author: "Sage Robinson",
-            program: "Brand Design",
-            href: "#",
-        },
-        {
-            author: "River Martinez",
-            program: "Interaction Design",
-            href: "#",
-        },
-        {
-            author: "Harper Lewis",
-            program: "Web Front-End",
-            href: "#",
-        },
-        {
-            author: "Finley Walker",
-            program: "Digital Experience Design",
-            href: "#",
-        },
-        {
-            author: "Rowan Hall",
-            program: "Game-Art",
-            href: "#",
-        },
-    ];
+    type GradItem = {
+        id: string;
+        author: string;
+        program: string;
+        href: string;
+    };
 
     let categories = [
         {
@@ -193,11 +51,49 @@ export default function Page() {
         },
     ];
 
-    let [items, setItems] = useState<any>([]);
+    let [items, setItems] = useState<GradItem[]>([]);
 
     useEffect(() => {
+        let isMounted = true;
 
-        setItems(presetItems.sort(() => Math.random() - 0.5));
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch("/api/users/list/full");
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch users: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (!data.users || !Array.isArray(data.users)) {
+                    return;
+                }
+
+                const mappedItems: GradItem[] = data.users.map((user: any) => {
+                    const fname = (user.fname ?? "").trim();
+                    const lname = (user.lname ?? "").trim();
+                    const fullName = `${fname} ${lname}`.trim();
+
+                    return {
+                        id: user.uuid,
+                        author: fullName,
+                        program: user.program ?? "",
+                        href: `/profile/${fullName.toLowerCase().replaceAll(" ", "-")}`,
+                    };
+                });
+
+                if (isMounted) {
+                    setItems(mappedItems.sort(() => Math.random() - 0.5));
+                }
+            } catch (error) {
+                console.error("Failed to fetch users:", error);
+            }
+        };
+
+        fetchUsers();
+
+        return () => {
+            isMounted = false;
+        };
 
     }, []);
 
@@ -408,7 +304,7 @@ export default function Page() {
 
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-6 w-full">
-                    {items.map((item: any) => {
+                    {items.map((item) => {
 
                         if (activeProgram !== "" && item.program !== activeProgram) {
                             return null;
@@ -419,11 +315,18 @@ export default function Page() {
                         }
 
                         return (
-                            <article key={item.author} className="text-white bg-black text-start">
+                            <article key={item.id} className="text-white bg-black text-start">
                                 <a href={item.href} className="group block">
                                     <div className="relative  overflow-hidden">
                                         <div className="grid h-full w-full place-items-center bg-gray-900">
-                                            <img src={`/committee/placeholder.svg`} className="aspect-[4/3] object-cover object-center grayscale hover:grayscale-0 transition-all duration-300" />
+                                            <img
+                                                src={`/api/assets/thumbnail?url=https://us-east-1.linodeobjects.com/yes-legacy/users/${item.id}/profile.jpg&width=600`}
+                                                onError={(e) => {
+                                                    e.currentTarget.onerror = null;
+                                                    e.currentTarget.src = "/committee/placeholder.svg";
+                                                }}
+                                                className="aspect-[4/3] object-cover object-center grayscale hover:grayscale-0 transition-all duration-300"
+                                            />
                                         </div>
                                     </div>
 
@@ -441,6 +344,7 @@ export default function Page() {
                             </article>
                         )
                     })}
+
                 </div>
 
 

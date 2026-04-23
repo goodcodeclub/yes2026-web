@@ -1,97 +1,110 @@
 "use client";
 
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export function Teaser({ title, color, color2, textColor, titleColor, categories, activeCategory, setActiveCategory }: { title: string; color: string, color2?: string, textColor?: string, titleColor?: string, categories?: string[], activeCategory?: string, setActiveCategory?: (category: string) => void }) {
-    const items = [
-        {
-            title: "British Orphan",
-            author: "Shweta Singh",
-            program: "Graphic Design",
-            href: "#",
-            variant: "orphan",
-        },
-        {
-            title: "The Smile Face Museum",
-            author: "Daniel Olea Pinto",
-            program: "Graphic Design",
-            href: "#",
-            variant: "smile",
-        },
-        {
-            title: "Mirrored",
-            author: "Yalda Mo",
-            program: "Graphic Design",
-            href: "#",
-            variant: "mirrored",
-        },
-        {
-            title: "British Orphan",
-            author: "Shweta Singh",
-            program: "Graphic Design",
-            href: "#",
-            variant: "orphan",
-        },
-        {
-            title: "The Smile Face Museum",
-            author: "Daniel Olea Pinto",
-            program: "Graphic Design",
-            href: "#",
-            variant: "smile",
-        },
-        {
-            title: "Mirrored",
-            author: "Yalda Mo",
-            program: "Graphic Design",
-            href: "#",
-            variant: "mirrored",
-        },
-        {
-            title: "British Orphan",
-            author: "Shweta Singh",
-            program: "Graphic Design",
-            href: "#",
-            variant: "orphan",
-        },
-        {
-            title: "The Smile Face Museum",
-            author: "Daniel Olea Pinto",
-            program: "Graphic Design",
-            href: "#",
-            variant: "smile",
-        },
-        {
-            title: "Mirrored",
-            author: "Yalda Mo",
-            program: "Graphic Design",
-            href: "#",
-            variant: "mirrored",
-        },
-        {
-            title: "British Orphan",
-            author: "Shweta Singh",
-            program: "Graphic Design",
-            href: "#",
-            variant: "orphan",
-        },
-        {
-            title: "The Smile Face Museum",
-            author: "Daniel Olea Pinto",
-            program: "Graphic Design",
-            href: "#",
-            variant: "smile",
-        },
-        {
-            title: "Mirrored",
-            author: "Yalda Mo",
-            program: "Graphic Design",
-            href: "#",
-            variant: "mirrored",
-        },
-    ] as const;
+export function Teaser({ title, color, color2, textColor, titleColor, categories, activeCategory, setActiveCategory, activeProgram, setActiveProgram }: { title: string; color: string, color2?: string, textColor?: string, titleColor?: string, categories?: string[] | string, activeCategory?: string, setActiveCategory?: (category: string) => void, activeProgram?: string, setActiveProgram?: (program: string) => void }) {
+    const [items, setItems] = useState<Array<{
+        title: string;
+        author: string;
+        program: string;
+        href: string;
+        cover: string;
+    }>>([]);
 
-    const [activeProgram, setActiveProgram] = useState<string>(categories && categories.length > 0 ? categories[categories.length-1] : "");
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const response = await fetch("/api/projects/list/full");
+                const data = await response.json();
+
+                if (data.projects && Array.isArray(data.projects)) {
+                    const mappedItems = data.projects.map((project: any, index: number) => ({
+                        title: project.title,
+                        author: `${project.user_fname} ${project.user_lname}`,
+                        program: project.user_program || "-",
+                        href: `/profile/${(project.user_fname.trim() + " " + project.user_lname.trim()).toLowerCase().replaceAll(" ", "-")}/${project.slug}`,
+                        cover: project.image || (project.images[0] || "/placeholder.png"),
+                    }));
+
+                    if (categories === undefined) {
+                        setItems(mappedItems);
+                    } else if (categories == "") {
+                        setItems(mappedItems);
+                    } else if (activeProgram != "" && activeProgram?.indexOf("View All") === -1) {
+                        setItems(mappedItems.filter((item: any) => {
+                            return item.program === activeProgram;
+                        }));
+                    } else {
+                        setItems(mappedItems.filter((item: any) => {
+                            if (typeof categories === "string") {
+                                return item.program === categories;
+                            } else if (Array.isArray(categories)) {
+                                return categories.includes(item.program);
+                            }
+                            return false;
+                        }));
+                    }
+
+                }
+            } catch (error) {
+                console.error("Failed to fetch projects:", error);
+            }
+        };
+
+        fetchProjects();
+    }, []);
+
+
+    const categoriesData: Array<{
+        word: string;
+        title: string;
+        color: string;
+        textColor: string;
+        activeTextColor: string;
+        activeBgColor?: string;
+        programs: string[];
+    }> = [
+        {
+            word: "DESIGN", title: "Design", color: "ff4eac", textColor: "ff4eac", activeTextColor: "ffffff", programs: [
+                "Art & Design Foundation",
+                "Graphic Design",
+                "Brand Design",
+            ]
+        },
+        {
+            word: "INTERACTION", title: "Interaction", color: "004bff", textColor: "004bff", activeTextColor: "ffffff", programs: [
+                "Interaction Design",
+                "Digital Experience Design",
+                "Web Front-End",
+            ]
+        },
+        {
+            word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", activeTextColor: "ffffff", programs: [
+                "Game-Art",
+            ]
+        },
+        {
+            word: "ALL", title: "All", color: "000000", textColor: "ffffff", activeBgColor: "ffffff", activeTextColor: "000000", programs: [
+
+            ]
+        }
+    ];
+
+    const getProgramColor = (program: string): string => {
+        for (const category of categoriesData) {
+            if (category.programs.includes(program)) {
+                return category.textColor;
+            }
+        }
+        return "ffffff"; // default to white
+    };
+
+    const categoryList = Array.isArray(categories)
+        ? categories
+        : typeof categories === "string" && categories !== ""
+            ? [categories]
+            : [];
 
     return (
         <section className="w-full">
@@ -100,6 +113,7 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                     <div className="flex items-center">
                         <h2 className="ff-pack-hard1 text-3xl leading-none  flex items-center 1uppercase" style={{ color: `#${titleColor ?? textColor}` }}>
                             {title ? title : "Check it out"}
+
                         </h2>
                         <ArrowDown className="h-8 w-8 text-white ml-1" style={{ color: `#${titleColor ?? textColor}` }} />
                     </div>
@@ -136,15 +150,16 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                     color: `#${color === "000" ? "fff" : color}`,
                 }}>
 
-                    {categories?.map((category, categoryIndex) => (
+                    {categoryList.map((category: string, categoryIndex: number) => (
                         <li key={categoryIndex} className={`${activeProgram === category ? "underline" : ""} cursor-pointer text-white`} onClick={(e) => {
 
                             if (category == activeProgram) {
-                                setActiveProgram(categories && categories.length > 0 ? categories[categories.length-1] : "");
+                                setActiveProgram && setActiveProgram(categoryList.length > 0 ? categoryList[categoryList.length - 1] : "");
                                 return;
                             } else {
-                                setActiveProgram(category);
                                 setActiveCategory && setActiveCategory(title);
+                                alert(title + "-" + category);
+                                setActiveProgram && setActiveProgram(category);
                             }
                         }}>
                             {category}
@@ -161,7 +176,7 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                             <a href={item.href} className="group block">
                                 <div className="relative mb-3 aspect-[4/2.8] overflow-hidden">
                                     <div className="grid h-full w-full place-items-center bg-gray-900">
-
+                                        <img src={`/api/assets/thumbnail?url=${encodeURIComponent(item.cover)}&width=900`} alt={item.title} className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105`} />
                                     </div>
                                 </div>
                                 <h3 className="mb-1 text-2xl font-semibold leading-tight underline underline-offset-2">
@@ -170,9 +185,12 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                             </a>
 
                             <p className="text-lg text-white">{item.author}</p>
-                            <p className="text-lg leading-tight" style={{ color: `#${textColor ? textColor : color}` }}>{item.program}</p>
+                            <p className="text-lg leading-tight" style={{ color: `#${getProgramColor(item.program)}` }}>{item.program}</p>
                         </article>
                     ))}
+                    {items.length === 0 && (
+                        <p className="text-white col-span-full text-center">No projects found.</p>
+                    )}
                 </div>
             </div>
         </section>

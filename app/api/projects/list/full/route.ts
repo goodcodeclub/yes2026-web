@@ -41,13 +41,15 @@ export async function GET(req: NextRequest) {
 				a.caption,
 				a.display_order AS asset_order,
 				u.fname AS user_fname,
-				u.lname AS user_lname
+				u.lname AS user_lname,
+				u.program AS user_program
 			 FROM projects p
 			 INNER JOIN users u ON u.id = p.user_id
 			 LEFT JOIN assets a ON a.project_id = p.id
 			 WHERE p.active = 1 AND a.active = 1
+			 	AND u.fname IS NOT NULL AND u.lname IS NOT NULL AND u.program IS NOT NULL
 			   AND p.deleted_at IS NULL
-			 ORDER BY p.display_order ASC, p.created_at ASC, a.display_order ASC, a.created_at ASC`,
+			 ORDER BY RAND()`,
 			whereParams
 		);
 
@@ -55,6 +57,7 @@ export async function GET(req: NextRequest) {
 			id: number;
 			user_fname: string;
 			user_lname: string;
+			user_program: string;
 			uuid: string;
 			title: string;
 			slug: string;
@@ -73,6 +76,7 @@ export async function GET(req: NextRequest) {
 			id: string;
 			user_fname: string;
 			user_lname: string;
+			user_program: string;
 			title: string;
 			slug: string;
 			category: string;
@@ -91,6 +95,7 @@ export async function GET(req: NextRequest) {
 					id: row.uuid,
 					user_fname: row.user_fname,
 					user_lname: row.user_lname,
+					user_program: row.user_program,
 					title: row.title,
 					slug: row.slug,
 					category: row.short_description ?? "",

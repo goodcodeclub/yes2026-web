@@ -16,7 +16,7 @@ export default function Page() {
         <Nav />
         <Banner />
         <Intro mode="home" />
-        {/* <Teaser title="Check It Out" color="ff3" textColor="ff4eac" titleColor="fff" activeCategory="" /> */}
+        <Teaser title="Check It Out" color="ff3" textColor="ff4eac" titleColor="fff" activeCategory="" />
         <Ticker />
         <CTA />
         <Events />

@@ -17,7 +17,7 @@ import { Ticker } from "../_components/ticker";
 export default function Page() {
     const categories = [
         {
-            word: "DESIGN", title: "Design", color: "ff4eac", textColor: "ff4eac", activeTextColor:"ffffff", categories: [
+            word: "DESIGN", title: "Design", color: "ff4eac", textColor: "ff4eac", activeTextColor: "ffffff", categories: [
                 "Art & Design Foundation",
                 "Graphic Design",
                 "Brand Design",
@@ -25,7 +25,7 @@ export default function Page() {
             ]
         },
         {
-            word: "INTERACTION", title: "Interaction", color: "004bff", textColor: "004bff", activeTextColor:"ffffff", categories: [
+            word: "INTERACTION", title: "Interaction", color: "004bff", textColor: "004bff", activeTextColor: "ffffff", categories: [
                 "Interaction Design",
                 "Digital Experience Design",
                 "Web Front-End",
@@ -33,19 +33,20 @@ export default function Page() {
             ]
         },
         {
-            word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", activeTextColor:"ffffff", categories: [
+            word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", activeTextColor: "ffffff", categories: [
                 "Game-Art",
                 "View All Game Projects"
             ]
         },
         {
-            word: "ALL", title: "All", color: "000000", textColor: "ffffff", activeBgColor:"ffffff", activeTextColor:"000000", categories: [
+            word: "ALL", title: "All", color: "000000", textColor: "ffffff", activeBgColor: "ffffff", activeTextColor: "000000", categories: [
 
             ]
         }
     ];
 
     let [activeCategory, setActiveCategory] = useState("");
+    const [activeProgram, setActiveProgram] = useState<string>("");
 
     return <>
 
@@ -57,38 +58,44 @@ export default function Page() {
             top: "4.5rem"
         }}>
             <div className="grid lg:grid-cols-4 grid-cols-2 gap-0 w-full">
-            {categories.map((category, index) => (
+                {categories.map((category, index) => (
 
-                <a href="#" key={index}
-                    className={`w-full lg:text-2xl text-xl py-3 ff-pack-hard leading-none uppercase border border-1  border-t-2 border-b-2 text-white hover:bg-[#${category.color}] ${activeCategory === category.title ? "active" : "bg-black"}`} onClick={(e) => {
+                    <a href="#" key={index}
+                        className={`w-full lg:text-2xl text-xl py-3 ff-pack-hard leading-none uppercase border border-1  border-t-2 border-b-2 text-white hover:bg-[#${category.color}] hover:opacity-90 ${activeCategory === category.title ? "active opacity-100!" : "bg-black"}`} onClick={(e) => {
 
-                        e.preventDefault();
-                        window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
-                        if (activeCategory == category.title) {
-                            setActiveCategory("");
-                        } else {
-                            setActiveCategory(category.title);
-                        }
+                            e.preventDefault();
+                            window.scrollTo({ top: (document.getElementById("category-nav-placeholder")?.offsetTop ?? 0) - (document.getElementById("mainheader")?.offsetHeight ?? 0), behavior: "smooth" });
+                            if (activeCategory == category.title) {
+                                setActiveCategory("");
+                                setActiveProgram("");
+                            } else {
+                                setActiveCategory(category.title);
+                                setActiveProgram(category.categories[category.categories.length - 1]);
+                            }
 
-                    }} style={{
-                        backgroundColor: `${activeCategory === category.title ? "#" + (category.activeBgColor ?? category.color) : ""}`,
-                        color: `${activeCategory === category.title ? "#" + (category.activeTextColor ?? category.textColor) : ""}`,
-                    }}>
-                    {category.word.split(" ").map((part, partIndex) => (
-                        <span key={partIndex} className="block">
-                            {part}
-                        </span>
-                    ))}
-                </a>
-            ))}
+                        }} style={{
+                            backgroundColor: `${activeCategory === category.title ? "#" + (category.activeBgColor ?? category.color) : ""}`,
+                            color: `${activeCategory === category.title ? "#" + (category.activeTextColor ?? category.textColor) : ""}`,
+                        }}>
+                        {category.word.split(" ").map((part, partIndex) => (
+                            <span key={partIndex} className="block">
+                                {part}
+                            </span>
+                        ))}
+                    </a>
+                ))}
             </div>
 
+        </div>
+
+        <div className="text-white hidden">
+            {activeProgram}
         </div>
 
         {categories.filter(category => activeCategory === "" || activeCategory === category.title).map((category, index) => (
             <>
 
-                <Teaser key={activeCategory} title={category.title} color={category.color} textColor={category.textColor} categories={category.categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+                <Teaser key={activeCategory+activeProgram} title={category.title} color={category.color} textColor={category.textColor} categories={category.categories} activeCategory={activeCategory} activeProgram={activeProgram} setActiveCategory={setActiveCategory} setActiveProgram={setActiveProgram} />
 
 
             </>
