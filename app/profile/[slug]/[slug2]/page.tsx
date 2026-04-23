@@ -232,7 +232,7 @@ export default function Page() {
                                         {item.mediaType === "video" ? (
                                             <video
                                                 src={item.url}
-                                                className="w-full max-h-[560px] object-cover bg-black"
+                                                className="w-full max-h-[560px]1 object-cover bg-black"
                                                 controls
                                                 playsInline
                                                 preload="metadata"
@@ -241,7 +241,7 @@ export default function Page() {
                                             <img
                                                 src={`/api/assets/thumbnail?url=${item.url}&width=1920`}
                                                 alt={`${project.title} image ${index + 2}`}
-                                                className="w-full max-h-[560px] object-cover"
+                                                className="w-full max-h-[560px]1 object-cover"
                                             />
                                         )}
                                         <figcaption className="text-base text-white/100">
