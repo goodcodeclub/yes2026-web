@@ -116,6 +116,10 @@ export default function Page() {
                                     <img
                                         src={profileImageUrl}
                                         alt={displayName || "Profile image"}
+                                        onError={(e) => {
+                                            e.currentTarget.onerror = null;
+                                            e.currentTarget.src = "/committee/placeholder.svg";
+                                        }}
                                         className="w-full aspect-[5/4] object-cover"
                                     />
                                 ) : (
