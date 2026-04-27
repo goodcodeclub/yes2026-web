@@ -65,31 +65,31 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
         activeBgColor?: string;
         programs: string[];
     }> = [
-        {
-            word: "DESIGN", title: "Design", color: "ff4eac", textColor: "ff4eac", activeTextColor: "ffffff", programs: [
-                "Art & Design Foundation",
-                "Graphic Design",
-                "Brand Design",
-            ]
-        },
-        {
-            word: "INTERACTION", title: "Interaction", color: "004bff", textColor: "004bff", activeTextColor: "ffffff", programs: [
-                "Interaction Design",
-                "Digital Experience Design",
-                "Web Front-End",
-            ]
-        },
-        {
-            word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", activeTextColor: "ffffff", programs: [
-                "Game-Art",
-            ]
-        },
-        {
-            word: "ALL", title: "All", color: "000000", textColor: "ffffff", activeBgColor: "ffffff", activeTextColor: "000000", programs: [
+            {
+                word: "DESIGN", title: "Design", color: "ff4eac", textColor: "ff4eac", activeTextColor: "ffffff", programs: [
+                    "Art & Design Foundation",
+                    "Graphic Design",
+                    "Brand Design",
+                ]
+            },
+            {
+                word: "INTERACTION", title: "Interaction", color: "004bff", textColor: "004bff", activeTextColor: "ffffff", programs: [
+                    "Interaction Design",
+                    "Digital Experience Design",
+                    "Web Front-End",
+                ]
+            },
+            {
+                word: "GAME", title: "Game", color: "cccccc", textColor: "ffffff", activeTextColor: "ffffff", programs: [
+                    "Game-Art",
+                ]
+            },
+            {
+                word: "ALL", title: "All", color: "000000", textColor: "ffffff", activeBgColor: "ffffff", activeTextColor: "000000", programs: [
 
-            ]
-        }
-    ];
+                ]
+            }
+        ];
 
     const getProgramColor = (program: string): string => {
         for (const category of categoriesData) {
@@ -175,7 +175,11 @@ export function Teaser({ title, color, color2, textColor, titleColor, categories
                             <a href={item.href} className="group block">
                                 <div className="relative mb-3 aspect-[4/2.8] overflow-hidden">
                                     <div className="grid h-full w-full place-items-center bg-gray-900">
-                                        <img src={`/api/assets/thumbnail?url=${encodeURIComponent(item.cover)}&width=900`} alt={item.title} className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105`} />
+                                        {item.cover.indexOf(".mp4") > -1 ? (
+                                            <video src={item.cover} autoPlay loop muted className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105`} />
+                                        ) : (
+                                            <img src={`/api/assets/thumbnail?url=${encodeURIComponent(item.cover)}&width=900`} alt={item.title} className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105`} />
+                                        )}
                                     </div>
                                 </div>
                                 <h3 className="mb-1 text-2xl font-semibold leading-tight underline underline-offset-2">

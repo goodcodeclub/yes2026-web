@@ -11,7 +11,7 @@ export function Nav(props: any) {
 
     let menu = [
         // { label: 'Home', href: '/' },
-        { label: 'Work', href: '/work' },
+        { label: 'Projects', href: '/work' },
         { label: 'Grads', href: '/grads' },
         // { label: 'Awards', href: '/awards' },
         { label: 'Gallery', href: '/gallery' },

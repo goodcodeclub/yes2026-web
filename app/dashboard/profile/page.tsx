@@ -219,7 +219,7 @@ export default function Page() {
                                 <img
                                     src={profileImageUrl}
                                     alt="Profile"
-                                    className="w-full max-w-[320px] aspect-square object-cover rounded-lg border border-white/20"
+                                    className="w-full max-w-[320px] aspect-[4/3] object-cover rounded-lg border border-white/20"
                                     onError={(e) => {
                                         setProfileImageUrl("");
                                     }}

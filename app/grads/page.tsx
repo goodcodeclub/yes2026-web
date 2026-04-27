@@ -320,12 +320,12 @@ export default function Page() {
                                     <div className="relative  overflow-hidden">
                                         <div className="grid h-full w-full place-items-center bg-gray-900">
                                             <img
-                                                src={`/api/assets/thumbnail?url=https://us-east-1.linodeobjects.com/yes-legacy/users/${item.id}/profile.jpg&width=600`}
+                                                src={`/api/assets/thumbnail?url=https://us-east-1.linodeobjects.com/yes-legacy/users/${item.id}/profile.jpg&width=600&cachebust=${Date.now()}`}
                                                 onError={(e) => {
                                                     e.currentTarget.onerror = null;
                                                     e.currentTarget.src = "/committee/placeholder.svg";
                                                 }}
-                                                className="aspect-[4/3] object-cover object-center grayscale hover:grayscale-0 transition-all duration-300"
+                                                className="aspect-[4/3] object-cover object-center grayscale hover:grayscale-01 transition-all duration-300 w-full"
                                             />
                                         </div>
                                     </div>

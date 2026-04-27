@@ -80,7 +80,7 @@ export default function Page() {
     }, [params.slug])
 
     const profileImageUrl = profile?.uuid
-        ? `/api/assets/thumbnail?url=https://us-east-1.linodeobjects.com/yes-legacy/users/${profile.uuid}/profile.jpg&width=600`
+        ? `/api/assets/thumbnail?url=https://us-east-1.linodeobjects.com/yes-legacy/users/${profile.uuid}/profile.jpg&width=600&cachebust=${Date.now()}`
         : ""
 
     const displayName = [profile?.fname, profile?.mname, profile?.lname].filter(Boolean).join(" ")
@@ -120,10 +120,10 @@ export default function Page() {
                                             e.currentTarget.onerror = null;
                                             e.currentTarget.src = "/committee/placeholder.svg";
                                         }}
-                                        className="w-full aspect-[5/4] object-cover"
+                                        className="w-full aspect-[4/3] object-cover"
                                     />
                                 ) : (
-                                    <div className="w-full aspect-[5/4] bg-white/5" />
+                                    <div className="w-full aspect-[4/3] bg-white/5" />
                                 )}
                             </div>
 
@@ -195,11 +195,19 @@ export default function Page() {
                                         <article key={project.id} className="bg-black border border-white/10 overflow-hidden">
                                             <div className="w-full aspect-[4/3] bg-neutral-900">
                                                 {imageUrl ? (
-                                                    <img
-                                                        src={imageUrl}
-                                                        alt={project.title}
-                                                        className="w-full h-full object-cover"
-                                                    />
+                                                    <>
+
+                                                        {imageUrl.indexOf(".mp4") > -1 ? (
+                                                            <video src={imageUrl} autoPlay loop muted className={`w-full h-full object-cover`} />
+                                                        ) : (
+                                                            <img
+                                                                src={imageUrl}
+                                                                alt={project.title}
+                                                                className="w-full h-full object-cover"
+                                                            />
+                                                        )}
+                                                    </>
+
                                                 ) : (
                                                     <div className="w-full h-full bg-neutral-800" />
                                                 )}

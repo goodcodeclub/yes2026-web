@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import sharp from "sharp";
+import path from "node:path";
+import { createHash } from "node:crypto";
+import { unlink } from "node:fs";
 
 export const runtime = "nodejs";
 
@@ -77,7 +80,7 @@ export async function POST(req: NextRequest) {
             return jsonWithCors({ error: "No file uploaded." }, { status: 400 });
         }
 
-        
+
 
         if (!file.type.startsWith("image/")) {
             return jsonWithCors(
@@ -128,12 +131,30 @@ export async function POST(req: NextRequest) {
                 ContentType: "image/jpeg",
                 CacheControl: "public, max-age=31536000, immutable",
             })
-        );        
+        );
 
         const normalizedEndpoint = normalizeUrlInput(process.env.AWS_ENDPOINT ?? "");
         const publicBase = process.env.AWS_PUBLIC_URL
             ? normalizeUrlInput(process.env.AWS_PUBLIC_URL)
             : `${normalizedEndpoint}/${bucket}`;
+
+        const cacheDir = path.join(process.cwd(), ".cache");
+        console.log(`${publicBase}/${objectKey}`);
+
+        function getCacheFilePath(sourceUrl: string, width: number) {
+            const key = createHash("sha256")
+                .update(`${sourceUrl}|w=${width}`)
+                .digest("hex");
+            return path.join(cacheDir, `${key}.jpg`);
+        }
+
+        const cacheFilePath = getCacheFilePath(`${publicBase}/${objectKey}`, 600);
+
+        unlink(cacheFilePath, (err) => {
+            if (err) {
+                console.error("[users.upload_image] error deleting cache file:", err);
+            }
+        });
 
         return jsonWithCors({
             url: `${publicBase}/${objectKey}`,
