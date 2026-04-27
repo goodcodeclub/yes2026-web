@@ -16,7 +16,20 @@ export default function Page() {
         <Nav />
         <Banner />
         <Intro mode="home" />
-        <Teaser title="Check It Out" color="ff3" textColor="ff4eac" titleColor="fff" activeCategory="" />
+
+        <div className="mx-auto max-w-[1080px] px-5 py-14 lg:py-20">
+
+            <iframe className="w-full aspect-[16/9]" src="https://www.youtube.com/embed/OdEAlj-hmYk?si=JheyW9AloXhJoq2K" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
+
+            <h2 className="ff-pack-hard1 text-2xl leading-none  flex items-center 1uppercase text-white mt-5">
+                YES 2026 Teaser
+
+            </h2>
+        </div>
+        <div className="bg-[#1c1c1c]">
+            <Teaser title="Check It Out" color="ff3" textColor="ff4eac" titleColor="fff" activeCategory="" />
+        </div>
         <Ticker />
         <CTA />
         <Events />
