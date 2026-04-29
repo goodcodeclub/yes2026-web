@@ -58,12 +58,15 @@ export async function GET(req: NextRequest) {
 
 			return jsonWithCors({ user });
 		} else if (slug) {
+
+			console.log(slug);
+			const decodedSlug = decodeURIComponent(slug);
 			const [rows] = await pool.execute(
 				`SELECT uuid, gbc_id, fname, mname, lname, pronoun, bio, website_url, instagram_url, program, created_at, updated_at
 				 FROM users
 				 WHERE CONCAT(REPLACE(TRIM(fname), ' ', '-'), '-', REPLACE(TRIM(lname), ' ', '-')) = ?
 				 LIMIT 1`,
-				[slug ?? ""]
+				[decodedSlug ?? ""]
 			);
 
 			const users = rows as UserRow[];
