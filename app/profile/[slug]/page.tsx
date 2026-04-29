@@ -168,7 +168,7 @@ export default function Page() {
                                         }}>{program}</p>
                                 )}
                                 {bio && (
-                                    <p className="text-white/90 text-lg leading-relaxed max-w-2xl mb-10">{bio.split("\n").map((line, index) => (
+                                    <p className="text-white/90 text-lg leading-relaxed max-w-2xl mb-10">{bio.split("\n").map((line:any, index:number) => (
                                         <span key={index}>
                                             {line}
                                             <br />
