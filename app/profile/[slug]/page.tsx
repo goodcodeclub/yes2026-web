@@ -72,6 +72,34 @@ export default function Page() {
     }
 
 
+    let categories = [
+        {
+            word: "DESIGN", color: "ff4eac", programs: [
+                "Art & Design Foundation",
+                "Graphic Design",
+                "Brand Design",
+
+
+            ]
+        },
+        {
+            word: "INTERACTION", color: "004BFF", programs: [
+                "Interaction Design",
+                "Digital Experience Design",
+                "Web Front-End",
+            ]
+        },
+        {
+            word: "GAME", color: "fff", programs: [
+                "Game-Art",
+            ]
+        },
+        {
+            word: "All Grads", color: "fff", programs: [
+
+            ]
+        },
+    ];
 
     useEffect(() => {
 
@@ -85,6 +113,7 @@ export default function Page() {
 
     const displayName = [profile?.fname, profile?.mname, profile?.lname].filter(Boolean).join(" ")
     const pronoun = profile?.pronoun || ""
+    const program = profile?.program || ""
     const bio = profile?.bio || ""
     const portfolioUrl = normalizeLink(profile?.website_url)
     const instagramUrl = normalizeLink(profile?.instagram_url)
@@ -132,7 +161,12 @@ export default function Page() {
                                 {pronoun && (
                                     <p className="text-lg text-white mb-1">{pronoun}</p>
                                 )}
-                                <p className="text-lg text-pink-500 mb-5">Graphic Design</p>
+                                {program && (
+                                    <p className="text-lg text-pink-500 mb-5"
+                                        style={{
+                                            color: `#${categories.find(cat => cat.programs.includes(program))?.color || "fff"}`
+                                        }}>{program}</p>
+                                )}
                                 {bio && (
                                     <p className="text-white/90 text-lg leading-relaxed max-w-2xl mb-10">{bio}</p>
                                 )}
@@ -143,7 +177,11 @@ export default function Page() {
                                             href={portfolioUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-pink-500 underline underline-offset-4 decoration-pink-500/60 hover:text-pink-400 transition-colors text-lg"
+                                            className="text-pink-500 decoration-pink-500/60 hover:text-pink-400 transition-colors text-lg"
+                                            style={{
+                                                color: `#${categories.find(cat => cat.programs.includes(program))?.color || "fff"}`,
+                                                textDecoration: "underline"
+                                            }}
                                         >
                                             Portfolio ↗
                                         </a>
@@ -156,6 +194,9 @@ export default function Page() {
                                             rel="noopener noreferrer"
                                             className="h-9 w-9 rounded-full bg-pink-500 text-black flex items-center justify-center hover:bg-pink-400 transition-colors"
                                             aria-label="Open Instagram"
+                                            style={{
+                                                backgroundColor: `#${categories.find(cat => cat.programs.includes(program))?.color || "fff"}`,
+                                            }}
                                         >
                                             <Instagram className="h-4 w-4" />
                                         </a>
